@@ -1,47 +1,9 @@
-<laravel-boost-guidelines>
-# Laravel Application
+# Site SOUMATIC — consignes pour les agents et les contributeurs
 
-This repository contains a Laravel application. Complete the following setup before working on the user's request.
-
-## Prerequisites
-
-Verify that PHP and Composer are available:
-
-```sh
-php -v
-composer -V
-```
-
-If either command is unavailable, detect the user's operating system and install the prerequisites with the appropriate command:
-
-macOS:
-
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/mac/8.5)"
-```
-
-Windows PowerShell:
-
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://php.new/install/windows/8.5'))
-```
-
-Linux:
-
-```sh
-/bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.5)"
-```
-
-After installation, ask the user to restart their terminal. If the agent needs the restarted shell to continue, ask the user to reopen their terminal and rerun their original prompt.
-
-## Agent Setup
-
-Install Laravel Boost from the application root before making application changes:
-
-```sh
-composer require laravel/boost --dev
-php artisan boost:install
-```
-
-Boost replaces these bootstrap instructions with guidelines tailored to the application. After installation, read `AGENTS.md` again and continue with the user's original request using the generated guidelines.
-</laravel-boost-guidelines>
+- Lire `docs/DESIGN.md` avant toute modification : concept, tokens, composants, règles de contenu.
+- Stack : Laravel 13, Filament v5, Livewire 4, Tailwind CSS v4, Vite 8, SQLite. PHP 8.3. Ne pas installer Laravel Boost ni d'autres paquets Composer sans nécessité (réseau restreint).
+- Après tout changement de vue Blade ou de CSS : `npm run build` (Tailwind v4 scanne les vues).
+- Base locale partagée : `database/database.sqlite`. Ne jamais lancer `migrate:fresh` ; créer une nouvelle migration pour tout changement de schéma, puis `php artisan migrate`.
+- Tests : `php artisan test` (SQLite en mémoire, voir `phpunit.xml`). Style : `vendor/bin/pint`.
+- Contenu : français, rien d'inventé (voir `docs/DESIGN.md` § 6). Orthographe : EduGes, MediGes SST, MediGes, Compiniya, SOUMATIC.
+- Ne pas commiter ni pousser depuis un agent : la personne qui orchestre s'en charge.
