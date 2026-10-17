@@ -1,0 +1,189 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../../app/**/*.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+    --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+    /* Identité SOUMATIC */
+    --color-navy-50: #eef3f9;
+    --color-navy-100: #d9e3f0;
+    --color-navy-200: #b3c6df;
+    --color-navy-300: #87a3c6;
+    --color-navy-400: #5a7fa9;
+    --color-navy-500: #3a5f8a;
+    --color-navy-600: #26497a;
+    --color-navy-700: #1e3c66;
+    --color-navy-800: #163152;
+    --color-navy-900: #0f2d52;
+    --color-navy-950: #0b1f3a;
+
+    --color-emerald-50: #e9f9f2;
+    --color-emerald-100: #c9f0df;
+    --color-emerald-200: #96e2c3;
+    --color-emerald-300: #5cd3a5;
+    --color-emerald-400: #2bc48a;
+    --color-emerald-500: #0e9f6e;
+    --color-emerald-600: #0b8a5f;
+    --color-emerald-700: #0a7350;
+    --color-emerald-800: #085c40;
+    --color-emerald-900: #064a34;
+
+    --color-ink: #0f172a;
+    --color-ink-soft: #16213a;
+    --color-ink-line: #243049;
+    --color-ardoise: #52637a;
+    --color-ardoise-light: #a3b3c7;
+    --color-paper: #f6f8fb;
+
+    --shadow-unit: 0 1px 0 rgb(15 45 82 / 0.06), 0 12px 32px -16px rgb(15 45 82 / 0.25);
+    --shadow-led: 0 0 0 3px rgb(43 196 138 / 0.18), 0 0 12px rgb(43 196 138 / 0.65);
+
+    --animate-led: led 2.4s ease-in-out infinite;
+    --animate-ticker: ticker 60s linear infinite;
+    --animate-scan: scan 6s linear infinite;
+
+    @keyframes led {
+        0%, 100% { opacity: 1; box-shadow: 0 0 0 3px rgb(43 196 138 / 0.18), 0 0 12px rgb(43 196 138 / 0.65); }
+        50% { opacity: 0.55; box-shadow: 0 0 0 2px rgb(43 196 138 / 0.08), 0 0 4px rgb(43 196 138 / 0.3); }
+    }
+    @keyframes ticker {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+    }
+    @keyframes scan {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(400%); }
+    }
+}
+
+/* Utilitaires réutilisables via @apply (Tailwind v4) */
+@utility label {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.16em];
+}
+@utility led {
+    @apply inline-block size-2 shrink-0 rounded-full bg-emerald-400;
+    box-shadow: var(--shadow-led);
+}
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold whitespace-nowrap transition duration-200 ease-out select-none;
+}
+
+@layer base {
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { @apply bg-white text-navy-900 antialiased; font-feature-settings: 'cv11', 'ss01', 'tnum'; }
+    ::selection { background: var(--color-emerald-400); color: var(--color-ink); }
+    :focus-visible { outline: 2px solid var(--color-emerald-500); outline-offset: 3px; border-radius: 2px; }
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+}
+
+@layer components {
+    /* Conteneur */
+    .wrap { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
+
+
+    /* Unité « rack » : carte à coins marqués */
+    .unit {
+        position: relative;
+        --unit-corner: 12px;
+        --unit-line: 1.5px;
+    }
+    .unit::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+            linear-gradient(currentColor, currentColor) top left / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(currentColor, currentColor) top left / var(--unit-line) var(--unit-corner) no-repeat,
+            linear-gradient(currentColor, currentColor) top right / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(currentColor, currentColor) top right / var(--unit-line) var(--unit-corner) no-repeat,
+            linear-gradient(currentColor, currentColor) bottom left / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(currentColor, currentColor) bottom left / var(--unit-line) var(--unit-corner) no-repeat,
+            linear-gradient(currentColor, currentColor) bottom right / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(currentColor, currentColor) bottom right / var(--unit-line) var(--unit-corner) no-repeat;
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+    }
+    .unit:hover::before, .unit:focus-within::before { opacity: 1; }
+
+    /* LED d'état */
+    .led-on { animation: var(--animate-led); }
+    .led-off { @apply bg-ardoise-light; box-shadow: none; }
+    .led-amber { @apply bg-amber-400; box-shadow: 0 0 0 3px rgb(251 191 36 / 0.18), 0 0 12px rgb(251 191 36 / 0.6); }
+
+    /* Fonds techniques */
+    .rack-lines {
+        background-image: repeating-linear-gradient(to bottom, rgb(255 255 255 / 0.045) 0 1px, transparent 1px 44px);
+    }
+    .grid-dots {
+        background-image: radial-gradient(rgb(15 45 82 / 0.12) 1px, transparent 1px);
+        background-size: 22px 22px;
+    }
+    .grid-dots-dark {
+        background-image: radial-gradient(rgb(163 179 199 / 0.16) 1px, transparent 1px);
+        background-size: 22px 22px;
+    }
+    .vent {
+        background-image: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 6px);
+        opacity: 0.25;
+        height: 6px;
+    }
+
+    /* Boutons */
+    .btn-primary { @apply btn bg-emerald-500 text-white hover:bg-emerald-600 active:translate-y-px; }
+    .btn-navy { @apply btn bg-navy-900 text-white hover:bg-navy-800 active:translate-y-px; }
+    .btn-ghost { @apply btn border border-navy-900/15 bg-white text-navy-900 hover:border-navy-900/40 hover:bg-navy-50; }
+    .btn-ghost-dark { @apply btn border border-white/20 text-white hover:border-emerald-400 hover:text-emerald-400; }
+    .btn-link { @apply inline-flex items-center gap-1.5 text-sm font-semibold text-emerald-700 hover:text-emerald-800 underline-offset-4 hover:underline; }
+
+    /* Titres */
+    .h-display { @apply font-semibold tracking-[-0.035em] text-balance; }
+    .h-section { @apply text-3xl sm:text-4xl lg:text-[2.75rem] lg:leading-[1.08] font-semibold tracking-[-0.03em] text-balance; }
+    .lead { @apply text-lg leading-relaxed text-ardoise text-pretty; }
+    .prose-site { @apply text-navy-900/85 leading-relaxed; }
+    .prose-site p { @apply my-4; }
+    .prose-site h2 { @apply mt-10 mb-3 text-2xl font-semibold tracking-tight; }
+    .prose-site h3 { @apply mt-8 mb-2 text-xl font-semibold tracking-tight; }
+    .prose-site ul { @apply my-4 list-disc pl-6 space-y-1.5; }
+    .prose-site ol { @apply my-4 list-decimal pl-6 space-y-1.5; }
+    .prose-site a { @apply text-emerald-700 underline underline-offset-4 hover:text-emerald-800; }
+    .prose-site strong { @apply font-semibold; }
+    .prose-site blockquote { @apply my-6 border-l-2 border-emerald-500 pl-5 text-navy-900/70 italic; }
+
+    /* Bandeau défilant des tarifs */
+    .ticker { @apply flex w-max items-center gap-10 whitespace-nowrap will-change-transform; animation: var(--animate-ticker); }
+    .ticker-mask { mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .ticker:hover { animation-play-state: paused; }
+
+    /* Apparition au défilement */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.08s; }
+    .reveal-delay-2 { transition-delay: 0.16s; }
+    .reveal-delay-3 { transition-delay: 0.24s; }
+
+    /* Table « fiche technique » */
+    .spec { @apply grid grid-cols-[max-content_1fr] gap-x-6 gap-y-2 text-sm; }
+    .spec dt { @apply label text-ardoise; }
+    .spec dd { @apply text-navy-900; }
+    .spec-dark dt { @apply text-ardoise-light; }
+    .spec-dark dd { @apply text-white; }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+}
+
+@layer components {
+    .nav-link { @apply inline-flex items-center gap-1 rounded-md px-3 py-2 text-navy-900/80 hover:text-navy-900 hover:bg-navy-50 transition; }
+    .nav-link.is-active { @apply text-navy-900 bg-navy-50; }
+    [x-cloak] { display: none !important; }
+}

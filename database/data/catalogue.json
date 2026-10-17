@@ -1,0 +1,1082 @@
+[
+ {
+  "id": 10,
+  "numero": "PREST-2026-0001",
+  "nom": "Serveur professionnel – Basique",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 1500000,
+  "description": "Hébergement de votre site ou de votre application sur un serveur professionnel pendant 12 mois. Formule d'entrée de gamme, adaptée à un site vitrine ou à une petite application à faible trafic. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+ },
+ {
+  "id": 11,
+  "numero": "PREST-2026-0002",
+  "nom": "Serveur professionnel – Standard",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 6000000,
+  "description": "Hébergement de votre application sur un serveur professionnel pendant 12 mois. Formule standard, adaptée à une application de gestion utilisée au quotidien par une PME ou un établissement de taille moyenne. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+ },
+ {
+  "id": 12,
+  "numero": "PREST-2026-0003",
+  "nom": "Serveur professionnel – Haute performance",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 18000000,
+  "description": "Hébergement sur un serveur haute performance pendant 12 mois. Adapté aux applications qui gèrent un fort volume de données ou de nombreux utilisateurs en même temps. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+ },
+ {
+  "id": 13,
+  "numero": "PREST-2026-0004",
+  "nom": "Serveur professionnel – Haute performance +",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 27900000,
+  "description": "Hébergement sur un serveur haute performance renforcé pendant 12 mois. Capacité jusqu'à 2 millions d'entrées en base de données. Recommandé pour les systèmes de gestion à grande échelle : hôpitaux, santé au travail, administrations. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+ },
+ {
+  "id": 14,
+  "numero": "PREST-2026-0005",
+  "nom": "Serveur sur mesure (sur devis)",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 0,
+  "description": "Infrastructure dédiée, au-delà de la formule Haute performance +, dimensionnée selon vos besoins : volume de données, nombre d'utilisateurs, haute disponibilité. Tarif établi sur devis selon la configuration. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+ },
+ {
+  "id": 15,
+  "numero": "PREST-2026-0006",
+  "nom": "Nom de domaine .com, .net ou .org",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 150000,
+  "description": "Enregistrement ou renouvellement d'un nom de domaine en .com, .net ou .org pour 12 mois, au nom du client, avec gestion des DNS. Renouvellement annuel."
+ },
+ {
+  "id": 16,
+  "numero": "PREST-2026-0007",
+  "nom": "Nom de domaine .gn, .com.gn ou .org.gn",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 400000,
+  "description": "Enregistrement ou renouvellement d'un nom de domaine guinéen (.gn, .com.gn ou .org.gn) pour 12 mois, au nom du client, démarches auprès du registre guinéen et gestion des DNS comprises. Renouvellement annuel."
+ },
+ {
+  "id": 17,
+  "numero": "PREST-2026-0008",
+  "nom": "Certificat SSL – 1 domaine",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 250000,
+  "description": "Fourniture, installation et renouvellement d'un certificat SSL (https) pour un nom de domaine, pendant 12 mois. Renouvellement annuel."
+ },
+ {
+  "id": 18,
+  "numero": "PREST-2026-0009",
+  "nom": "Certificat SSL Wildcard",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 750000,
+  "description": "Fourniture, installation et renouvellement d'un certificat SSL Wildcard (https) couvrant un nom de domaine et tous ses sous-domaines, pendant 12 mois. Renouvellement annuel."
+ },
+ {
+  "id": 19,
+  "numero": "PREST-2026-0010",
+  "nom": "Création d'une adresse email professionnelle",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "Unité",
+  "prix_unitaire_ht": 100000,
+  "description": "Création d'une adresse email sur le domaine du client (ex. prenom@entreprise.com), configuration sur un ordinateur et un téléphone, et mise en place de la signature email. Hébergement de la boîte non inclus."
+ },
+ {
+  "id": 20,
+  "numero": "PREST-2026-0011",
+  "nom": "Boîte email professionnelle – 1 an",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "Utilisateur",
+  "prix_unitaire_ht": 250000,
+  "description": "Hébergement d'une boîte email professionnelle pendant 12 mois, accessible sur ordinateur, téléphone et webmail. Prix par boîte. Renouvellement annuel."
+ },
+ {
+  "id": 21,
+  "numero": "PREST-2026-0012",
+  "nom": "Migration vers nos serveurs",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 1000000,
+  "description": "Transfert d'un site ou d'une application (fichiers et base de données) depuis un autre hébergeur vers nos serveurs, redirection du nom de domaine et vérification du bon fonctionnement. Un site ou une application par forfait."
+ },
+ {
+  "id": 22,
+  "numero": "PREST-2026-0013",
+  "nom": "Sauvegarde externalisée – 1 an",
+  "categorie": "Hébergement & Noms de domaine",
+  "unite": "An",
+  "prix_unitaire_ht": 1000000,
+  "description": "Sauvegarde quotidienne de vos données sur un serveur distinct, conservée 30 jours, avec restauration sur demande, pendant 12 mois. Renouvellement annuel."
+ },
+ {
+  "id": 23,
+  "numero": "PREST-2026-0014",
+  "nom": "Site une page (one-page)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2500000,
+  "description": "Site d'une seule page (6 sections au plus), adapté au mobile : formulaire de contact protégé contre le spam, référencement de base, espace d'administration pour modifier les textes et les images. Maquette (2 cycles de retours), mise en ligne, prise en main d'une heure et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). Hébergement et nom de domaine non compris. Délai : 2 semaines après réception des contenus, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 24,
+  "numero": "PREST-2026-0015",
+  "nom": "Site vitrine – jusqu'à 5 pages",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 5000000,
+  "description": "Site de 5 pages au plus, adapté au mobile : maquette de l'accueil et d'une page intérieure selon votre charte (2 cycles de retours), espace d'administration (pages, médias, menus), 1 formulaire, référencement de base (balises, plan du site), carte et liens vers les réseaux sociaux. Technologie d'affichage (October CMS ou Laravel) choisie avec vous, sans effet sur le prix. Mise en ligne, prise en main de 2 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). Hébergement et nom de domaine non compris. Délai : 3 semaines après réception des contenus, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 25,
+  "numero": "PREST-2026-0016",
+  "nom": "Site vitrine étendu – 6 à 15 pages",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 9000000,
+  "description": "Tout ce que comprend le site vitrine, plus : jusqu'à 15 pages, actualités (blog), galerie photos, bibliothèque de documents téléchargeables classés par catégorie (documents mis en ligne par vos équipes), 2 formulaires, référencement avancé (balisage pour les résultats enrichis de Google, aperçu soigné lors des partages sur les réseaux sociaux, déclaration du site à Google, redirection des anciennes adresses). Mise en ligne, prise en main de 2 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). Hébergement et nom de domaine non compris. Délai : 5 semaines après réception des contenus, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 26,
+  "numero": "PREST-2026-0017",
+  "nom": "Portail institutionnel – jusqu'à 40 pages",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 18000000,
+  "description": "Pour les ONG et les administrations : jusqu'à 40 pages, rubriques, actualités, bibliothèque de documents (rapports, appels d'offres, recrutements) classés par rubrique et par année, mis en ligne par vos équipes (documents d'un ancien site : voir Reprise des contenus), agenda, recherche dans les pages, les actualités et les titres et résumés des documents (pas dans le texte des PDF), circuit rédacteur / valideur avec 3 rôles, statistiques de visite. Maquette (2 cycles de retours), mise en ligne, formation de 3 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). Hébergement et nom de domaine non compris. Délai : 8 semaines après réception des contenus, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 27,
+  "numero": "PREST-2026-0018",
+  "nom": "Boutique en ligne avec paiement mobile money",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 15000000,
+  "description": "Catalogue avec variantes, panier, comptes clients, commandes et stocks, livraison sur 10 zones au plus, factures PDF, espace d'administration. Paiement par 1 opérateur de mobile money (Orange Money ou MTN MoMo) et paiement à la livraison ; opérateur supplémentaire : voir API & Intégrations. Saisie de 20 produits incluse, les suivants par vos équipes ; compte marchand et frais de transaction à la charge du client. Maquette (2 cycles de retours), mise en ligne, prise en main de 2 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). Hébergement et nom de domaine non compris. Délai : 6 semaines après réception des contenus et des accès marchands de l'opérateur, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 28,
+  "numero": "PREST-2026-0019",
+  "nom": "Application web – Niveau 1 (simple)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 13500000,
+  "description": "Application de gestion Laravel / Filament avec 1 module métier (par exemple la gestion du stock, du courrier ou des adhérents) comprenant jusqu'à 5 types de fiches liées (pour un stock : articles, fournisseurs, entrées, sorties, inventaires) : connexion sécurisée, utilisateurs et 2 rôles, tableau de bord, formulaires, listes filtrables, exports Excel et PDF, notifications par email. Maquette des écrans principaux (2 cycles de retours), mise en service, prise en main de 2 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 5 semaines, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 29,
+  "numero": "PREST-2026-0020",
+  "nom": "Application web – Niveau 2 (intermédiaire)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 25000000,
+  "description": "Application de gestion Laravel / Filament avec jusqu'à 3 modules métier (15 types de fiches liées au total) : tout le niveau 1, plus jusqu'à 4 rôles aux droits détaillés, circuits de validation (5 statuts au plus par module), journal d'activité, 1 tableau de bord et 3 rapports par module, 5 modèles de documents PDF au plus (attestations, bons, reçus). Maquette (2 cycles de retours), mise en service, formation d'une demi-journée et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 9 semaines, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 30,
+  "numero": "PREST-2026-0021",
+  "nom": "Application web – Niveau 3 (complexe)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 45000000,
+  "description": "Application de gestion Laravel / Filament avec jusqu'à 6 modules métier (30 types de fiches liées au total) : tout le niveau 2, plus gestion de plusieurs sites ou structures (chacun ne voit que ses données), jusqu'à 8 rôles avec droits réglables par module et par action, double authentification par email ou par application d'authentification (par SMS : voir Passerelle SMS), tableau de bord de suivi de 10 indicateurs, historique complet des modifications (qui, quoi, quand). Maquette (2 cycles de retours), mise en service, formation d'une journée et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 15 semaines, hors temps de validation de la maquette par le client."
+ },
+ {
+  "id": 32,
+  "numero": "PREST-2026-0023",
+  "nom": "Module métier supplémentaire – application web",
+  "categorie": "Conception",
+  "unite": "Module",
+  "prix_unitaire_ht": 4500000,
+  "description": "Ajout d'un module à une application web Laravel / Filament (après examen du code si elle n'a pas été réalisée par SOUMATIC) : jusqu'à 5 types de fiches liées, formulaires, listes filtrables, 1 circuit de validation (5 statuts au plus), exports Excel et PDF, droits par rôle. Délai indicatif : 2 semaines par module."
+ },
+ {
+  "id": 33,
+  "numero": "PREST-2026-0024",
+  "nom": "Application mobile Android – Niveau 1 (simple)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 12000000,
+  "description": "Application Android jusqu'à 8 écrans, réalisée sur la maquette commune validée (vendue à part, une seule fois pour Android et iOS) et reliée à une API REST existante : connexion, consultation et saisie de données, notifications. Tests sur plusieurs modèles de téléphones Android, préparation de la fiche, soumission sur Google Play et suivi jusqu'à la validation (compte développeur ouvert au nom de l'organisation cliente, qui fournit le numéro D-U-N-S et règle les frais d'inscription). Garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions). L'API, y compris l'envoi des notifications, n'est pas comprise : nos applications web ne l'incluent pas d'office ; elle est chiffrée à part dans API & Intégrations, selon le nombre de points d'accès nécessaires. Délai indicatif : 3 semaines par plateforme après validation de la maquette, hors délai de validation par Google."
+ },
+ {
+  "id": 34,
+  "numero": "PREST-2026-0025",
+  "nom": "Application mobile iOS – Niveau 1 (simple)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 13200000,
+  "description": "Application iOS (iPhone) jusqu'à 8 écrans, réalisée sur la maquette commune validée (vendue à part, une seule fois pour Android et iOS) et reliée à une API REST existante : connexion, consultation et saisie de données, notifications. Tests sur iPhone, préparation de la fiche, soumission sur l'App Store et suivi jusqu'à la validation par Apple (compte développeur ouvert au nom de l'organisation cliente, qui fournit le numéro D-U-N-S s'il est exigé et règle l'abonnement annuel Apple). Garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions). L'API, y compris l'envoi des notifications, n'est pas comprise : nos applications web ne l'incluent pas d'office ; elle est chiffrée à part dans API & Intégrations, selon le nombre de points d'accès nécessaires. Délai indicatif : 3 semaines par plateforme après validation de la maquette, hors délai de validation par Apple."
+ },
+ {
+  "id": 35,
+  "numero": "PREST-2026-0026",
+  "nom": "Application mobile Android – Niveau 2 (intermédiaire)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 30000000,
+  "description": "Application Android jusqu'à 20 écrans, réalisée sur la maquette commune validée (vendue à part, une seule fois pour Android et iOS) et reliée à une API REST existante : tout le niveau 1, plus profils d'utilisateurs, saisie hors connexion de 3 types de fiches au plus, envoyée automatiquement au retour du réseau (si une même fiche est modifiée par deux personnes, la dernière version enregistrée est conservée), envoi de photos et de documents, au choix géolocalisation ou lecture de QR codes. Tests sur plusieurs modèles de téléphones Android, préparation de la fiche, soumission sur Google Play et suivi jusqu'à la validation (compte développeur ouvert au nom de l'organisation cliente, qui fournit le numéro D-U-N-S et règle les frais d'inscription). Garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions). L'API, y compris l'envoi des notifications et la réception des données synchronisées, n'est pas comprise : nos applications web ne l'incluent pas d'office ; elle est chiffrée à part dans API & Intégrations, selon le nombre de points d'accès nécessaires. Délai indicatif : 6 semaines par plateforme après validation de la maquette, hors délai de validation par Google."
+ },
+ {
+  "id": 36,
+  "numero": "PREST-2026-0027",
+  "nom": "Application mobile iOS – Niveau 2 (intermédiaire)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 33000000,
+  "description": "Application iOS (iPhone) jusqu'à 20 écrans, réalisée sur la maquette commune validée (vendue à part, une seule fois pour Android et iOS) et reliée à une API REST existante : tout le niveau 1, plus profils d'utilisateurs, saisie hors connexion de 3 types de fiches au plus, envoyée automatiquement au retour du réseau (si une même fiche est modifiée par deux personnes, la dernière version enregistrée est conservée), envoi de photos et de documents, au choix géolocalisation ou lecture de QR codes. Tests sur iPhone, préparation de la fiche, soumission sur l'App Store et suivi jusqu'à la validation par Apple (compte développeur ouvert au nom de l'organisation cliente, qui fournit le numéro D-U-N-S s'il est exigé et règle l'abonnement annuel Apple). Garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions). L'API, y compris l'envoi des notifications et la réception des données synchronisées, n'est pas comprise : nos applications web ne l'incluent pas d'office ; elle est chiffrée à part dans API & Intégrations, selon le nombre de points d'accès nécessaires. Délai indicatif : 6 semaines par plateforme après validation de la maquette, hors délai de validation par Apple."
+ },
+ {
+  "id": 37,
+  "numero": "PREST-2026-0028",
+  "nom": "Application mobile Android – Niveau 3 (complexe)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 60000000,
+  "description": "Application Android jusqu'à 40 écrans, réalisée sur la maquette commune validée (vendue à part, une seule fois pour Android et iOS) et reliée à une API REST existante : tout le niveau 2, plus, au choix, une messagerie instantanée entre utilisateurs (texte et photos) ou le suivi d'une position en temps réel sur une carte, jusqu'à 3 types d'utilisateurs aux parcours distincts, 2 tableaux de bord, 2 langues (traductions fournies par le client). Tests sur plusieurs modèles de téléphones Android, préparation de la fiche, soumission sur Google Play et suivi jusqu'à la validation (compte développeur ouvert au nom de l'organisation cliente, qui fournit le numéro D-U-N-S et règle les frais d'inscription). Garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions). L'API, y compris l'envoi des notifications et la partie serveur du temps réel, n'est pas comprise : nos applications web ne l'incluent pas d'office ; elle est chiffrée à part dans API & Intégrations, selon le nombre de points d'accès nécessaires. Délai indicatif : 11 semaines par plateforme après validation de la maquette, hors délai de validation par Google."
+ },
+ {
+  "id": 38,
+  "numero": "PREST-2026-0029",
+  "nom": "Application mobile iOS – Niveau 3 (complexe)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 66000000,
+  "description": "Application iOS (iPhone) jusqu'à 40 écrans, réalisée sur la maquette commune validée (vendue à part, une seule fois pour Android et iOS) et reliée à une API REST existante : tout le niveau 2, plus, au choix, une messagerie instantanée entre utilisateurs (texte et photos) ou le suivi d'une position en temps réel sur une carte, jusqu'à 3 types d'utilisateurs aux parcours distincts, 2 tableaux de bord, 2 langues (traductions fournies par le client). Tests sur iPhone, préparation de la fiche, soumission sur l'App Store et suivi jusqu'à la validation par Apple (compte développeur ouvert au nom de l'organisation cliente, qui fournit le numéro D-U-N-S s'il est exigé et règle l'abonnement annuel Apple). Garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions). L'API, y compris l'envoi des notifications et la partie serveur du temps réel, n'est pas comprise : nos applications web ne l'incluent pas d'office ; elle est chiffrée à part dans API & Intégrations, selon le nombre de points d'accès nécessaires. Délai indicatif : 12 semaines par plateforme après validation de la maquette, hors délai de validation par Apple."
+ },
+ {
+  "id": 39,
+  "numero": "PREST-2026-0030",
+  "nom": "Maquettes – site jusqu'à 5 pages",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "Pour un projet de design seul (les forfaits de création de site incluent déjà leur maquette) : maquettes haute fidélité ordinateur et mobile selon votre charte, 2 cycles de retours, fichiers Figma remis. Délai : 2 semaines, hors temps de relecture par le client."
+ },
+ {
+  "id": 40,
+  "numero": "PREST-2026-0031",
+  "nom": "Maquettes – application web jusqu'à 15 écrans",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 6000000,
+  "description": "Pour un projet de design seul (les forfaits d'application web incluent déjà leur maquette) : écrans métier, tableaux, formulaires, messages d'erreur et de confirmation, version ordinateur et mobile, bibliothèque de composants, 2 cycles de retours, fichiers Figma remis. Délai : 3 semaines, hors temps de relecture par le client."
+ },
+ {
+  "id": 41,
+  "numero": "PREST-2026-0032",
+  "nom": "Refonte graphique d'un site existant",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3500000,
+  "description": "Nouveau design d'un site October CMS ou Laravel existant, après examen préalable de son code (devis spécifique si le code ne le permet pas) : contenus et espace d'administration conservés, maquette de l'accueil et d'une page intérieure (2 cycles de retours), intégration de 5 gabarits au plus, adresses des pages et balises de référencement conservées. Délai : 3 semaines, hors temps de relecture par le client."
+ },
+ {
+  "id": 42,
+  "numero": "PREST-2026-0033",
+  "nom": "Page supplémentaire – site",
+  "categorie": "Conception",
+  "unite": "Page",
+  "prix_unitaire_ht": 400000,
+  "description": "Page ajoutée à un site sur un gabarit existant, avec mise en forme des contenus fournis (800 mots et 5 images au plus)."
+ },
+ {
+  "id": 43,
+  "numero": "PREST-2026-0034",
+  "nom": "Langue supplémentaire – site jusqu'à 15 pages",
+  "categorie": "Conception",
+  "unite": "Langue",
+  "prix_unitaire_ht": 1500000,
+  "description": "Ajout d'une langue (par exemple l'anglais) à un site de 15 pages au plus : sélecteur de langue, adresses et balises de référencement propres à chaque langue, saisie de chaque contenu dans chaque langue depuis l'espace d'administration, mise en place des textes traduits sur les pages du forfait. Traductions fournies par le client ; actualités et documents traduits saisis par vos équipes."
+ },
+ {
+  "id": 44,
+  "numero": "PREST-2026-0035",
+  "nom": "Blog / actualités – ajout à un site existant",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "Ajout d'un blog à un site Laravel ou October CMS existant (après examen du code s'il n'a pas été réalisé par SOUMATIC) : catégories, étiquettes, auteurs, publication programmée, référencement par article, partage sur les réseaux sociaux. Déjà inclus dans le site vitrine étendu et le portail institutionnel."
+ },
+ {
+  "id": 45,
+  "numero": "PREST-2026-0036",
+  "nom": "Application web progressive (PWA)",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "Site ou application installable sur téléphone sans passer par les stores : icône sur l'écran d'accueil, 5 pages consultables hors connexion, notifications pour 1 cas d'usage. Sur iPhone, l'installation se fait depuis Safari (« Sur l'écran d'accueil ») et les notifications fonctionnent à partir d'iOS 16.4, une fois l'application installée."
+ },
+ {
+  "id": 46,
+  "numero": "PREST-2026-0037",
+  "nom": "Reprise des contenus d'un ancien site",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "Jusqu'à 100 contenus repris de l'ancien site (actualités, articles, documents, ainsi que des pages dans la limite du nombre prévu par le forfait ; au-delà, voir Page supplémentaire – site), avec leurs images, redirection des anciennes adresses et contrôle des liens."
+ },
+ {
+  "id": 47,
+  "numero": "PREST-2026-0038",
+  "nom": "Jour de développement",
+  "categorie": "Conception",
+  "unite": "Jour",
+  "prix_unitaire_ht": 1200000,
+  "description": "Une journée (7,5 heures) de développement Laravel, Filament, October CMS ou mobile (Android, iOS) pour une évolution hors forfait, décrite par écrit et validée avant exécution."
+ },
+ {
+  "id": 48,
+  "numero": "PREST-2026-0039",
+  "nom": "Application mobile – Maquette commune Android/iOS – Niveau 1",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "Maquette haute fidélité de l'application mobile, jusqu'à 8 écrans, selon votre charte : parcours, écrans, messages d'erreur et de confirmation, icône de l'application, 2 cycles de retours, fichiers Figma remis. Une seule maquette sert aux versions Android et iOS : elle n'est facturée qu'une fois, que vous commandiez une plateforme, les deux ensemble ou la seconde plus tard. Préalable aux applications Android et iOS de niveau 1. Délai : 2 semaines, hors temps de relecture par le client."
+ },
+ {
+  "id": 49,
+  "numero": "PREST-2026-0040",
+  "nom": "Application mobile – Maquette commune Android/iOS – Niveau 2",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 6000000,
+  "description": "Maquette haute fidélité de l'application mobile, jusqu'à 20 écrans, selon votre charte : parcours, écrans, profils, écrans hors connexion, messages d'erreur et de confirmation, icône de l'application, 2 cycles de retours, fichiers Figma remis. Une seule maquette sert aux versions Android et iOS : elle n'est facturée qu'une fois, que vous commandiez une plateforme, les deux ensemble ou la seconde plus tard. Préalable aux applications Android et iOS de niveau 2. Délai : 3 semaines, hors temps de relecture par le client."
+ },
+ {
+  "id": 50,
+  "numero": "PREST-2026-0041",
+  "nom": "Application mobile – Maquette commune Android/iOS – Niveau 3",
+  "categorie": "Conception",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 10000000,
+  "description": "Maquette haute fidélité de l'application mobile, jusqu'à 40 écrans, selon votre charte : parcours distincts pour 3 types d'utilisateurs au plus, écrans, tableaux de bord, messages d'erreur et de confirmation, icône de l'application, 2 cycles de retours, fichiers Figma remis. Une seule maquette sert aux versions Android et iOS : elle n'est facturée qu'une fois, que vous commandiez une plateforme, les deux ensemble ou la seconde plus tard. Préalable aux applications Android et iOS de niveau 3. Délai : 4 semaines, hors temps de relecture par le client."
+ },
+ {
+  "id": 51,
+  "numero": "PREST-2026-0042",
+  "nom": "Ouverture d'un compte développeur (Google Play ou Apple)",
+  "categorie": "Conception",
+  "unite": "Unité",
+  "prix_unitaire_ht": 600000,
+  "description": "Accompagnement de votre organisation pour ouvrir à son nom son compte développeur Google Play ou Apple : demande du numéro D-U-N-S si nécessaire, inscription et suivi des vérifications ; pour Apple, demande d'exonération de l'abonnement si vous êtes une ONG officiellement reconnue ou une administration et que l'application est gratuite (accord non garanti). Apple exige aussi un site web public et une adresse email au nom de domaine de l'organisation (voir Hébergement & Noms de domaine). Frais des stores à votre charge. Délai : fixé par Google, Apple et Dun & Bradstreet, souvent plusieurs semaines ; à lancer dès la commande."
+ },
+ {
+  "id": 52,
+  "numero": "PREST-2026-0043",
+  "nom": "Langue supplémentaire – portail jusqu'à 40 pages",
+  "categorie": "Conception",
+  "unite": "Langue",
+  "prix_unitaire_ht": 3000000,
+  "description": "Ajout d'une langue (par exemple l'anglais) à un portail de 40 pages au plus : sélecteur de langue, adresses et balises de référencement propres à chaque langue, saisie de chaque contenu dans chaque langue depuis l'espace d'administration, mise en place des textes traduits sur les pages du forfait. Traductions fournies par le client ; actualités et documents traduits saisis par vos équipes."
+ },
+ {
+  "id": 53,
+  "numero": "PREST-2026-0044",
+  "nom": "EduGes – Mise en service",
+  "categorie": "Solutions clés en main",
+  "unite": "Jour",
+  "prix_unitaire_ht": 600000,
+  "description": "Mise en route d'EduGes, pour l'abonnement comme pour la licence. Nombre de jours forfaitaire selon la formule : abonnement 1 jour ; licence jusqu'à 500 élèves 2 jours ; licence de 501 à 2 000 élèves 3 jours. Ce nombre est dû même si la mise en route prend moins de temps et n'augmente pas si elle en prend plus, dans le périmètre suivant. Comprend : création de l'espace de l'école sur nos serveurs (abonnement) ou installation sur le serveur retenu (licence) ; paramétrage de l'année scolaire (classes, matières, coefficients, périodes, frais de scolarité et échéances) ; création des comptes du personnel ; import de la liste des élèves de l'année en cours à partir de notre modèle Excel rempli par l'école ; formation à l'école à Conakry ou à distance, par groupes de 12 personnes au maximum : une demi-journée (abonnement), 1 journée (licence jusqu'à 500 élèves) ou 2 journées (licence de 501 à 2 000 élèves). Non compris : reprise de l'historique (voir EduGes – Reprise des données), formation ou paramétrage supplémentaires, développements spécifiques, déplacements hors de Conakry ; pour la licence, serveur, nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement)."
+ },
+ {
+  "id": 54,
+  "numero": "PREST-2026-0045",
+  "nom": "EduGes – Abonnement de 51 à 200 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 100000,
+  "description": "Abonnement mensuel à EduGes, logiciel de gestion scolaire en ligne, pour une école de 51 à 200 élèves inscrits (jusqu'à 50 élèves : offre gratuite en libre-service, voir notre site). Prix par école (un site) et par mois, payable au mois ou à l'année. L'abonnement court sur les 12 mois de l'année, vacances scolaires comprises : l'accès et les données sont conservés pendant les vacances. Fonctions standard : inscriptions, élèves et classes, notes et bulletins, frais de scolarité et paiements. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des fichiers joints jusqu'à 10 Go, mises à jour d'EduGes (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Nombre d'élèves : total des inscrits de l'année scolaire en cours, tous cycles confondus pour un même complexe scolaire (même fondateur, même site) ; les anciens élèves ne comptent pas. Au-delà de 200 élèves, le palier supérieur s'applique à partir du mois suivant. Non compris : mise en service (payée une fois), stockage au-delà de 10 Go (sur devis), nouveaux modules vendus séparément, adaptations propres à votre école, envoi de SMS et paiement mobile, formation supplémentaire. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 55,
+  "numero": "PREST-2026-0046",
+  "nom": "EduGes – Abonnement de 201 à 500 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 200000,
+  "description": "Abonnement mensuel à EduGes, logiciel de gestion scolaire en ligne, pour une école de 201 à 500 élèves inscrits. Prix par école (un site) et par mois, payable au mois ou à l'année. L'abonnement court sur les 12 mois de l'année, vacances scolaires comprises : l'accès et les données sont conservés pendant les vacances. Fonctions standard : inscriptions, élèves et classes, notes et bulletins, frais de scolarité et paiements. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des fichiers joints jusqu'à 20 Go, mises à jour d'EduGes (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Nombre d'élèves : total des inscrits de l'année scolaire en cours, tous cycles confondus pour un même complexe scolaire (même fondateur, même site) ; les anciens élèves ne comptent pas. Au-delà de 500 élèves, le palier supérieur s'applique à partir du mois suivant. Non compris : mise en service (payée une fois), stockage au-delà de 20 Go (sur devis), nouveaux modules vendus séparément, adaptations propres à votre école, envoi de SMS et paiement mobile, formation supplémentaire. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 56,
+  "numero": "PREST-2026-0047",
+  "nom": "EduGes – Abonnement de 501 à 2 000 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 500000,
+  "description": "Abonnement mensuel à EduGes, logiciel de gestion scolaire en ligne, pour un établissement de 501 à 2 000 élèves inscrits. Prix par établissement (un site) et par mois, payable au mois ou à l'année. L'abonnement court sur les 12 mois de l'année, vacances scolaires comprises : l'accès et les données sont conservés pendant les vacances. Fonctions standard : inscriptions, élèves et classes, notes et bulletins, frais de scolarité et paiements. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des fichiers joints jusqu'à 50 Go, mises à jour d'EduGes (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Nombre d'élèves : total des inscrits de l'année scolaire en cours, tous cycles confondus pour un même complexe scolaire (même fondateur, même site) ; les anciens élèves ne comptent pas. Au-delà de 2 000 élèves : sur devis. Non compris : mise en service (payée une fois), stockage au-delà de 50 Go (sur devis), nouveaux modules vendus séparément, adaptations propres à votre établissement, envoi de SMS et paiement mobile, formation supplémentaire. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 57,
+  "numero": "PREST-2026-0048",
+  "nom": "EduGes – Licence installée jusqu'à 500 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 6000000,
+  "description": "Licence d'utilisation d'EduGes, achetée une seule fois, pour un établissement de 500 élèves inscrits au maximum (un site), installée sur un serveur réservé à l'école ; droit d'utilisation sans limite de durée. Fonctions standard : inscriptions, élèves et classes, notes et bulletins, frais de scolarité et paiements. Nombre d'élèves : total des inscrits de l'année, tous cycles confondus pour un même complexe scolaire (même fondateur, même site). Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Basique conseillé) ou fourni par l'école selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous la responsabilité de l'école (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; installation, paramétrage et formation (voir EduGes – Mise en service) ; mises à jour et assistance (voir EduGes – Maintenance licence) ; reprise de l'historique ; développements spécifiques. Au-delà de 500 élèves : passage à la licence supérieure en payant la différence entre les deux licences au tarif en vigueur."
+ },
+ {
+  "id": 58,
+  "numero": "PREST-2026-0049",
+  "nom": "EduGes – Licence installée de 501 à 2 000 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 15000000,
+  "description": "Licence d'utilisation d'EduGes, achetée une seule fois, pour un établissement de 501 à 2 000 élèves inscrits (un site), installée sur un serveur réservé à l'établissement ; droit d'utilisation sans limite de durée. Fonctions standard : inscriptions, élèves et classes, notes et bulletins, frais de scolarité et paiements. Nombre d'élèves : total des inscrits de l'année, tous cycles confondus pour un même complexe scolaire (même fondateur, même site). Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Basique conseillé) ou fourni par l'établissement selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous la responsabilité de l'établissement (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; installation, paramétrage et formation (voir EduGes – Mise en service) ; mises à jour et assistance (voir EduGes – Maintenance licence) ; reprise de l'historique ; développements spécifiques. Au-delà de 2 000 élèves : sur devis."
+ },
+ {
+  "id": 59,
+  "numero": "PREST-2026-0050",
+  "nom": "EduGes – Maintenance licence jusqu'à 500 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 960000,
+  "description": "Maintenance annuelle de la licence EduGes jusqu'à 500 élèves : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Non compris : serveur, son entretien et ses sauvegardes (nos offres d'hébergement), interventions sur place, développements spécifiques. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 60,
+  "numero": "PREST-2026-0051",
+  "nom": "EduGes – Maintenance licence de 501 à 2 000 élèves",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 2400000,
+  "description": "Maintenance annuelle de la licence EduGes de 501 à 2 000 élèves : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Non compris : serveur, son entretien et ses sauvegardes (nos offres d'hébergement), interventions sur place, développements spécifiques. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 61,
+  "numero": "PREST-2026-0052",
+  "nom": "EduGes – Reprise des données (par tranche de 500 fiches d'élèves)",
+  "categorie": "Solutions clés en main",
+  "unite": "Unité",
+  "prix_unitaire_ht": 500000,
+  "description": "Récupération des données existantes de l'école et import dans EduGes, pour l'une ou l'autre formule. Données reprises : élèves et parents, classes et moyennes, paiements et impayés de scolarité, pour l'année en cours et jusqu'à 2 années précédentes, à partir de fichiers Excel ou d'un export d'un autre logiciel. Comprend : mise en forme des fichiers, import et vérification avec l'école. Prix par tranche de 500 fiches d'élèves reprises, anciens élèves des années reprises compris ; toute tranche commencée est due (exemple : 800 fiches = 2 tranches). Non compris : saisie de registres ou de documents papier, reconstitution de données incomplètes, années plus anciennes (sur devis)."
+ },
+ {
+  "id": 62,
+  "numero": "PREST-2026-0053",
+  "nom": "MediGes SST – Mise en service",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 4500000,
+  "description": "Mise en route de MediGes SST, payée une seule fois, pour l'abonnement (création de votre espace sur nos serveurs) comme pour la licence (installation sur le serveur retenu). Comprend : réunion de démarrage pour préciser votre organisation ; paramétrage de votre service (jusqu'à 3 sites ou infirmeries ; comptes utilisateurs et droits par profil : médecin, infirmier, secrétariat ; types de visites et périodicités ; fiche d'aptitude à votre en-tête ; liste des postes et des risques, à partir de notre modèle Excel rempli par vos soins) ; chargement de vos entreprises et de vos salariés à partir de notre modèle Excel rempli par vos soins ; 2 journées de formation dans vos locaux, jusqu'à 12 participants par session ; 1 journée de présence au démarrage, puis suivi à distance pendant 30 jours. Non compris : reprise de vos anciens fichiers (voir MediGes SST – Reprise des données) ; sites, paramétrages ou formations supplémentaires ; développements spécifiques ; frais de déplacement et d'hébergement hors de Conakry ; pour la licence, serveur, nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement)."
+ },
+ {
+  "id": 63,
+  "numero": "PREST-2026-0054",
+  "nom": "MediGes SST – Abonnement jusqu'à 1 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 600000,
+  "description": "Abonnement mensuel à MediGes SST, logiciel de gestion de la santé au travail en ligne, pour un service qui suit jusqu'à 1 000 salariés. Salarié suivi : salarié présent dans les effectifs d'une entreprise suivie ; les dossiers des salariés partis sont archivés et ne comptent pas. Comptes utilisateurs sans limite de nombre pour le personnel du service de santé au travail (médecins, infirmiers, secrétariat) ; accès pour d'autres services de l'entreprise sur devis. Fonctions standard : entreprises suivies (votre entreprise, ses sous-traitants ou vos entreprises adhérentes), postes et risques, dossiers médicaux, visites d'embauche et périodiques, aptitudes et fiches d'aptitude, statistiques. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des documents jusqu'à 20 Go, mises à jour de MediGes SST (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Au-delà de 1 000 salariés suivis, le palier supérieur s'applique à partir du mois suivant. Non compris : mise en service (payée une fois), reprise des anciennes données, stockage au-delà de 20 Go (extension sur devis), nouveaux modules vendus séparément, adaptations propres à votre service, rappels par SMS ou WhatsApp. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 64,
+  "numero": "PREST-2026-0055",
+  "nom": "MediGes SST – Abonnement jusqu'à 5 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 1200000,
+  "description": "Abonnement mensuel à MediGes SST, logiciel de gestion de la santé au travail en ligne, pour un service qui suit jusqu'à 5 000 salariés. Salarié suivi : salarié présent dans les effectifs d'une entreprise suivie ; les dossiers des salariés partis sont archivés et ne comptent pas. Comptes utilisateurs sans limite de nombre pour le personnel du service de santé au travail (médecins, infirmiers, secrétariat) ; accès pour d'autres services de l'entreprise sur devis. Fonctions standard : entreprises suivies (votre entreprise, ses sous-traitants ou vos entreprises adhérentes), postes et risques, dossiers médicaux, visites d'embauche et périodiques, aptitudes et fiches d'aptitude, statistiques. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des documents jusqu'à 50 Go, mises à jour de MediGes SST (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Au-delà de 5 000 salariés suivis, le palier supérieur s'applique à partir du mois suivant. Non compris : mise en service (payée une fois), reprise des anciennes données, stockage au-delà de 50 Go (extension sur devis), nouveaux modules vendus séparément, adaptations propres à votre service, rappels par SMS ou WhatsApp. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 65,
+  "numero": "PREST-2026-0056",
+  "nom": "MediGes SST – Abonnement jusqu'à 15 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 3000000,
+  "description": "Abonnement mensuel à MediGes SST, logiciel de gestion de la santé au travail en ligne, pour un service qui suit jusqu'à 15 000 salariés. Salarié suivi : salarié présent dans les effectifs d'une entreprise suivie ; les dossiers des salariés partis sont archivés et ne comptent pas. Comptes utilisateurs sans limite de nombre pour le personnel du service de santé au travail (médecins, infirmiers, secrétariat) ; accès pour d'autres services de l'entreprise sur devis. Fonctions standard : entreprises suivies (votre entreprise, ses sous-traitants ou vos entreprises adhérentes), postes et risques, dossiers médicaux, visites d'embauche et périodiques, aptitudes et fiches d'aptitude, statistiques. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des documents jusqu'à 150 Go, mises à jour de MediGes SST (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Au-delà de 15 000 salariés suivis : sur devis. Non compris : mise en service (payée une fois), reprise des anciennes données, stockage au-delà de 150 Go (extension sur devis), nouveaux modules vendus séparément, adaptations propres à votre service, rappels par SMS ou WhatsApp. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 66,
+  "numero": "PREST-2026-0057",
+  "nom": "MediGes SST – Licence installée jusqu'à 5 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 30000000,
+  "description": "Licence d'utilisation de MediGes SST, achetée une seule fois, pour un organisme et une installation, jusqu'à 5 000 salariés suivis (salariés présents dans les effectifs des entreprises suivies ; les dossiers des salariés partis sont archivés et ne comptent pas) ; droit d'utilisation sans limite de durée. Comptes utilisateurs sans limite de nombre pour le personnel du service de santé au travail. Fonctions standard : entreprises suivies (votre entreprise, ses sous-traitants ou vos entreprises adhérentes), postes et risques, dossiers médicaux, visites d'embauche et périodiques, aptitudes et fiches d'aptitude, statistiques. Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Standard conseillé) ou fourni par vous selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous votre responsabilité (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; mise en service (voir MediGes SST – Mise en service) ; mises à jour et assistance (voir MediGes SST – Maintenance licence) ; reprise des données ; développements spécifiques. Au-delà de 5 000 salariés suivis : passage à la licence supérieure en payant la différence entre les deux licences au tarif en vigueur."
+ },
+ {
+  "id": 67,
+  "numero": "PREST-2026-0058",
+  "nom": "MediGes SST – Licence installée jusqu'à 15 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 75000000,
+  "description": "Licence d'utilisation de MediGes SST, achetée une seule fois, pour un organisme et une installation, jusqu'à 15 000 salariés suivis (salariés présents dans les effectifs des entreprises suivies ; les dossiers des salariés partis sont archivés et ne comptent pas) ; droit d'utilisation sans limite de durée. Comptes utilisateurs sans limite de nombre pour le personnel du service de santé au travail. Fonctions standard : entreprises suivies (votre entreprise, ses sous-traitants ou vos entreprises adhérentes), postes et risques, dossiers médicaux, visites d'embauche et périodiques, aptitudes et fiches d'aptitude, statistiques. Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Haute performance conseillé ; Haute performance + pour un très gros volume de documents ou d'historique) ou fourni par vous selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous votre responsabilité (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; mise en service (voir MediGes SST – Mise en service) ; mises à jour et assistance (voir MediGes SST – Maintenance licence) ; reprise des données ; développements spécifiques. Au-delà de 15 000 salariés suivis : sur devis."
+ },
+ {
+  "id": 68,
+  "numero": "PREST-2026-0059",
+  "nom": "MediGes SST – Maintenance licence jusqu'à 5 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 4800000,
+  "description": "Maintenance annuelle de la licence MediGes SST jusqu'à 5 000 salariés suivis : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Non compris : serveur, son entretien et ses sauvegardes (nos offres d'hébergement), interventions sur place, développements spécifiques. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 69,
+  "numero": "PREST-2026-0060",
+  "nom": "MediGes SST – Maintenance licence jusqu'à 15 000 salariés suivis",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 12000000,
+  "description": "Maintenance annuelle de la licence MediGes SST jusqu'à 15 000 salariés suivis : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Non compris : serveur, son entretien et ses sauvegardes (nos offres d'hébergement), interventions sur place, développements spécifiques. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 70,
+  "numero": "PREST-2026-0061",
+  "nom": "MediGes SST – Reprise des données (par tranche de 1 000 dossiers)",
+  "categorie": "Solutions clés en main",
+  "unite": "Unité",
+  "prix_unitaire_ht": 750000,
+  "description": "Reprise de vos dossiers existants dans MediGes SST, par tranche de 1 000 dossiers de salariés ; toute tranche commencée est due, minimum 2 tranches. À partir de vos fichiers informatiques (Excel, CSV ou export d'un ancien logiciel) : analyse, nettoyage, import de l'identité des salariés, de leur entreprise et de leur poste, de l'historique des visites et des aptitudes des 5 dernières années (au-delà, sur devis), puis contrôle avec vous. Non compris : saisie de dossiers papier, numérisation et classement de documents scannés."
+ },
+ {
+  "id": 71,
+  "numero": "PREST-2026-0062",
+  "nom": "MediGes – Mise en service",
+  "categorie": "Solutions clés en main",
+  "unite": "Jour",
+  "prix_unitaire_ht": 600000,
+  "description": "Mise en service de MediGes, pour l'abonnement comme pour la licence : création de l'espace en ligne ou installation sur le serveur retenu ; paramétrage de l'établissement (services, lits, actes et tarifs, assurances, médicaments et stock de départ, comptes utilisateurs et droits d'accès) à partir de nos modèles Excel remplis par l'établissement ; formation des équipes sur place, par groupes de 12 personnes au maximum ; accompagnement sur place au démarrage. Nombre de jours forfaitaire selon la taille : centre de santé 5 jours (dont 2 de formation et 1 d'accompagnement au démarrage), clinique 10 jours (dont 3 de formation et 2 d'accompagnement), hôpital 20 jours (dont 5 de formation et 3 d'accompagnement). Les autres jours couvrent la préparation, le paramétrage et le suivi, sur place ou à distance. Ce nombre est dû même si la mise en service prend moins de temps et n'augmente pas si elle en prend plus, dans ce périmètre. Interventions à Conakry ; hors de Conakry, transport et hébergement en plus. Non compris : reprise des anciennes données (voir MediGes – Reprise des données), formation ou paramétrage supplémentaires, développements spécifiques, matériel informatique et réseau ; pour la licence, serveur, nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement)."
+ },
+ {
+  "id": 72,
+  "numero": "PREST-2026-0063",
+  "nom": "MediGes – Abonnement centre de santé",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 600000,
+  "description": "Abonnement mensuel à MediGes, logiciel de gestion hospitalière en ligne, pour un centre de santé (un seul site) : jusqu'à 10 lits et 15 comptes utilisateurs. Modules : accueil et admissions, dossiers patients, consultations, hospitalisation, facturation et caisse, assurances et prises en charge, pharmacie, laboratoire. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des documents jusqu'à 20 Go, mises à jour de MediGes (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Pas d'assistance la nuit, le week-end ni les jours fériés : astreinte possible sur devis. Au-delà de 10 lits ou de 15 comptes, la formule clinique s'applique à partir du mois suivant. Non compris : mise en service (payée une fois), reprise des données, stockage au-delà de 20 Go (sur devis), nouveaux modules vendus séparément, adaptations propres à votre établissement, ordinateurs, imprimantes, réseau et connexion internet. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 73,
+  "numero": "PREST-2026-0064",
+  "nom": "MediGes – Abonnement clinique",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 1200000,
+  "description": "Abonnement mensuel à MediGes, logiciel de gestion hospitalière en ligne, pour une clinique (un seul site) : jusqu'à 30 lits et 40 comptes utilisateurs. Modules : accueil et admissions, dossiers patients, consultations, hospitalisation, facturation et caisse, assurances et prises en charge, pharmacie, laboratoire. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des documents jusqu'à 50 Go, mises à jour de MediGes (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Pas d'assistance la nuit, le week-end ni les jours fériés : astreinte possible sur devis. Au-delà de 30 lits ou de 40 comptes utilisateurs, la formule hôpital s'applique à partir du mois suivant. Non compris : mise en service (payée une fois), reprise des données, stockage au-delà de 50 Go (sur devis), nouveaux modules vendus séparément, adaptations propres à votre établissement, ordinateurs, imprimantes, réseau et connexion internet. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 74,
+  "numero": "PREST-2026-0065",
+  "nom": "MediGes – Abonnement hôpital",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 3000000,
+  "description": "Abonnement mensuel à MediGes, logiciel de gestion hospitalière en ligne, pour un hôpital (un seul site) : plus de 30 lits ou plus de 40 comptes utilisateurs, jusqu'à 150 lits et 200 comptes utilisateurs. Modules : accueil et admissions, dossiers patients, consultations, hospitalisation, facturation et caisse, assurances et prises en charge, pharmacie, laboratoire. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des documents jusqu'à 150 Go, mises à jour de MediGes (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Pas d'assistance la nuit, le week-end ni les jours fériés : astreinte possible sur devis. Plus de 150 lits, plus de 200 comptes ou plusieurs sites : sur devis. Non compris : mise en service (payée une fois), reprise des données, stockage au-delà de 150 Go (sur devis), nouveaux modules vendus séparément, adaptations propres à votre établissement, ordinateurs, imprimantes, réseau et connexion internet. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 75,
+  "numero": "PREST-2026-0066",
+  "nom": "MediGes – Licence installée jusqu'à 30 lits",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 30000000,
+  "description": "Licence d'utilisation de MediGes, achetée une seule fois, pour un centre de santé ou une clinique (un seul site) : jusqu'à 30 lits et 40 comptes utilisateurs ; droit d'utilisation sans limite de durée. Modules : accueil et admissions, dossiers patients, consultations, hospitalisation, facturation et caisse, assurances et prises en charge, pharmacie, laboratoire. Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Basique conseillé pour un centre de santé, Standard pour une clinique) ou fourni par l'établissement, installé dans ses locaux s'il le souhaite, selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous la responsabilité de l'établissement (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; mise en service (voir MediGes – Mise en service) ; mises à jour et assistance (voir MediGes – Maintenance licence) ; reprise des données ; développements spécifiques ; matériel informatique et réseau. Au-delà de 30 lits ou de 40 comptes : passage à la licence hôpital en payant la différence entre les deux licences au tarif en vigueur."
+ },
+ {
+  "id": 76,
+  "numero": "PREST-2026-0067",
+  "nom": "MediGes – Licence installée hôpital",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 80000000,
+  "description": "Licence d'utilisation de MediGes, achetée une seule fois, pour un hôpital (un seul site) : plus de 30 lits ou plus de 40 comptes utilisateurs, jusqu'à 150 lits et 200 comptes utilisateurs ; droit d'utilisation sans limite de durée. Modules : accueil et admissions, dossiers patients, consultations, hospitalisation, facturation et caisse, assurances et prises en charge, pharmacie, laboratoire. Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Haute performance conseillé ; Haute performance + pour un très gros volume de documents ou d'historique) ou fourni par l'hôpital, installé dans ses locaux s'il le souhaite, selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous la responsabilité de l'hôpital (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; mise en service (voir MediGes – Mise en service) ; mises à jour et assistance (voir MediGes – Maintenance licence) ; reprise des données ; développements spécifiques ; matériel informatique et réseau. Plus de 150 lits, plus de 200 comptes ou plusieurs sites : sur devis."
+ },
+ {
+  "id": 77,
+  "numero": "PREST-2026-0068",
+  "nom": "MediGes – Maintenance licence jusqu'à 30 lits",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 4800000,
+  "description": "Maintenance annuelle de la licence MediGes jusqu'à 30 lits : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Pas d'assistance la nuit, le week-end ni les jours fériés : astreinte possible sur devis. Non compris : serveur, son entretien et ses sauvegardes (nos offres d'hébergement), administration d'un serveur fourni par l'établissement, interventions sur place, développements spécifiques. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 78,
+  "numero": "PREST-2026-0069",
+  "nom": "MediGes – Maintenance licence hôpital",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 12800000,
+  "description": "Maintenance annuelle de la licence MediGes hôpital : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp ou e-mail, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Pas d'assistance la nuit, le week-end ni les jours fériés : astreinte possible sur devis. Non compris : serveur, son entretien et ses sauvegardes (nos offres d'hébergement), administration d'un serveur fourni par l'hôpital, interventions sur place, développements spécifiques. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 79,
+  "numero": "PREST-2026-0070",
+  "nom": "MediGes – Reprise des données (par source)",
+  "categorie": "Solutions clés en main",
+  "unite": "Unité",
+  "prix_unitaire_ht": 2000000,
+  "description": "Reprise des données existantes dans MediGes, prix par source : un fichier (Excel ou équivalent) ou un ancien logiciel capable d'exporter ses données. Comprend : analyse de la source, correspondance avec les champs de MediGes, import et contrôle avec l'établissement. Données reprises : fiches patients (identité, contacts, assurance ou prise en charge) et impayés en cours, jusqu'à 50 000 fiches par source ; au-delà, compter une source de plus par tranche de 50 000 fiches commencée. Non compris : saisie de dossiers papier ; correction des données fausses ou incomplètes ; reprise de l'historique médical (consultations, résultats d'examens), possible sur devis."
+ },
+ {
+  "id": 80,
+  "numero": "PREST-2026-0071",
+  "nom": "Compiniya – Mise en service (abonnement)",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 750000,
+  "description": "Mise en service de Compiniya pour une entreprise, payée une seule fois au démarrage de l'abonnement. Comprend : ouverture de votre espace sur nos serveurs ; paramétrage de votre entreprise (coordonnées, logo, NIF et RCCM, TVA, numérotation, modèles de devis, factures et contrats, moyens de paiement acceptés) ; création des comptes utilisateurs et de leurs droits ; import de vos clients, articles et fournisseurs à partir de notre modèle Excel rempli par vos soins, jusqu'à 500 lignes au total ; une formation d'une demi-journée, à Conakry ou à distance, jusqu'à 12 participants. Non compris : reprise de l'historique (anciennes factures, soldes, encaissements) et import au-delà de 500 lignes (voir Compiniya – Reprise des données) ; formation ou paramétrage supplémentaires ; mise en place de l'option assistant d'intelligence artificielle ; personnalisations ; déplacements hors de Conakry."
+ },
+ {
+  "id": 81,
+  "numero": "PREST-2026-0072",
+  "nom": "Compiniya – Abonnement jusqu'à 2 utilisateurs",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 100000,
+  "description": "Abonnement mensuel à Compiniya, logiciel de gestion commerciale en ligne (compiniya.com), pour une entreprise et jusqu'à 2 utilisateurs. Fonctions : clients, devis, factures, encaissements, propositions commerciales, contrats à faire signer, projets et tâches, suivi des demandes d'assistance de vos clients, fournisseurs et dépenses, espace en ligne pour vos clients (vos clients ne comptent pas comme utilisateurs). Option : piloter Compiniya en écrivant vos demandes à un assistant d'intelligence artificielle (par exemple, préparer un devis) ; l'abonnement à cet assistant est à votre charge et sa mise en place est facturée à part. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des fichiers joints jusqu'à 5 Go, mises à jour de Compiniya (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp, e-mail ou depuis votre espace client, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Au-delà de 2 utilisateurs : palier supérieur. Non compris : mise en service (payée une fois) ; comptabilité générale, paie et gestion de stock ; stockage au-delà de 5 Go (sur devis) ; nouveaux modules vendus séparément ; adaptations propres à votre entreprise ; envois automatiques par SMS ou WhatsApp et liaison avec le paiement mobile ; formation supplémentaire. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 82,
+  "numero": "PREST-2026-0073",
+  "nom": "Compiniya – Abonnement jusqu'à 5 utilisateurs",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 300000,
+  "description": "Abonnement mensuel à Compiniya, logiciel de gestion commerciale en ligne (compiniya.com), pour une entreprise et jusqu'à 5 utilisateurs. Fonctions : clients, devis, factures, encaissements, propositions commerciales, contrats à faire signer, projets et tâches, suivi des demandes d'assistance de vos clients, fournisseurs et dépenses, espace en ligne pour vos clients (vos clients ne comptent pas comme utilisateurs). Option : piloter Compiniya en écrivant vos demandes à un assistant d'intelligence artificielle (par exemple, préparer un devis) ; l'abonnement à cet assistant est à votre charge et sa mise en place est facturée à part. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des fichiers joints jusqu'à 10 Go, mises à jour de Compiniya (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp, e-mail ou depuis votre espace client, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Au-delà de 5 utilisateurs : palier supérieur. Non compris : mise en service (payée une fois) ; comptabilité générale, paie et gestion de stock ; stockage au-delà de 10 Go (sur devis) ; nouveaux modules vendus séparément ; adaptations propres à votre entreprise ; envois automatiques par SMS ou WhatsApp et liaison avec le paiement mobile ; formation supplémentaire. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 83,
+  "numero": "PREST-2026-0074",
+  "nom": "Compiniya – Abonnement jusqu'à 15 utilisateurs",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 700000,
+  "description": "Abonnement mensuel à Compiniya, logiciel de gestion commerciale en ligne (compiniya.com), pour une entreprise et jusqu'à 15 utilisateurs. Fonctions : clients, devis, factures, encaissements, propositions commerciales, contrats à faire signer, projets et tâches, suivi des demandes d'assistance de vos clients, fournisseurs et dépenses, espace en ligne pour vos clients (vos clients ne comptent pas comme utilisateurs). Option : piloter Compiniya en écrivant vos demandes à un assistant d'intelligence artificielle (par exemple, préparer un devis) ; l'abonnement à cet assistant est à votre charge et sa mise en place est facturée à part. Prix par mois, payable au mois ou à l'année. Compris : hébergement sur nos serveurs (accès par identifiant et mot de passe, connexion chiffrée), sauvegarde automatique chaque nuit conservée 7 jours, stockage des fichiers joints jusqu'à 20 Go, mises à jour de Compiniya (corrections et améliorations publiées pour tous nos clients), assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp, e-mail ou depuis votre espace client, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Au-delà de 15 utilisateurs : ajouter des utilisateurs supplémentaires (voir Compiniya – Utilisateur supplémentaire). Non compris : mise en service (payée une fois) ; comptabilité générale, paie et gestion de stock ; stockage au-delà de 20 Go (sur devis) ; nouveaux modules vendus séparément ; adaptations propres à votre entreprise ; envois automatiques par SMS ou WhatsApp et liaison avec le paiement mobile ; formation supplémentaire. À la fin de l'abonnement, vos données restent disponibles 30 jours : sur demande pendant ce délai, nous vous les remettons (fichiers Excel ou CSV et documents joints), puis elles sont effacées de nos serveurs."
+ },
+ {
+  "id": 84,
+  "numero": "PREST-2026-0075",
+  "nom": "Compiniya – Utilisateur supplémentaire",
+  "categorie": "Solutions clés en main",
+  "unite": "Mois",
+  "prix_unitaire_ht": 50000,
+  "description": "Accès d'un utilisateur supplémentaire à Compiniya, au-delà des 15 utilisateurs de l'abonnement « jusqu'à 15 utilisateurs ». Prix par utilisateur et par mois ; mêmes fonctions et mêmes services compris que l'abonnement. Sur le devis, la quantité est le nombre d'utilisateurs supplémentaires multiplié par le nombre de mois (exemple : 3 utilisateurs pendant 12 mois = 36). Formule abonnement uniquement : pour la licence au-delà de 15 utilisateurs, licence étendue sur devis. Jusqu'à 15 utilisateurs, c'est le palier d'abonnement adapté (2, 5 ou 15 utilisateurs) qui s'applique."
+ },
+ {
+  "id": 85,
+  "numero": "PREST-2026-0076",
+  "nom": "Compiniya – Licence installée jusqu'à 15 utilisateurs",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 17500000,
+  "description": "Licence d'utilisation de Compiniya, achetée une seule fois, pour une entreprise et jusqu'à 15 utilisateurs, installée sur un serveur réservé à l'entreprise ; droit d'utilisation sans limite de durée. Fonctions : clients, devis, factures, encaissements, propositions commerciales, contrats à faire signer, projets et tâches, suivi des demandes d'assistance de vos clients, fournisseurs et dépenses, espace en ligne pour vos clients (vos clients ne comptent pas comme utilisateurs). Garantie de 3 mois après l'installation : correction des anomalies du logiciel. Serveur non compris : à choisir dans nos offres d'hébergement (Serveur professionnel Basique conseillé) ou fourni par vous selon nos prérequis techniques ; il doit alors nous être accessible à distance, et ses sauvegardes sont sous votre responsabilité (Sauvegarde externalisée possible dans nos offres d'hébergement). Non compris également : nom de domaine, certificat SSL et adresses e-mail (nos offres d'hébergement) ; installation, paramétrage et formation (voir Compiniya – Mise en service (licence)) ; mises à jour et assistance (voir Compiniya – Maintenance licence) ; comptabilité générale, paie et gestion de stock ; personnalisations. Au-delà de 15 utilisateurs ou pour plusieurs entreprises : licence étendue sur devis."
+ },
+ {
+  "id": 86,
+  "numero": "PREST-2026-0077",
+  "nom": "Compiniya – Mise en service (licence)",
+  "categorie": "Solutions clés en main",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2500000,
+  "description": "Installation et mise en route de Compiniya sur le serveur retenu, payée une seule fois avec la licence. Comprend : installation du logiciel sur l'un de nos serveurs professionnels ou sur votre propre serveur, s'il répond à nos prérequis techniques (communiqués avant la commande) et nous donne un accès complet ; mise en ligne sur votre nom de domaine, réglage du certificat de sécurité SSL, de l'envoi des e-mails et d'une sauvegarde automatique sur le serveur lui-même ; paramétrage de votre entreprise (coordonnées, logo, NIF et RCCM, TVA, numérotation, modèles de devis, factures et contrats) ; création des comptes utilisateurs et de leurs droits ; import de vos clients, articles et fournisseurs à partir de notre modèle Excel rempli par vos soins, jusqu'à 500 lignes au total ; une journée de formation à Conakry, jusqu'à 12 participants. Non compris : serveur, nom de domaine, certificat SSL, adresses e-mail et copie des sauvegardes sur un autre serveur (nos offres d'hébergement) ; reprise de l'historique et import au-delà de 500 lignes (voir Compiniya – Reprise des données) ; personnalisations ; déplacements hors de Conakry."
+ },
+ {
+  "id": 87,
+  "numero": "PREST-2026-0078",
+  "nom": "Compiniya – Maintenance licence jusqu'à 15 utilisateurs",
+  "categorie": "Solutions clés en main",
+  "unite": "An",
+  "prix_unitaire_ht": 2800000,
+  "description": "Maintenance annuelle de la licence Compiniya jusqu'à 15 utilisateurs : 16 % du prix de la licence, facturée chaque année à partir de l'installation. Comprend : mises à jour des fonctions achetées (corrections et améliorations publiées pour tous nos clients ; les nouveaux modules vendus séparément ne sont pas compris), installées à distance sur votre serveur ; assistance à distance du lundi au vendredi, de 8 h 30 à 17 h 30 (hors jours fériés), par WhatsApp, e-mail ou depuis votre espace client, et par téléphone en cas de blocage, avec une première réponse au plus tard le jour ouvré suivant. L'assistance couvre les questions d'utilisation et la correction des anomalies ; elle ne comprend ni la formation de nouveau personnel, ni la saisie de vos données, ni les nouveaux paramétrages. Non compris : serveur, son entretien, ses pannes et ses sauvegardes (nos offres d'hébergement), interventions sur place, personnalisations, formation. Sans maintenance, le logiciel reste utilisable dans la version installée, sans mises à jour ni assistance. Si la maintenance est interrompue puis reprise, les années non payées sont facturées avant la remise à jour du logiciel."
+ },
+ {
+  "id": 88,
+  "numero": "PREST-2026-0079",
+  "nom": "Compiniya – Reprise des données (par tranche de 1 000 lignes)",
+  "categorie": "Solutions clés en main",
+  "unite": "Unité",
+  "prix_unitaire_ht": 500000,
+  "description": "Reprise de vos données existantes dans Compiniya, par tranche de 1 000 lignes, au-delà des 500 lignes comprises dans la mise en service. Une ligne correspond à une fiche (client, article, fournisseur) ou à un document (devis, facture, encaissement, solde client). Toute tranche commencée est due (exemple : 1 800 lignes à reprendre = 500 lignes comprises + 2 tranches). Comprend : analyse de vos fichiers, nettoyage simple (doublons, formats), import dans Compiniya et contrôle avec vous. Données à fournir en fichier Excel ou CSV, y compris un export de votre ancien logiciel. Non compris : saisie à partir de documents papier ; récupération depuis un logiciel qui ne permet pas d'exporter ses données (sur devis)."
+ },
+ {
+  "id": 89,
+  "numero": "PREST-2026-0080",
+  "nom": "Journée de paramétrage – solutions clés en main",
+  "categorie": "Solutions clés en main",
+  "unite": "Jour",
+  "prix_unitaire_ht": 600000,
+  "description": "Une journée de travail (7 h 30), sans développement, sur EduGes, MediGes SST, MediGes ou Compiniya, au-delà de ce que comprend la mise en service : réglages supplémentaires, modèles de documents, droits des utilisateurs, sites ou services en plus, imports à partir de nos modèles Excel et reprise de données hors forfait, modifications de paramétrage après la mise en route, accompagnement au démarrage. Sur place à Conakry ou à distance. Non compris : toute modification qui demande du développement (voir Jour de développement), formation (voir nos offres de formation), déplacements hors de Conakry."
+ },
+ {
+  "id": 90,
+  "numero": "PREST-2026-0081",
+  "nom": "Diagnostic numérique de l'organisation",
+  "categorie": "Conseil & Audit",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3750000,
+  "description": "1 jour d'entretiens dans vos locaux à Conakry (6 personnes rencontrées au plus), puis 1 jour d'analyse de votre site web, de vos outils informatiques et de votre organisation du travail. Le diagnostic aboutit à un rapport de 8 à 10 pages avec une feuille de route classée par priorité et chiffrée selon nos tarifs en vigueur. Le rapport vous est présenté lors d'une réunion d'1 h, dans vos locaux ou à distance. Délai : 2 semaines après les entretiens. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 91,
+  "numero": "PREST-2026-0082",
+  "nom": "Audit technique d'une application web (Laravel/PHP)",
+  "categorie": "Conseil & Audit",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 4500000,
+  "description": "Examen du code et de l'organisation technique de l'application. Il porte aussi sur les composants externes utilisés (versions dépassées, failles connues), la base de données, la rapidité et la sécurité de base. Pour un examen approfondi de la sécurité : voir « Audit de sécurité d'une application web ». Pour 1 application de 30 000 lignes de code au plus, sans compter les composants externes. Rapport avec un plan de corrections chiffré ; les corrections ne sont pas comprises. Le client fournit l'accès au code et une copie de la base de données. Délai : 2 semaines après réception de ces accès."
+ },
+ {
+  "id": 92,
+  "numero": "PREST-2026-0083",
+  "nom": "Audit de vitesse d'un site web",
+  "categorie": "Conseil & Audit",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "Mesure de la vitesse d'affichage de 10 pages au plus, sur ordinateur et sur téléphone, avec les outils de mesure de Google. Analyse du serveur, de la mémorisation des pages (cache), du poids des images et des échanges avec la base de données. Rapport avec un plan d'action classé par priorité. Les corrections ne sont pas comprises : elles sont chiffrées dans le rapport en « Jour de développement ». Délai : 1 semaine après réception des accès."
+ },
+ {
+  "id": 93,
+  "numero": "PREST-2026-0084",
+  "nom": "Audit de référencement Google (SEO)",
+  "categorie": "Conseil & Audit",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2500000,
+  "description": "Analyse de 50 pages au plus, choisies avec le client si le site en compte davantage. Points examinés : présence des pages dans Google, titres et résumés affichés dans les résultats de recherche, liens entre les pages, fichiers destinés aux moteurs de recherche, informations lisibles par Google. L'audit comprend aussi la position du site sur 15 mots-clés choisis avec le client et une mesure sommaire de la vitesse (pour une analyse approfondie : voir « Audit de vitesse d'un site web »). Rapport classé par priorité, avec captures d'écran. Les corrections ne sont pas comprises : elles sont chiffrées dans le rapport en « Jour de développement ». Délai : 1 semaine après réception des accès."
+ },
+ {
+  "id": 94,
+  "numero": "PREST-2026-0085",
+  "nom": "Audit de sécurité d'une application web",
+  "categorie": "Conseil & Audit",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 7500000,
+  "description": "1 application web, 5 jours au total : 4 jours de tests sans dommage pour les données ni pour le service, puis 1 jour d'analyse et de rédaction du rapport. Les tests portent sur les 10 familles de failles les plus courantes (liste de référence internationale OWASP), les réglages du serveur, le chiffrement des échanges (HTTPS), les droits d'accès des utilisateurs et les sauvegardes. Le rapport classe les failles de la plus grave à la moins grave, avec la mesure à prendre pour chacune. Tests réalisés uniquement après autorisation écrite du client. Ne comprend pas les corrections, ni les tests d'attaque poussés (réseau interne, postes de travail, manipulation du personnel, tests de surcharge). Délai : 2 semaines après réception des accès et de l'autorisation."
+ },
+ {
+  "id": 95,
+  "numero": "PREST-2026-0086",
+  "nom": "Analyse des offres d'un appel d'offres informatique",
+  "categorie": "Conseil & Audit",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 4500000,
+  "description": "Jusqu'à 5 offres : grille d'évaluation conforme au dossier d'appel d'offres, analyse technique et financière de chaque offre, rapport d'évaluation argumenté, participation à 1 séance de la commission d'évaluation à Conakry (hors Conakry, frais de déplacement et de séjour en plus). Délai : 2 semaines après réception de toutes les offres. Nous ne remettons pas d'offre à un appel d'offres que nous aidons à évaluer."
+ },
+ {
+  "id": 96,
+  "numero": "PREST-2026-0087",
+  "nom": "Journée de conseil / expertise",
+  "categorie": "Conseil & Audit",
+  "unite": "Jour",
+  "prix_unitaire_ht": 1500000,
+  "description": "7,5 h de travail d'expert, dans vos locaux à Conakry ou à distance : organisation technique d'un projet, choix de solutions, revue d'un projet en cours, accompagnement de vos équipes. Compte rendu écrit inclus. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 97,
+  "numero": "PREST-2026-0088",
+  "nom": "Heure de conseil à distance",
+  "categorie": "Conseil & Audit",
+  "unite": "Heure",
+  "prix_unitaire_ht": 250000,
+  "description": "Par visioconférence ou par téléphone, avec compte rendu écrit. 1 h minimum ; toute heure commencée est facturée."
+ },
+ {
+  "id": 98,
+  "numero": "PREST-2026-0089",
+  "nom": "Atelier de cadrage du projet (1 journée)",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "Préparation avec le responsable du projet, puis 1 journée d'atelier dans vos locaux à Conakry (10 participants au plus). L'atelier fixe les objectifs, ce que le projet comprend et ne comprend pas, les personnes concernées, les contraintes et les priorités. Compte rendu et liste des besoins classés par priorité remis dans les 3 jours ouvrés qui suivent l'atelier. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 99,
+  "numero": "PREST-2026-0090",
+  "nom": "Cahier des charges d'un site web",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2500000,
+  "description": "Pour un site de 15 pages au plus (actualités et articles non comptés). Conseillé à partir d'un « Site vitrine étendu » ; pour un site plus petit, l'« Atelier de cadrage du projet » suffit en général. Comprend 1 réunion de 2 h pour recueillir vos besoins. Le document décrit le plan du site, les contenus attendus sur chaque page et les fonctionnalités. Il fixe aussi les exigences de référencement sur Google, d'hébergement et de sécurité, le calendrier et les critères de validation à la livraison. 1 série de corrections (vos remarques regroupées en un seul envoi). Délai : 1 semaine après la réunion."
+ },
+ {
+  "id": 100,
+  "numero": "PREST-2026-0091",
+  "nom": "Cahier des charges d'une application",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 6000000,
+  "description": "Pour une application web ou mobile de 5 modules au plus. Un module est un ensemble de fonctions autour d'un même sujet, par exemple les inscriptions, la facturation ou les stocks. Comprend 1 journée d'atelier dans vos locaux à Conakry pour recueillir vos besoins. Le document décrit les utilisateurs et leurs droits, les étapes de travail, les règles de gestion, les besoins de chaque type d'utilisateur, les données et les rapports. Il comprend des croquis simplifiés des 6 écrans principaux. 2 séries de corrections (vos remarques regroupées en un seul envoi à chaque fois). Délai : 3 semaines après l'atelier, sans compter le temps de relecture du client. Au-delà de 5 modules : voir « Module supplémentaire – cahier des charges ». Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 101,
+  "numero": "PREST-2026-0092",
+  "nom": "Module supplémentaire – cahier des charges",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Module",
+  "prix_unitaire_ht": 1000000,
+  "description": "S'applique à chaque module au-delà de 5 dans un « Cahier des charges d'une application ». S'applique aussi à un module ajouté plus tard à un cahier des charges que nous avons rédigé. Contenu : besoins de chaque type d'utilisateur, règles de gestion, conditions de validation et scénarios de test à la livraison, rédigés au même format que le cahier des charges."
+ },
+ {
+  "id": 102,
+  "numero": "PREST-2026-0093",
+  "nom": "Spécifications techniques détaillées",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 4500000,
+  "description": "Document technique destiné aux développeurs, établi à partir d'un cahier des charges validé, pour 1 application de 5 modules au plus. Il décrit l'organisation technique de l'application et du site, la structure de la base de données et les règles d'échange avec les applications mobiles et les autres logiciels (API). Il traite aussi la sécurité, l'hébergement, la procédure de mise en ligne et le plan de remise en service après une panne. 1 série de corrections (vos remarques regroupées en un seul envoi). Chaque module de plus : 1 « Journée de conseil / expertise ». Délai : 2 semaines après réception du cahier des charges validé."
+ },
+ {
+  "id": 103,
+  "numero": "PREST-2026-0094",
+  "nom": "Termes de référence d'un appel d'offres",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "Pour 1 projet informatique (1 lot), sur le modèle imposé par votre bailleur ou votre administration s'il en existe un. Contenu : contexte, objectifs, ce que le projet comprend, livrables attendus, profils des experts demandés, critères et grille de notation des offres, calendrier. 1 série de corrections (vos remarques regroupées en un seul envoi). Délai : 2 semaines après réception de vos documents de référence. Nous ne remettons pas d'offre à un appel d'offres dont nous avons rédigé le dossier."
+ },
+ {
+  "id": 104,
+  "numero": "PREST-2026-0095",
+  "nom": "Cartographie des processus de travail",
+  "categorie": "Analyse & Cahier des charges",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "Jusqu'à 5 processus de travail (par exemple l'inscription d'un élève ou la validation d'une dépense), représentés par des schémas selon la norme internationale BPMN. Pour chacun : fonctionnement actuel, blocages et pertes de temps, fonctionnement proposé après numérisation, priorités. Comprend 1 journée d'entretiens au plus avec les agents concernés, dans vos locaux à Conakry, et 1 série de corrections (vos remarques regroupées en un seul envoi). Délai : 2 semaines après les entretiens. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 105,
+  "numero": "PREST-2026-0096",
+  "nom": "API (jusqu'à 10 points d'accès)",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 6000000,
+  "description": "Interface sécurisée (API) qui permet à une application mobile ou au logiciel d'un partenaire d'échanger des données avec votre plateforme. Jusqu'à 10 points d'accès : un point d'accès est une opération, par exemple « afficher la liste des commandes » ou « enregistrer un paiement ». Au-delà, voir « Point d'accès supplémentaire – API ». Comprend la connexion sécurisée des utilisateurs, le contrôle des données reçues et la protection contre les abus (nombre de demandes limité). Comprend aussi la gestion des versions, une documentation pour les développeurs et des tests automatiques. Les notifications sur téléphone sont chiffrées sur la ligne « Notifications push – application mobile ». Délai : 2 à 3 semaines après validation de la liste des points d'accès."
+ },
+ {
+  "id": 106,
+  "numero": "PREST-2026-0097",
+  "nom": "Point d'accès supplémentaire – API",
+  "categorie": "API & Intégrations",
+  "unite": "Unité",
+  "prix_unitaire_ht": 500000,
+  "description": "1 point d'accès en plus des 10 compris dans l'« API (jusqu'à 10 points d'accès) ». Il correspond à 1 opération simple : consulter une liste ou une fiche, enregistrer, modifier ou supprimer. Comprend le contrôle des droits, la vérification des données reçues, un test automatique et la mise à jour de la documentation. Le nombre nécessaire est fixé avec le client à partir des maquettes validées. Les paiements, les SMS et les notifications sont chiffrés sur leurs propres lignes."
+ },
+ {
+  "id": 107,
+  "numero": "PREST-2026-0098",
+  "nom": "Notifications push – application mobile",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "Messages qui s'affichent sur l'écran du téléphone, envoyés depuis votre espace d'administration ou automatiquement par l'application. Pour 1 application Android et/ou iOS : enregistrement des téléphones et envoi à un utilisateur, à un groupe ou à tous. Comprend jusqu'à 5 types de notifications (par exemple rappel, nouveau message, paiement reçu), le choix par l'utilisateur des notifications qu'il reçoit et l'historique des envois. L'envoi passe par le service de Google (Firebase), sans frais à ce jour. Les comptes développeur Google et Apple sont ceux du client (voir « Ouverture d'un compte développeur »). Délai : 1 semaine."
+ },
+ {
+  "id": 108,
+  "numero": "PREST-2026-0099",
+  "nom": "Paiement mobile money : 1er opérateur",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 4500000,
+  "description": "Pour un site ou une application autre qu'une « Boutique en ligne avec paiement mobile money » (celle-ci comprend déjà 1 opérateur). 1 opérateur au choix, par exemple Orange Money ou MTN MoMo. Le paiement est lancé depuis votre site ou votre application, et l'opérateur envoie une confirmation sécurisée. Chaque paiement est suivi (en attente, réussi, échoué) et un contrôle quotidien compare les paiements reçus aux commandes. Des reçus de paiement sont émis. Essais sur l'environnement de test de l'opérateur, puis en conditions réelles. Le compte marchand et les commissions de l'opérateur sont à la charge du client. Délai : 2 semaines après réception des accès fournis par l'opérateur ; le temps de validation du compte marchand par l'opérateur n'est pas compté."
+ },
+ {
+  "id": 109,
+  "numero": "PREST-2026-0100",
+  "nom": "Opérateur mobile money supplémentaire",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2500000,
+  "description": "Ajout d'un opérateur (par exemple Orange Money ou MTN MoMo) sur un site ou une application où nous avons déjà mis en place le paiement mobile money (« Paiement mobile money : 1er opérateur » ou « Boutique en ligne avec paiement mobile money »). Mêmes fonctions et mêmes conditions : compte marchand et commissions de l'opérateur à la charge du client ; le temps de validation du compte marchand n'est pas compté."
+ },
+ {
+  "id": 110,
+  "numero": "PREST-2026-0101",
+  "nom": "Passerelle SMS",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "Raccordement de votre site ou application à 1 fournisseur d'envoi de SMS. Comprend les codes de vérification à usage unique (connexion, validation d'une opération), les notifications et les relances automatiques. Les SMS partent en arrière-plan pour ne pas ralentir l'application. Comprend aussi l'historique des envois et un nouvel essai automatique en cas d'échec. Les crédits SMS sont achetés par le client directement auprès du fournisseur."
+ },
+ {
+  "id": 111,
+  "numero": "PREST-2026-0102",
+  "nom": "E-mails automatiques",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 1500000,
+  "description": "Mise en place des e-mails envoyés automatiquement par votre site ou application : confirmation d'inscription, de commande ou de paiement, mot de passe oublié… Comprend le raccordement à un service d'envoi professionnel et jusqu'à 5 modèles d'e-mails à vos couleurs, envoyés en arrière-plan. Le nom de domaine est réglé pour éviter le classement en courrier indésirable, et les e-mails non remis sont suivis. L'abonnement éventuel au service d'envoi est souscrit et payé par le client."
+ },
+ {
+  "id": 112,
+  "numero": "PREST-2026-0103",
+  "nom": "Intégration WhatsApp Business",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3500000,
+  "description": "Raccordement de votre site ou application à WhatsApp Business. Comprend la configuration de votre compte professionnel Meta et de votre numéro, ainsi que jusqu'à 3 modèles de messages soumis à l'approbation de Meta. Les messages de vos clients arrivent automatiquement dans votre application, avec l'historique des échanges. Ne comprend ni robot de réponse automatique ni écran de discussion pour plusieurs agents. Le numéro est fourni par le client et ne doit pas être utilisé sur l'application WhatsApp ordinaire. Les frais facturés par Meta pour chaque message sont à la charge du client ; le temps de vérification par Meta n'est pas compté."
+ },
+ {
+  "id": 113,
+  "numero": "PREST-2026-0104",
+  "nom": "Connexion à un autre logiciel",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 4500000,
+  "description": "Échanges automatiques entre votre plateforme et 1 autre logiciel (gestion, comptabilité, suivi des clients) qui dispose d'une documentation technique. Jusqu'à 3 flux : un flux est un type de données échangé dans un sens, par exemple l'envoi des factures vers la comptabilité. Comprend la correspondance des champs, la mise à jour à heures fixes, la reprise automatique après une erreur et l'historique des échanges. Les frais d'accès éventuels demandés par l'éditeur de l'autre logiciel sont à la charge du client. Les logiciels sans documentation technique, ou soumis à un agrément administratif (par exemple SYDONIA pour les douanes), font l'objet d'un devis séparé."
+ },
+ {
+  "id": 114,
+  "numero": "PREST-2026-0105",
+  "nom": "Import de données (Excel / CSV)",
+  "categorie": "API & Intégrations",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 1500000,
+  "description": "Pour une application web ou mobile réalisée sur mesure. Jusqu'à 5 fichiers Excel ou CSV (format d'export courant des logiciels) et 50 000 lignes au total. Comprend la remise en forme automatique (dates, majuscules, espaces, numéros de téléphone), la suppression des doublons et des contrôles de cohérence. Les données sont ensuite chargées dans l'application, avec un rapport des anomalies. Les données manquantes ou erronées sont signalées dans ce rapport ; elles ne sont ni complétées ni corrigées à la main. Pour les contenus d'un site : voir « Reprise des contenus d'un ancien site ». Pour une solution clés en main : voir la reprise de données prévue pour cette solution."
+ },
+ {
+  "id": 115,
+  "numero": "PREST-2026-0106",
+  "nom": "Maintenance Essentielle : site vitrine",
+  "categorie": "Maintenance & Support",
+  "unite": "An",
+  "prix_unitaire_ht": 2500000,
+  "description": "Pour 1 site vitrine, pendant 12 mois. Comprend les mises à jour courantes (corrections et sécurité) du logiciel du site et de ses composants, hors changement de version majeure (voir « Montée de version majeure »). Une surveillance automatique relève les erreurs ; elle est consultée les jours ouvrés. Nous corrigeons les erreurs du code que nous avons livré. Jusqu'à 1 h de petites modifications par trimestre (texte, image, lien) ; l'heure non utilisée dans le trimestre est perdue. Un rapport vous est remis tous les 3 mois. Prise en charge des demandes dans les 2 jours ouvrés (du lundi au vendredi, de 8 h 30 à 17 h 30). Heures en plus : 200 000 GNF HT l'heure. Hébergement, nom de domaine et sauvegardes non compris (voir « Sauvegarde externalisée – 1 an »). Pour un site que nous avons créé, le contrat commence à la fin de la garantie de 3 mois. Engagement de 12 mois, payable d'avance."
+ },
+ {
+  "id": 116,
+  "numero": "PREST-2026-0107",
+  "nom": "Maintenance Pro : site dynamique, boutique ou portail",
+  "categorie": "Maintenance & Support",
+  "unite": "An",
+  "prix_unitaire_ht": 5000000,
+  "description": "Tout ce que comprend la « Maintenance Essentielle : site vitrine », avec en plus :\n- jusqu'à 1 h de petites modifications par mois au total, au lieu d'1 h par trimestre (l'heure non utilisée dans le mois est perdue) ;\n- les mises à jour courantes de l'espace d'administration (Filament) ;\n- une prise en charge des demandes au plus tard le jour ouvré suivant (du lundi au vendredi, de 8 h 30 à 17 h 30) ;\n- une vérification chaque mois qu'une sauvegarde peut bien être remise en service.\nHeures en plus : 200 000 GNF HT l'heure. Hébergement, nom de domaine et sauvegardes non compris (voir « Sauvegarde externalisée – 1 an »). Engagement de 12 mois, payable d'avance."
+ },
+ {
+  "id": 117,
+  "numero": "PREST-2026-0108",
+  "nom": "Maintenance d'une application web",
+  "categorie": "Maintenance & Support",
+  "unite": "Mois",
+  "prix_unitaire_ht": 1500000,
+  "description": "1 application web de 5 modules au plus ; chaque module de plus : 300 000 GNF HT par mois. Comprend jusqu'à 1 jour (7,5 h) par mois de corrections et de petites évolutions ; le temps non utilisé dans le mois est perdu. Comprend aussi les mises à jour courantes, hors changement de version majeure (voir « Montée de version majeure »), et la vérification des sauvegardes. Application bloquée (inaccessible, ou fonction essentielle impossible pour tous les utilisateurs) : prise en charge le jour même pour une demande reçue avant 12 h un jour ouvré, sinon le jour ouvré suivant. Autres demandes : prise en charge au plus tard le jour ouvré suivant. Les jours ouvrés vont du lundi au vendredi, de 8 h 30 à 17 h 30. Heures en plus : 200 000 GNF HT l'heure. Hébergement et sauvegardes non compris (voir « Sauvegarde externalisée – 1 an »). Pour une application que nous avons créée, le contrat commence à la fin de la garantie de 3 mois. Engagement de 12 mois, facturé par trimestre d'avance."
+ },
+ {
+  "id": 118,
+  "numero": "PREST-2026-0109",
+  "nom": "Maintenance d'une application mobile (par plateforme)",
+  "categorie": "Maintenance & Support",
+  "unite": "An",
+  "prix_unitaire_ht": 5000000,
+  "description": "1 application sur 1 plateforme (Android ou iOS) ; une application publiée sur les deux plateformes est facturée pour chacune. Pendant 12 mois, l'application est adaptée aux nouvelles exigences de Google Play ou de l'App Store et aux nouvelles versions d'Android ou d'iOS. Comprend la mise à jour des composants, le suivi des plantages et la correction des erreurs du code que nous avons livré. Jusqu'à 1 h de petites modifications par trimestre ; l'heure non utilisée dans le trimestre est perdue. Les mises à jour sont publiées sur le magasin d'applications. Prise en charge au plus tard le jour ouvré suivant (du lundi au vendredi, de 8 h 30 à 17 h 30) ; le temps de validation par Google ou Apple n'est pas compté. Heures en plus : 200 000 GNF HT l'heure. Ne comprend ni l'API ni l'espace d'administration (voir « Maintenance d'une application web » ou « Maintenance Pro : site dynamique, boutique ou portail »), ni les nouvelles fonctions ou la refonte. Comptes développeur à la charge du client. Pour une application que nous avons créée, le contrat commence à la fin de la garantie de 3 mois. Engagement de 12 mois, payable d'avance."
+ },
+ {
+  "id": 119,
+  "numero": "PREST-2026-0110",
+  "nom": "Intervention ponctuelle hors contrat",
+  "categorie": "Maintenance & Support",
+  "unite": "Heure",
+  "prix_unitaire_ht": 250000,
+  "description": "Dépannage, correction ou modification en dehors d'un contrat de maintenance, selon nos disponibilités. 1 h minimum ; toute heure commencée est facturée. À partir de 5 h pour une même demande, le tarif du « Jour de développement » s'applique."
+ },
+ {
+  "id": 120,
+  "numero": "PREST-2026-0111",
+  "nom": "Forfait de 10 heures prépayées",
+  "categorie": "Maintenance & Support",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 2000000,
+  "description": "10 h à utiliser dans les 6 mois suivant le paiement, pour des évolutions, de l'assistance ou des mises à jour de contenus sur un site ou une application. Un relevé des heures consommées vous est remis. Le temps est décompté par tranche de 30 minutes. Les heures non utilisées au bout de 6 mois sont perdues et ne sont pas remboursées."
+ },
+ {
+  "id": 121,
+  "numero": "PREST-2026-0112",
+  "nom": "Montée de version majeure",
+  "categorie": "Maintenance & Support",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "Passage d'un site, ou d'une application de 3 modules au plus, à la version majeure suivante de son logiciel de base (Laravel, Filament ou October CMS ; par exemple de Filament 3 à Filament 4). Comprend la mise à jour et l'adaptation du code et des extensions, puis la vérification que tout fonctionne comme avant. La mise en ligne permet de revenir à l'ancienne version en cas de problème. 1 seule version d'écart par forfait. Chaque module de plus : 1 « Jour de développement ». Les licences éventuelles des extensions payantes sont achetées par le client."
+ },
+ {
+  "id": 122,
+  "numero": "PREST-2026-0113",
+  "nom": "Nettoyage et sécurisation après piratage",
+  "categorie": "Maintenance & Support",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 3000000,
+  "description": "1 site ou 1 application. Comprend la recherche de l'origine de l'attaque, la suppression du code malveillant et la remise en service à partir de la dernière sauvegarde saine disponible. Tous les mots de passe et accès sont changés, la sécurité est renforcée et un rapport d'incident vous est remis. Début d'intervention au plus tard le jour ouvré suivant la commande (du lundi au vendredi, de 8 h 30 à 17 h 30). La récupération des données qui n'ont pas été sauvegardées n'est pas garantie. Si le site ou l'application doit être refait, ce travail fait l'objet d'un devis séparé."
+ },
+ {
+  "id": 123,
+  "numero": "PREST-2026-0114",
+  "nom": "Prise en main de l'espace d'administration (3 h)",
+  "categorie": "Formation",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 750000,
+  "description": "Formation à l'espace d'administration de votre site ou application (Filament, October CMS ou FBLOG) : publier et modifier des contenus, gérer les images et documents, gérer les utilisateurs. 5 personnes au plus, dans vos locaux à Conakry ou à distance. Un aide-mémoire est remis. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 124,
+  "numero": "PREST-2026-0115",
+  "nom": "Journée de formation sur mesure",
+  "categorie": "Formation",
+  "unite": "Jour",
+  "prix_unitaire_ht": 2000000,
+  "description": "Formation des utilisateurs ou des administrateurs d'un site ou d'une application, dans vos locaux à Conakry. Comprend la préparation de supports adaptés à vos écrans et à vos procédures, puis 6 h de formation pour 8 participants au plus. Supports en PDF, exercices pratiques, attestation de participation. Salle, ordinateurs et vidéoprojecteur fournis par le client. Hors Conakry, frais de déplacement et de séjour en plus. Pour EduGes, MediGes SST, MediGes ou Compiniya : voir « Journée de formation – solutions clés en main »."
+ },
+ {
+  "id": 125,
+  "numero": "PREST-2026-0116",
+  "nom": "Journée de formation – solutions clés en main",
+  "categorie": "Formation",
+  "unite": "Jour",
+  "prix_unitaire_ht": 600000,
+  "description": "Pour EduGes, MediGes SST, MediGes ou Compiniya : formation d'un groupe d'utilisateurs aux tâches de leur poste (par exemple enseignants, secrétariat, soignants, accueil, comptabilité). 6 h de formation, 15 participants au plus, dans vos locaux à Conakry ou à distance. Le support standard de la solution est remis en PDF. Salle, ordinateurs et vidéoprojecteur fournis par le client. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 126,
+  "numero": "PREST-2026-0117",
+  "nom": "Formation « Gérer et animer son site web » (1 jour, session ouverte)",
+  "categorie": "Formation",
+  "unite": "Participant",
+  "prix_unitaire_ht": 400000,
+  "description": "Session ouverte à plusieurs organisations, à Conakry, salle et pause-café comprises. Au programme : mise à jour des contenus et des images, bases du référencement sur Google, lecture des statistiques de visite, sécurité des accès. Exercices sur un site de démonstration ; chaque participant apporte son ordinateur portable. 6 à 12 participants. S'il y a moins de 6 inscrits, la session est reportée et chaque inscrit choisit entre une nouvelle date et le remboursement."
+ },
+ {
+  "id": 127,
+  "numero": "PREST-2026-0118",
+  "nom": "Formation développeur Laravel & Filament (5 jours)",
+  "categorie": "Formation",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 10000000,
+  "description": "Pour 6 développeurs de votre équipe au plus, dans vos locaux à Conakry. Au programme : Laravel, gestion de la base de données, Filament (écrans de gestion, formulaires, tableaux, droits d'accès), échanges avec d'autres applications (API) et mise en ligne. Travaux pratiques sur un même projet tout au long des 5 jours ; supports et attestations de participation remis. Prérequis : connaître les bases du langage PHP. Salle et ordinateurs fournis par le client. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 128,
+  "numero": "PREST-2026-0119",
+  "nom": "Atelier de sensibilisation à la cybersécurité (3 h)",
+  "categorie": "Formation",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 1000000,
+  "description": "3 h dans vos locaux à Conakry, 15 participants au plus. Au programme : mots de passe, hameçonnage (faux messages et faux sites qui volent les accès), sauvegardes, fraude au mobile money, bons réflexes au quotidien. Une fiche réflexe est remise à chaque participant. Hors Conakry, frais de déplacement et de séjour en plus."
+ },
+ {
+  "id": 129,
+  "numero": "PREST-2026-0120",
+  "nom": "Tutoriels vidéo personnalisés",
+  "categorie": "Formation",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 1000000,
+  "description": "Jusqu'à 5 vidéos de 3 à 5 minutes : enregistrement de l'écran de l'espace d'administration de votre site ou application, commenté en français. Les vidéos sont livrées en fichiers MP4 lisibles sur ordinateur et sur téléphone. 1 série de corrections (vos remarques regroupées en un seul envoi). La mise à jour des vidéos après une modification des écrans n'est pas comprise."
+ },
+ {
+  "id": 130,
+  "numero": "PREST-2026-0121",
+  "nom": "Guide utilisateur illustré (PDF)",
+  "categorie": "Formation",
+  "unite": "Forfait",
+  "prix_unitaire_ht": 1200000,
+  "description": "Pour 1 site ou 1 application, jusqu'à 20 pages : captures d'écran annotées, procédures pas à pas, réponses aux questions fréquentes. 1 série de corrections (vos remarques regroupées en un seul envoi)."
+ }
+]
