@@ -25,7 +25,11 @@ class ServiceController extends Controller
 
         return view('pages.services.category', [
             'category' => $category,
-            'categories' => ServiceCategory::query()->where('is_active', true)->orderBy('position')->get(),
+            'categories' => ServiceCategory::query()
+                ->where('is_active', true)
+                ->withCount(['services as services_count' => fn ($q) => $q->where('is_active', true)])
+                ->orderBy('position')
+                ->get(),
         ]);
     }
 
