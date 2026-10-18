@@ -26,6 +26,7 @@ class SettingSeeder extends Seeder
             'country' => 'Guinée',
             'rccm' => 'GN.TCC.2026.A.06358',
             'nif' => '484274303',
+            'legal_hosting' => '',
             'hours' => 'Lundi – vendredi, 8 h 30 – 17 h 30 (GMT)',
             'hours_short' => 'Lun–ven · 8 h 30 – 17 h 30',
             'support_channels' => 'WhatsApp, e-mail, espace client, téléphone en cas de blocage',

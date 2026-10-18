@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon" href="{{ asset('brand/icone.png') }}">
     {{ $head ?? '' }}
     <script type="application/ld+json">{!! json_encode([
-        '@context' => 'https://schema.org',
+        '@@context' => 'https://schema.org',
         '@type' => 'Organization',
         'name' => $siteName,
         'url' => url('/'),

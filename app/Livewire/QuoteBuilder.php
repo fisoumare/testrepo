@@ -31,6 +31,9 @@ class QuoteBuilder extends Component
 
     public const MAX_QUANTITY = 99;
 
+    /** Nombre de prestations affichées par « page » du catalogue (bouton « Afficher plus »). */
+    public const PER_PAGE = 30;
+
     #[Locked]
     public int $step = self::STEP_COMPOSE;
 
@@ -38,6 +41,10 @@ class QuoteBuilder extends Component
 
     /** Slug de la catégorie filtrée ; null pour tout afficher. */
     public ?string $category = null;
+
+    /** Nombre maximal de lignes affichées ; augmente par showMore(), revient à PER_PAGE à chaque filtre. */
+    #[Locked]
+    public int $limit = self::PER_PAGE;
 
     /**
      * Sélection courante : identifiant de prestation => quantité.
@@ -118,11 +125,30 @@ class QuoteBuilder extends Component
         unset($this->cart);
     }
 
+    /** Nouvelle recherche : on repart de la première page de résultats. */
+    public function updatedSearch(): void
+    {
+        $this->limit = self::PER_PAGE;
+    }
+
     // ----------------------------------------------------------------- Étape 1
 
     public function filter(?string $slug = null): void
     {
         $this->category = $slug ?: null;
+        $this->limit = self::PER_PAGE;
+    }
+
+    public function resetFilters(): void
+    {
+        $this->search = '';
+        $this->category = null;
+        $this->limit = self::PER_PAGE;
+    }
+
+    public function showMore(): void
+    {
+        $this->limit = min($this->limit + self::PER_PAGE, max(self::PER_PAGE, $this->services->count()));
     }
 
     public function add(int $serviceId): void
@@ -244,7 +270,7 @@ class QuoteBuilder extends Component
 
     public function restart(): void
     {
-        $this->reset('search', 'category', 'name', 'organization', 'email', 'phone', 'message', 'website', 'reference', 'sent');
+        $this->reset('search', 'category', 'limit', 'name', 'organization', 'email', 'phone', 'message', 'website', 'reference', 'sent');
         $this->items = [];
         $this->resetErrorBag();
         unset($this->cart);
@@ -306,6 +332,17 @@ class QuoteBuilder extends Component
                 $term,
             )))
             ->values();
+    }
+
+    /**
+     * Lignes effectivement affichées : les $limit premières du résultat filtré.
+     *
+     * @return Collection<int, Service>
+     */
+    #[Computed]
+    public function visibleServices(): Collection
+    {
+        return $this->services->take($this->limit);
     }
 
     /**

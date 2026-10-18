@@ -8,17 +8,34 @@ use App\Filament\Resources\References\Pages\ListReferences;
 use App\Filament\Resources\References\Schemas\ReferenceForm;
 use App\Filament\Resources\References\Tables\ReferencesTable;
 use App\Models\Reference;
+use App\Providers\Filament\AdminPanelProvider;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class ReferenceResource extends Resource
 {
     protected static ?string $model = Reference::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
+
+    protected static string|UnitEnum|null $navigationGroup = AdminPanelProvider::GROUP_CONTENT;
+
+    protected static ?int $navigationSort = 4;
+
+    protected static ?string $modelLabel = 'référence';
+
+    protected static ?string $pluralModelLabel = 'références';
+
+    protected static ?string $navigationLabel = 'Références';
+
+    /** Le modèle expose son slug dans les URL publiques ; l'admin reste sur l'identifiant. */
+    protected static ?string $recordRouteKeyName = 'id';
+
+    protected static ?string $recordTitleAttribute = 'name';
 
     public static function form(Schema $schema): Schema
     {
@@ -28,13 +45,6 @@ class ReferenceResource extends Resource
     public static function table(Table $table): Table
     {
         return ReferencesTable::configure($table);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
     }
 
     public static function getPages(): array

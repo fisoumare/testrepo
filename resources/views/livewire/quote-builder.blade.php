@@ -60,15 +60,22 @@
                     @endforeach
                 </div>
 
+                @php
+                    $total = $this->services->count();
+                    $shown = $this->visibleServices->count();
+                @endphp
                 <div class="mt-7 flex items-center justify-between gap-4">
-                    <p class="label text-ardoise" aria-live="polite">{{ $this->services->count() }} prestation{{ $this->services->count() > 1 ? 's' : '' }}@if ($category) · {{ $this->categories->firstWhere('slug', $category)?->name }}@endif</p>
+                    <p class="label text-ardoise" aria-live="polite">
+                        @if ($shown < $total){{ $shown }} sur {{ $total }} prestations @else{{ $total }} prestation{{ $total > 1 ? 's' : '' }}@endif
+                        @if ($category) · {{ $this->categories->firstWhere('slug', $category)?->name }}@endif
+                    </p>
                     @if ($search !== '' || $category)
-                        <button type="button" wire:click="$set('search', ''); $set('category', null)" class="btn-link text-xs">Réinitialiser les filtres</button>
+                        <button type="button" wire:click="resetFilters" class="btn-link text-xs">Réinitialiser les filtres</button>
                     @endif
                 </div>
 
-                <ul class="mt-3 divide-y divide-navy-900/8 border-y border-navy-900/10 transition-opacity" wire:loading.class="opacity-50" wire:target="search, filter" aria-label="Prestations">
-                    @forelse ($this->services as $service)
+                <ul class="mt-3 divide-y divide-navy-900/8 border-y border-navy-900/10 transition-opacity" wire:loading.class="opacity-50" wire:target="search, filter, resetFilters" aria-label="Prestations">
+                    @forelse ($this->visibleServices as $service)
                         <li wire:key="prestation-{{ $service->id }}" class="grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-3 py-4 sm:grid-cols-[minmax(0,1fr)_auto_auto] sm:items-center sm:gap-x-6">
                             <div class="min-w-0">
                                 <p class="label flex flex-wrap items-center gap-x-2 text-ardoise">
@@ -107,12 +114,22 @@
                             <p class="font-semibold text-navy-900">Aucune prestation ne correspond.</p>
                             <p class="mt-2 text-sm text-ardoise">Essayez un autre mot-clé, ou décrivez-nous votre besoin&nbsp;: les projets hors catalogue font l'objet d'un devis spécifique.</p>
                             <div class="mt-5 flex flex-wrap justify-center gap-3">
-                                <button type="button" wire:click="$set('search', ''); $set('category', null)" class="btn-ghost">Afficher tout le catalogue</button>
+                                <button type="button" wire:click="resetFilters" class="btn-ghost">Afficher tout le catalogue</button>
                                 <a href="{{ route('contact', ['sujet' => 'devis']) }}" class="btn-link">Décrire mon besoin →</a>
                             </div>
                         </li>
                     @endforelse
                 </ul>
+
+                @if ($shown < $total)
+                    <div class="mt-6 flex flex-col items-center gap-3 text-center">
+                        <button type="button" wire:click="showMore" class="btn-ghost w-full sm:w-auto disabled:cursor-wait disabled:opacity-70" wire:loading.attr="disabled" wire:target="showMore">
+                            <span wire:loading.remove wire:target="showMore">Afficher les {{ min(\App\Livewire\QuoteBuilder::PER_PAGE, $total - $shown) }} prestations suivantes</span>
+                            <span wire:loading wire:target="showMore" class="inline-flex items-center gap-2"><span class="led led-on" aria-hidden="true"></span> Chargement…</span>
+                        </button>
+                        <p class="label text-ardoise">{{ $total - $shown }} restante{{ $total - $shown > 1 ? 's' : '' }} · filtrez par catégorie ou par mot-clé pour aller plus vite</p>
+                    </div>
+                @endif
             </section>
 
             {{-- Panier : colonne collante sur grand écran --}}

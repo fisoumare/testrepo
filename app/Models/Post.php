@@ -38,7 +38,7 @@ class Post extends Model
 
     public function readingTime(): int
     {
-        return max(1, (int) ceil(str_word_count(strip_tags((string) $this->body)) / 200));
+        return max(1, (int) ceil(preg_match_all('/\p{L}+/u', strip_tags((string) $this->body)) / 200));
     }
 
     public function getRouteKeyName(): string

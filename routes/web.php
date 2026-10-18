@@ -29,3 +29,15 @@ Route::get('/devis', [PageController::class, 'quote'])->name('quote');
 Route::get('/mentions-legales', [PageController::class, 'legal'])->name('legal');
 
 Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
+
+// robots.txt généré par l'application : l'adresse du plan du site suit APP_URL.
+// Aucun fichier public/robots.txt ne doit exister, le serveur web le servirait à la place de cette route.
+Route::get('/robots.txt', fn () => response(implode("\n", [
+    'User-agent: *',
+    'Disallow: /admin',
+    'Disallow: /livewire',
+    'Allow: /',
+    '',
+    'Sitemap: '.route('sitemap'),
+    '',
+]), 200, ['Content-Type' => 'text/plain; charset=UTF-8']))->name('robots');
