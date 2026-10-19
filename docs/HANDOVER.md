@@ -2,22 +2,26 @@
 
 Document de reprise pour une nouvelle session Claude Code ouverte **sur le poste de l'utilisateur** (Laragon, Windows), dans `C:\laragon\www\soumatic`. Il fait suite à une session cloud (9 au 19 octobre 2026) qui a conçu et livré le site.
 
-Ce dépôt GitHub est **public** : ce fichier ne contient rien de confidentiel. Les points privés (Compiniya, clients, conditions de paiement, étude de prix) sont dans un document séparé, `HANDOVER-PRIVE.md`, remis directement à l'utilisateur et **jamais versionné**.
+Ce dépôt GitHub est **public** : ce fichier ne contient rien de confidentiel. Les points privés (Compiniya, clients, conditions de paiement, étude de prix) sont dans `HANDOVER-PRIVE.md` et `benchmark-logiciels-gestion.md`, remis directement à l'utilisateur et exclus de Git par `.gitignore`. **Rien de leur contenu ne doit être recopié dans un fichier versionné, un message de commit, une pull request ou une page publiée.**
 
-## 1. À lire en premier
+## 1. Ordre de lecture
 
-1. `CLAUDE.md` (identique à `AGENTS.md`) : règles de travail du projet.
-2. `docs/DESIGN.md` : concept graphique, couleurs, composants Blade, règles de contenu.
-3. `README.md` : installation Laragon, dépannage, tests, mise en production.
-4. Ce fichier, puis `HANDOVER-PRIVE.md` si l'utilisateur le fournit.
+1. Ce fichier.
+2. `docs/DESIGN.md`, en entier, avant toute modification du site.
+3. `README.md`, § Installation, § Dépannage et § Tests.
+4. `HANDOVER-PRIVE.md`, s'il est fourni.
 
-## 2. L'utilisateur et sa façon de travailler
+`CLAUDE.md` est chargé automatiquement par Claude Code ; `AGENTS.md` en est une copie identique destinée à d'autres outils.
 
-- **Fodé Idrissa SOUMARÉ**, gérant de SOUMATIC (Conakry, Guinée). Développeur backend Laravel, utilise FilamentPHP pour les back-offices, et selon les projets Bootstrap, Tailwind CSS ou W3.CSS ; frontends parfois en October CMS ou avec le plugin FBLOG de Filament.
-- Répondre **en français**, de façon structurée, orientée bonnes pratiques, maintenabilité et performance, avec des exemples adaptés à ce stack.
+## 2. L'utilisateur et la façon de travailler
+
+- **Fodé Idrissa SOUMARÉ**, gérant de SOUMATIC (Conakry, Guinée), développeur backend Laravel, qui utilise Filament pour ses back-offices. Pour **ce** site : Tailwind CSS v4 et les composants de `docs/DESIGN.md` uniquement, sans Bootstrap, W3.CSS, October CMS ni FBLOG.
+- Répondre **en français**, de façon structurée, orientée bonnes pratiques, maintenabilité et performance.
 - Quand il écrit « Confirme que tu comprends avant de procéder », **reformuler et attendre son accord** avant d'agir.
 - Avant toute écriture dans un outil métier (Compiniya), **attendre « applique »**.
-- **Ne jamais inventer** un fait sur l'entreprise, ses clients ou ses contrats. Ce qui manque est laissé vide ou marqué « à compléter » dans le back-office.
+- **Ne jamais inventer** un fait sur l'entreprise, ses clients ou ses contrats. Ce qui manque reste vide ou « à compléter ».
+- **Git** : ni commit, ni push, ni fusion, ni suppression de branche sans demande explicite. Proposer la commande et le message, puis attendre son accord.
+- **Secrets** : l'agent n'a pas besoin des identifiants du back-office. Il ne demande, n'affiche ni ne recopie jamais un mot de passe ou le contenu de `.env`.
 
 ## 3. SOUMATIC (faits publics, déjà présents sur le site)
 
@@ -32,11 +36,11 @@ Ce dépôt GitHub est **public** : ce fichier ne contient rien de confidentiel. 
 
 | Élément | Valeur |
 |---|---|
-| Dépôt | `fisoumare/testrepo` (public), branche **`site-soumatic`** |
-| Stack | Laravel 13.37 · Filament 5.10 · Livewire 4 · Tailwind CSS 4 · Vite 8 · PHP 8.3 ou plus |
-| Base | MySQL 8, base `soumatic`, `root` sans mot de passe (Laragon), collation `utf8mb4_unicode_ci` |
+| Dépôt | `fisoumare/testrepo` (public), branche **`site-soumatic`** ; `master` ne contient pas le site |
+| Stack | Laravel 13.37 · Filament 5.10 · Livewire 4.4 · Tailwind CSS 4 · Vite 8 · PHP 8.3 ou plus |
+| Base | MySQL 8, base `soumatic`, `root` sans mot de passe (Laragon), tables en `utf8mb4_unicode_ci` |
 | Adresse locale | http://soumatic.test et http://soumatic.test/admin |
-| Node.js | 20.19 ou plus récent (exigence de Vite 8) |
+| Node.js | 20.19+ (branche 20) ou 22.12+ ; recommandé : Node 22 LTS (exigence de Vite 8) |
 
 ### Fonctionnalités livrées
 
@@ -44,27 +48,28 @@ Ce dépôt GitHub est **public** : ce fichier ne contient rien de confidentiel. 
 - **Configurateur d'estimation** `/devis` (Livewire `App\Livewire\QuoteBuilder`) : sélection de prestations, quantités, totaux HT, TVA 18 % et TTC, envoi d'une demande numérotée `DEM-AAAA-0001`.
 - **Formulaire de contact** `/contact` (Livewire `App\Livewire\ContactForm`) : demandes numérotées `MSG-AAAA-0001`, préremplissage par `?sujet=demo&solution=…`.
 - **E-mails** : notification à `notification_email` et accusé de réception au visiteur (`app/Mail`). Anti-spam : pot de miel et limite de 5 envois par 10 minutes et par adresse IP.
-- **Back-office Filament** `/admin` : prestations, familles, solutions, références, actualités, FAQ, demandes reçues (lecture, statut, réponse par e-mail ou WhatsApp), utilisateurs, page « Paramètres du site » (`/admin/parametres`) pour toutes les coordonnées et textes.
+- **Back-office Filament** `/admin` : prestations, familles, solutions, références, actualités, FAQ, demandes reçues (lecture, statut, réponse par e-mail ou WhatsApp), utilisateurs, profil, page « Paramètres du site » (`/admin/parametres`).
 - **SEO** : balises par page, Open Graph, JSON-LD (Organization, BreadcrumbList, NewsArticle), `sitemap.xml` et `robots.txt` dynamiques.
 - **Typographie française** automatique (`App\Support\Typo`, helper `typo()`), élision (`App\Support\Elision`), montants (`gnf()`, `App\Support\Money`).
 
-### Données
+### Données et seeders
 
-- `database/data/catalogue.json` : export du catalogue Compiniya au 17 octobre 2026 (120 prestations, prix HT en GNF). `ServiceSeeder` l'importe par `compiniya_id`.
-- `php artisan db:seed` **réécrit** les textes du catalogue, des solutions, de la FAQ, des références et des actualités à partir des seeders. Les comptes et les paramètres déjà présents sont conservés. Pour une seule table : `php artisan db:seed --class=NomDuSeeder`.
-- Il n'existe aucune synchronisation automatique avec Compiniya : un changement de prix dans Compiniya doit être reporté dans `catalogue.json` (puis réimport) ou directement dans le back-office.
-- Compte administrateur : créé par `AdminUserSeeder` avec `ADMIN_EMAIL` et `ADMIN_PASSWORD` du `.env`. Si `ADMIN_PASSWORD` est vide, un mot de passe aléatoire est généré et affiché une seule fois.
+- `database/data/catalogue.json` : export du catalogue Compiniya du 17 octobre 2026 (120 prestations, prix HT en GNF), typographie retouchée le 19 (« e-mail » dans 10 articles, prix identiques). En cas de nouvel export, reprendre ces retouches.
+- **Les seeders écrasent les modifications faites dans le back-office.** `ServiceSeeder` remet textes, prix, activation et mise en avant des prestations ; `ReferenceSeeder` remet textes et publication des références ; `PostSeeder` remet textes, dates et publication des actualités ; `SolutionSeeder`, `ServiceCategorySeeder` et `FaqSeeder` réactivent et réécrivent leurs contenus. Seuls les comptes et les paramètres du site sont conservés. Donc : **aucun seeder, `migrate --seed` ni `composer setup` sur `soumatic` sans l'accord de l'utilisateur**, et toujours après une sauvegarde (`mysqldump -u root soumatic > soumatic-AAAA-MM-JJ.sql`).
+- Aucune synchronisation avec Compiniya : un changement de prix se fait dans le back-office (`/admin/services`) et, pour qu'il survive à un futur seed, aussi dans `catalogue.json`.
+- Compte administrateur : il existe déjà en local. En cas de mot de passe oublié : lien « Mot de passe oublié » sur `/admin/login` ; en local (`MAIL_MAILER=log`), le lien de réinitialisation est écrit dans `storage/logs/laravel.log`.
 
 ### Qualité vérifiée en fin de session cloud
 
-- 225 tests (PHPUnit), verts sur SQLite en mémoire et sur MySQL 8 (`php artisan test --env=testing`, base `soumatic_test`, voir README § Tests).
+- 225 tests (PHPUnit), verts sur SQLite en mémoire et sur MySQL 8 (base `soumatic_test`).
+- `tests/TestCase.php` **refuse** de lancer les tests sur une base MySQL dont le nom ne se termine pas par `_test`, pour protéger `soumatic`.
 - `vendor/bin/pint --test` conforme. Aucune violation d'accessibilité « critical » ou « serious » (axe-core) sur les pages principales, en 1440 et 390 px. Aucun débordement horizontal sur mobile.
-- Quatre revues indépendantes (design, code, contenu et SEO, accessibilité) puis corrections : typographie, contrastes, sécurité des formulaires et des e-mails, limites de saisie pour le mode strict de MySQL.
+- Quatre revues indépendantes (design, code, contenu et SEO, accessibilité) puis corrections.
 
 ## 5. Décisions déjà prises (ne pas revenir dessus sans l'utilisateur)
 
 - **Concept graphique** « salle des serveurs », tiré du logo provisoire (un S formé de trois serveurs aux LED vertes) : unités à coins marqués, LED, codes monospace (U01–U08, S01–S04), barre d'état. Détails dans `docs/DESIGN.md`.
-- **Couleurs** : bleu marine `#0F2D52`, vert émeraude `#0E9F6E` (couleur du logo), ardoise `#52637A`, fond sombre `#0F172A`. Les boutons principaux sont verts avec un **texte sombre** (le blanc sur ce vert n'atteint pas le contraste minimal).
+- **Couleurs** : bleu marine `#0F2D52`, vert émeraude `#0E9F6E` (couleur du logo), ardoise `#52637A`, fond sombre `#0F172A`. Boutons principaux verts avec un **texte sombre** (le blanc sur ce vert n'atteint pas le contraste minimal).
 - **Conditions affichées sur le site** : prix fixes hors taxes en GNF, TVA 18 % en sus, devis valable 30 jours ; créations, licences, formations et conseil : 50 % à la commande, solde à la validation ; abonnements, hébergement et maintenance payés d'avance ; garantie de 3 mois ; première réponse au plus tard le jour ouvré suivant. **Aucune pénalité de retard** : l'utilisateur l'a refusée.
 - **Propriété du code source** : dépend de chaque contrat. Ne jamais affirmer autre chose.
 - **Dates des actualités** fixes (17 octobre 2026), jamais relatives.
@@ -80,21 +85,38 @@ Ce dépôt GitHub est **public** : ce fichier ne contient rien de confidentiel. 
 ### Contenu
 
 - Quatre références sont créées mais **non publiées**, faute de description fournie par l'utilisateur. Ne rien rédiger sans ses informations.
-- Le logo est **provisoire**. Les sources sont dans `docs/brand/logo-provisoire/` (`soumatic-logo-master.svg` à texte éditable). Les fichiers utilisés par le site sont dans `public/brand/` et `public/favicon*` ; l'image de partage `public/brand/og.png` est à régénérer si le logo change.
-- Les prix du catalogue sont une **première proposition** : l'utilisateur veut les revoir avec Claude (voir `HANDOVER-PRIVE.md`).
+- Le logo est **provisoire**. Sources dans `docs/brand/logo-provisoire/` (`soumatic-logo-master.svg` à texte éditable) ; fichiers utilisés par le site dans `public/brand/` et `public/favicon*` ; l'image de partage `public/brand/og.png` est à régénérer si le logo change.
+- Les prix du catalogue sont une **première proposition** que l'utilisateur veut revoir (voir `HANDOVER-PRIVE.md`).
 
 ### Technique
 
-- **Mise en production** non faite : choix de l'hébergement, `APP_ENV=production`, `APP_DEBUG=false`, configuration `MAIL_*` réelle, HTTPS, `php artisan optimize`. Procédure dans le README § Mise en production.
-- **GitHub** : supprimer l'ancienne branche `claude/compiniya-identity-hnhn0i` (identique à `site-soumatic`) depuis https://github.com/fisoumare/testrepo/branches ; fusionner `site-soumatic` dans `master` quand l'utilisateur le demande. Envisager un dépôt privé dédié (le dépôt actuel est public et s'appelle « testrepo »).
+- **Mise en production** non faite : choix de l'hébergement, `APP_ENV=production`, `APP_DEBUG=false`, configuration `MAIL_*` réelle, HTTPS, `php artisan optimize` **sur le serveur seulement**. Procédure dans le README § Mise en production.
+- **GitHub** : l'utilisateur peut supprimer l'ancienne branche `claude/compiniya-identity-hnhn0i` depuis https://github.com/fisoumare/testrepo/branches. Elle est entièrement contenue dans `site-soumatic`, qui a en plus le commit de passation ; vérifier d'abord que le dossier local est bien sur `site-soumatic` (`git branch --show-current`). Fusion dans `master` : seulement à sa demande. Envisager un dépôt privé dédié (le dépôt actuel est public et s'appelle « testrepo »).
 
-## 7. Commandes de référence (terminal Laragon)
+## 7. Commandes de référence
 
-Mise à jour du code puis de l'application :
+Les commandes ci-dessous sont écrites pour le **terminal de Laragon** (invite de commandes Windows). Claude Code sous Windows exécute les siennes dans **Git Bash** : il écrit `vendor/bin/pint`, `cp` et `/c/laragon/www/soumatic`. Pour que `php`, `composer`, `mysql` et `node` y soient trouvés, lancer Claude Code depuis le terminal de Laragon, ou ajouter Laragon au PATH (menu Laragon › Tools › Path). Premier contrôle : `php -v`, `composer -V`, `mysql --version`, `node -v`.
+
+### Relier le dossier à GitHub (une seule fois)
+
+Si `C:\laragon\www\soumatic` vient d'une archive zip (pas de dossier `.git`) :
 
 ```
 cd C:\laragon\www\soumatic
-git pull
+git init
+git remote add origin https://github.com/fisoumare/testrepo.git
+git fetch origin site-soumatic
+git checkout -f -B site-soumatic --track origin/site-soumatic
+```
+
+`.env`, `vendor` et `node_modules`, ignorés par Git, sont conservés. Si le dossier est déjà un clone mais sur une autre branche : `git fetch origin` puis `git checkout -B site-soumatic --track origin/site-soumatic`. Si `docs/HANDOVER.md` est absent du dossier, la branche extraite n'est pas `site-soumatic`.
+
+### Mettre à jour le code et l'application
+
+```
+cd C:\laragon\www\soumatic
+git status
+git pull --ff-only
 composer install
 php artisan migrate
 npm install
@@ -102,16 +124,38 @@ npm run build
 php artisan optimize:clear
 ```
 
-Contrôles avant de livrer une modification :
+`git status` doit être propre ; sinon, s'arrêter et demander à l'utilisateur.
+
+### Contrôles avant de livrer une modification
 
 ```
 php artisan test
-php artisan test --env=testing
 vendor\bin\pint --test app database routes tests config
 ```
 
-Pièges déjà rencontrés : « Index of / » (hôte virtuel Laragon pointé sur la racine au lieu de `public`), « Vite manifest not found » (`npm run build` non lancé), `migrate` qui parle de SQLite (ancien `.env`). Solutions dans le README § Dépannage.
+Tests sur MySQL, **seulement si `.env.testing` existe** (fichier ignoré par Git, donc absent d'un clone neuf). Mise en place, une seule fois :
 
-## 8. Premier message suggéré pour la session locale
+```
+mysql -u root -e "CREATE DATABASE soumatic_test CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci"
+copy .env.testing.example .env.testing
+php artisan key:generate --env=testing
+```
 
-> Tu reprends le projet du site web de mon entreprise SOUMATIC, dans ce dossier. Lis d'abord `docs/HANDOVER.md`, `CLAUDE.md`, `docs/DESIGN.md` et `README.md`, puis `HANDOVER-PRIVE.md` que je te fournis. Vérifie que le site tourne (`php artisan test`, http://soumatic.test). Résume-moi en quelques lignes l'état du projet et la liste de ce qui reste à faire, puis attends mes instructions. Confirme que tu comprends avant de procéder.
+Puis : `php artisan test --env=testing`. La protection de `tests/TestCase.php` refuse toute autre base que `…_test`.
+
+Pièges déjà rencontrés : « Index of / » (hôte virtuel Laragon pointé sur la racine au lieu de `public`), « Vite manifest not found » (`npm run build` non lancé ou Node trop ancien), `migrate` qui parle de SQLite (ancien `.env`). Solutions dans le README § Dépannage.
+
+## 8. À ne jamais faire sur le poste local
+
+- `migrate:fresh`, `migrate:refresh`, `migrate:reset` ou `db:wipe` sur `soumatic`.
+- Un seeder, `migrate --seed` ou `composer setup` sans l'accord de l'utilisateur et sans sauvegarde.
+- `php artisan optimize` ou `config:cache` en local. En cas de doute : `php artisan optimize:clear`.
+- Mettre `DB_DATABASE=soumatic` dans `.env.testing`.
+- Écrire dans Compiniya sans « applique ».
+- Commit, push, fusion ou suppression de branche sans demande explicite.
+- Recopier le contenu de `HANDOVER-PRIVE.md`, de `benchmark-logiciels-gestion.md` ou de `.env` dans un fichier versionné, un commit ou une pull request.
+- Ajouter un paquet Composer ou npm sans l'accord de l'utilisateur.
+
+## 9. Premier message suggéré pour la session locale
+
+> Tu reprends le projet du site web de mon entreprise SOUMATIC, dans ce dossier. Lis `docs/HANDOVER.md` (il renvoie aux autres documents), puis `HANDOVER-PRIVE.md` que je te joins. Fais uniquement ces vérifications en lecture : `git status`, `git branch --show-current` (attendu : site-soumatic), `php -v`, `node -v`, `php artisan migrate:status`, `php artisan test` (SQLite en mémoire, sans risque pour la base `soumatic`), présence de `.env.testing`, puis réponse de http://soumatic.test et http://soumatic.test/admin/login. Ne lance aucun seeder, ni `--env=testing`, ni commande qui écrit en base ou dans Git. Résume-moi l'état du projet et ce qui reste à faire, puis attends mes instructions.

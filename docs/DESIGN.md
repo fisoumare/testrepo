@@ -6,7 +6,7 @@ Référence pour toute personne (ou agent) qui touche au site. Lire en entier av
 
 - Laravel 13 · Filament v5.10 (panel `/admin`) · Livewire 4 (Alpine.js inclus, chargé sur toutes les pages via `resources/js/app.js` + `@livewireScriptConfig`) · Tailwind CSS v4 (`@theme`, `@utility`) · Vite 8 · MySQL 8 (base `soumatic`, `utf8mb4_unicode_ci` ; Laragon en local, voir README). Les tests tournent sur SQLite en mémoire, et sur MySQL dans la base séparée `soumatic_test`.
 - Police : Inter Variable, auto-hébergée (`@fontsource-variable/inter`). Monospace : pile système (`font-mono`).
-- Commandes : `npm run build` (obligatoire après tout changement de Blade/CSS : Tailwind v4 scanne les vues) · `php artisan migrate --seed` · `php artisan test` (SQLite) et `php artisan test --env=testing` (MySQL) · serveur de développement : `php artisan serve --port=8080`.
+- Commandes : `npm run build` (obligatoire après tout changement de Blade/CSS : Tailwind v4 scanne les vues) · `php artisan migrate` · `php artisan test` (SQLite) et `php artisan test --env=testing` (MySQL, seulement avec `.env.testing`, voir README § Tests) · site local : http://soumatic.test (Laragon).
 - Aucune ressource externe (CDN, Google Fonts, cartes embarquées) : le site doit fonctionner hors ligne.
 
 ## 2. Concept : « la salle des serveurs »
@@ -60,13 +60,13 @@ Helpers PHP : `setting('clé', défaut)`, `gnf(montant, avecDevise = true)`, `Ap
 
 Contraintes MySQL (mode strict, `utf8mb4_unicode_ci`) : une valeur trop longue pour sa colonne est une erreur SQL, pas une troncature. Chaînes en `VARCHAR(255)` sauf `code` (8), `number` et `acronym` (32), `unit` (32), `accent` (16), `inquiries.type`/`status` (16), `reference` (24), `ip` (45) ; textes longs en `TEXT` (64 Ko) ou `LONGTEXT` (`description` des solutions, `body` des actualités) ; `published_at` est un `TIMESTAMP` (1970 – janvier 2038). Tout nouveau champ de saisie reçoit une limite cohérente (`max:` en Livewire, `maxLength()` / `maxValue()` / `maxDate()` en Filament). La collation confond majuscules et minuscules, « é » et « e » : slugs en minuscules ASCII (`CommonFields::slug()`), générés et bornés à 255 caractères par `App\Models\Concerns\HasSlug`.
 
-Routes nommées : `home`, `solutions.index`, `solutions.show`, `services.index`, `services.category`, `services.show`, `references.index`, `posts.index`, `posts.show`, `about`, `contact`, `quote`, `legal`, `sitemap`.
+Routes nommées : `home`, `solutions.index`, `solutions.show`, `services.index`, `services.category`, `services.show`, `references.index`, `posts.index`, `posts.show`, `about`, `contact`, `quote`, `legal`, `sitemap`, `robots`.
 
 ## 6. Règles de contenu
 
 - Français soigné, vouvoiement, typographie française (espaces insécables avant « : ; ? ! », guillemets « »). Écrire **EduGes** (jamais EduGest), **MediGes SST**, **MediGes**, **Compiniya**, **SOUMATIC**.
 - **Rien d'inventé** : pas de chiffres, clients, témoignages, dates, équipes ou récompenses qui ne figurent pas dans les seeders ou les paramètres. Ce qui manque est laissé vide ou marqué « à compléter » dans le back-office. Les données de l'entreprise viennent de `setting()`.
-- Montants : entiers, HT, en GNF, via `gnf()` ; TVA 18 % ; devis valable 30 jours ; paiement « 50 % à la commande, solde à la validation » ; garantie 3 mois ; assistance lundi–vendredi 8 h 30 – 17 h 30.
+- Montants : entiers, HT, en GNF, via `gnf()` ; TVA 18 % ; devis valable 30 jours ; paiement : créations, licences, formations et conseil, 50 % à la commande et solde à la validation ; abonnements, hébergement et maintenance payés d'avance ; aucune pénalité de retard ; garantie 3 mois ; assistance lundi–vendredi 8 h 30 – 17 h 30.
 - Ne pas affirmer à qui appartient le code source (cela dépend de chaque contrat).
 - Accessibilité : contrastes, focus visibles, `aria-*` sur les menus et accordéons, images avec `alt`, titres hiérarchisés (un seul `h1` par page). Responsive dès 360 px, sans défilement horizontal (attention : pas de `truncate`/`whitespace-nowrap` dans une colonne de grille sans `min-w-0`).
 - SEO : `title` et `description` par page, canonical, Open Graph (layout), `sitemap.xml`, `robots.txt`.

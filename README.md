@@ -33,12 +33,12 @@ Aucune ressource externe n'est chargée (polices auto-hébergées, pas de CDN) :
 ### Prérequis
 
 - [Laragon](https://laragon.org) avec Apache (ou Nginx) et MySQL, réglé sur **PHP 8.3** ou plus récent (menu PHP › Version). Composer est fourni avec Laragon.
-- Node.js 20 ou plus récent et npm (vérifier avec `node -v` dans le terminal de Laragon).
+- Node.js 20.19 ou plus (branche 20) ou 22.12 ou plus (exigence de Vite 8 : `^20.19.0 || >=22.12.0`) ; recommandé : Node 22 LTS. Vérifier avec `node -v` dans le terminal de Laragon.
 - Extensions PHP à activer (menu PHP › Extensions, ou `php.ini`) : `pdo_mysql`, `mbstring`, `intl`, `gd`, `zip`, `fileinfo` ; `openssl`, `curl`, `dom`/`xml`, `tokenizer` et `ctype` sont actives par défaut. `pdo_sqlite` n'est utile que pour lancer les tests (SQLite en mémoire).
 
 ### Étapes
 
-1. Placer le projet dans `C:\laragon\www\soumatic` (par exemple `git clone <dépôt> C:\laragon\www\soumatic`).
+1. Placer le projet dans `C:\laragon\www\soumatic`, sur la branche du site : `git clone -b site-soumatic https://github.com/fisoumare/testrepo.git C:\laragon\www\soumatic` (la branche `master` ne contient pas le site).
 2. Démarrer Laragon (bouton « Start All ») : Apache ou Nginx, et MySQL.
 3. Créer la base `soumatic`, au choix :
    - avec HeidiSQL (bouton « Database » de Laragon) : créer une base `soumatic` avec la collation `utf8mb4_unicode_ci` ;
@@ -152,7 +152,7 @@ Le site ne contient que des informations vérifiées ; ce qui manque est laissé
 
 - **Paramètres du site** (`/admin/parametres`) : vérifier l'adresse, le téléphone, le RCCM et le NIF déjà renseignés ; saisir les liens Facebook, LinkedIn, YouTube et le lien de carte (vides par défaut) ; renseigner l'**hébergeur** (`legal_hosting`) affiché dans les mentions légales ; vérifier l'e-mail de notification qui reçoit les demandes.
 - **Références** (`/admin/references`) : seule la DGSST est publiée. Les autres clients sont créés non publiés avec la mention « À compléter » : rédiger leur description, ajouter un logo, puis publier.
-- **Actualités** (`/admin/posts`) : ajouter des images de couverture ; les deux articles seedés n'en ont pas. Leur date de publication est celle de la mise en ligne du site (17 octobre 2026) ; elle se modifie dans le back-office.
+- **Actualités** (`/admin/posts`) : ajouter des images de couverture ; les deux articles seedés n'en ont pas. Leur date de publication est fixée au 17 octobre 2026 (date de rédaction) ; elle se modifie dans le back-office.
 - **Logo définitif** : remplacer `public/brand/logo.svg`, `logo-blanc.svg`, `icone.svg`, `favicon.svg` et l'image de partage `public/brand/og.png` (1200 × 630) si l'identité visuelle évolue.
 - **Prestations** : les prix peuvent être ajustés depuis `/admin/services` ; une prestation désactivée disparaît du site, du configurateur et du plan du site.
 
@@ -218,7 +218,7 @@ Les e-mails sont envoyés de façon synchrone ; une panne du courrier est journa
 
 `php artisan test` lance la suite PHPUnit sur **SQLite en mémoire** (réglages de `phpunit.xml`) : rien à configurer hormis l'extension `pdo_sqlite`, et la base de développement `soumatic` n'est jamais touchée. Chaque test part d'une base migrée et seedée (trait `RefreshDatabase`).
 
-Pour lancer les mêmes tests **sur MySQL** (utile avant une mise en production : mode strict, collation insensible à la casse), utilisez une base séparée, `soumatic_test`. **Les tests vident et recréent toutes les tables de la base visée : ne les lancez jamais sur `soumatic`.**
+Pour lancer les mêmes tests **sur MySQL** (utile avant une mise en production : mode strict, collation insensible à la casse), utilisez une base séparée, `soumatic_test`. **Les tests vident et recréent toutes les tables de la base visée : ne les lancez jamais sur `soumatic`.** Sans fichier `.env.testing`, `php artisan test --env=testing` lirait `.env` et viserait `soumatic` ; de même avec une configuration en cache (`php artisan optimize`, `config:cache`). Par sécurité, `tests/TestCase.php` refuse toute base MySQL dont le nom ne se termine pas par `_test`.
 
 1. Créer la base (une fois) :
    ```bat
@@ -240,7 +240,7 @@ Pour lancer les mêmes tests **sur MySQL** (utile avant une mise en production :
    - PowerShell : `$env:DB_CONNECTION="mysql"; $env:DB_DATABASE="soumatic_test"; php artisan test`, puis `Remove-Item Env:DB_CONNECTION, Env:DB_DATABASE` ;
    - macOS / Linux : `DB_CONNECTION=mysql DB_DATABASE=soumatic_test php artisan test`.
 
-Les autres réglages de connexion (`DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`) viennent de `.env` (ou de `.env.testing`). Si la base de test n'existe pas, la première migration des tests la crée (`CREATE DATABASE IF NOT EXISTS`, avec la collation par défaut du serveur). Avant de livrer, la suite doit passer sur les deux moteurs, puis `vendor/bin/pint` pour le style.
+Les autres réglages de connexion (`DB_HOST`, `DB_USERNAME`, `DB_PASSWORD`) viennent de `.env` (ou de `.env.testing`). Si la base de test n'existe pas, la première migration des tests la crée (`CREATE DATABASE IF NOT EXISTS`, avec la collation par défaut du serveur). Avant de livrer, la suite doit passer sur les deux moteurs, puis `vendor/bin/pint --test app database routes tests config` pour le style.
 
 ## SEO et fichiers techniques
 
