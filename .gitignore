@@ -29,3 +29,6 @@ _ide_helper.php
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Notes privées de passation (ne jamais versionner)
+HANDOVER-PRIVE.md

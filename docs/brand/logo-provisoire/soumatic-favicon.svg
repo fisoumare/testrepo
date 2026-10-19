@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="SOUMATIC">
+<title>SOUMATIC</title>
+<!-- Favicon simplifié pour 32 px : calé sur la grille de 32 px, sans baies. -->
+<rect width="512" height="512" rx="112" fill="#0F2D52"/>
+<g transform="translate(48 48)"><path fill="#FFFFFF" d="M88 0H392A24 24 0 0 1 416 24V72A24 24 0 0 1 392 96H128A32 32 0 0 0 128 160H360A56 56 0 0 1 416 216V328A88 88 0 0 1 328 416H24A24 24 0 0 1 0 392V344A24 24 0 0 1 24 320H288A32 32 0 0 0 288 256H56A56 56 0 0 1 0 200V88A88 88 0 0 1 88 0Z"/><g fill="#0E9F6E"><rect x="336" y="32" width="32" height="32" rx="9.6"/><rect x="336" y="192" width="32" height="32" rx="9.6"/><rect x="336" y="352" width="32" height="32" rx="9.6"/></g></g>
+</svg>

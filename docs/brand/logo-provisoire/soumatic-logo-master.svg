@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300" role="img" aria-label="SOUMATIC — Numérique de confiance">
+<title>SOUMATIC — Numérique de confiance</title>
+<!-- MASTER ÉDITABLE : textes en <text>, police Inter requise.
+     Pour toute diffusion, utiliser les fichiers vectorisés (soumatic-logo*.svg). -->
+<g transform="translate(63.56 75) scale(0.625)"><path fill="#0F2D52" fill-rule="evenodd" d="M54 0H226A14 14 0 0 1 240 14V46A14 14 0 0 1 226 60H75A15 15 0 0 0 75 90H204A36 36 0 0 1 240 126V186A54 54 0 0 1 186 240H14A14 14 0 0 1 0 226V194A14 14 0 0 1 14 180H165A15 15 0 0 0 165 150H36A36 36 0 0 1 0 114V54A54 54 0 0 1 54 0ZM144 23H170A7 7 0 0 1 170 37H144A7 7 0 0 1 144 23ZM144 113H170A7 7 0 0 1 170 127H144A7 7 0 0 1 144 113ZM144 203H170A7 7 0 0 1 170 217H144A7 7 0 0 1 144 203Z"/><g fill="#0E9F6E"><circle cx="204" cy="30" r="13"/><circle cx="204" cy="120" r="13"/><circle cx="204" cy="210" r="13"/></g></g>
+<text x="272.58" y="162.3" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="120" letter-spacing="2.4" fill="#0F2D52">SOUMA<tspan x="734.17" fill="#0E9F6E">TIC</tspan></text>
+<text x="275.22" y="225" font-family="Inter, Arial, sans-serif" font-weight="600" font-size="32" letter-spacing="10.46" fill="#52637A">NUMÉRIQUE DE CONFIANCE</text>
+</svg>
