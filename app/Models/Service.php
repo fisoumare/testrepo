@@ -2,13 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Support\Str;
 
 class Service extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'service_category_id', 'solution_id', 'compiniya_id', 'number', 'name', 'slug', 'unit',
         'price', 'summary', 'description', 'is_featured', 'is_active', 'position',
@@ -26,7 +28,7 @@ class Service extends Model
     protected static function booted(): void
     {
         static::saving(function (self $service) {
-            $service->slug = $service->slug ?: Str::slug($service->name);
+            $service->slug = $service->slug ?: static::slugFrom($service->name);
         });
     }
 

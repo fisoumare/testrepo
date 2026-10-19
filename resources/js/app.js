@@ -45,7 +45,10 @@ Livewire.on('scroll-to', ({ id, invalid = false }) => {
         const root = document.getElementById(id);
         if (!root) return;
         const target = (invalid && root.querySelector('[aria-invalid="true"], [role="alert"]')) || root;
-        const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - stickyOffset());
+        // Le libellé du champ en erreur doit rester visible sous l'en-tête fixe.
+        const label = target.id ? root.querySelector(`label[for="${CSS.escape(target.id)}"]`) : null;
+        const anchor = label && label.getBoundingClientRect().top < target.getBoundingClientRect().top ? label : target;
+        const top = Math.max(0, window.scrollY + anchor.getBoundingClientRect().top - stickyOffset());
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
         target.focus({ preventScroll: true });

@@ -1,6 +1,6 @@
 <x-layouts.app title="Contact" description="Écrivez à SOUMATIC, à Conakry : demande de devis, démonstration d'une solution, assistance ou partenariat. Réponse au plus tard le jour ouvré suivant.">
     <x-ui.page-header code="CONTACT" kicker="Nous écrire" title="Parlons de votre projet.">
-        Un devis, une démonstration d'EduGes, de MediGes ou de Compiniya, une question d'assistance&nbsp;: dites-nous tout, nous répondons au plus tard le jour ouvré suivant.
+        Un devis, une démonstration d'EduGes, de MediGes SST, de MediGes ou de Compiniya, une question d'assistance&nbsp;: dites-nous tout, nous répondons au plus tard le jour ouvré suivant.
         <x-slot:aside>
             <div class="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row lg:justify-end">
                 <a href="{{ whatsapp_url('Bonjour SOUMATIC,') }}" target="_blank" rel="noopener" class="btn-primary">
@@ -23,7 +23,7 @@
                 <dl class="spec mt-5">
                     <dt>Téléphone</dt><dd><a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="font-medium hover:text-emerald-700">{{ setting('phone') }}</a></dd>
                     <dt>WhatsApp</dt><dd><a href="{{ whatsapp_url('Bonjour SOUMATIC,') }}" target="_blank" rel="noopener" class="btn-link">{{ setting('whatsapp', setting('phone')) }} ↗</a></dd>
-                    <dt>E-mail</dt><dd><a href="mailto:{{ setting('email') }}" class="font-medium break-all hover:text-emerald-700">{{ setting('email') }}</a></dd>
+                    <dt>E-mail</dt><dd><a href="mailto:{{ setting('email') }}" class="font-medium wrap-anywhere hover:text-emerald-700">{{ setting('email') }}</a></dd>
                     <dt>Adresse</dt><dd>{{ setting('address') }}<br>{{ setting('city') }}, {{ setting('country') }}</dd>
                     <dt>Horaires</dt><dd>{{ setting('hours') }}</dd>
                     <dt>Assistance</dt><dd>{{ setting('support_channels') }}</dd>

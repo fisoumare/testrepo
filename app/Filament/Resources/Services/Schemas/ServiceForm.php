@@ -13,6 +13,9 @@ use Filament\Schemas\Schema;
 
 class ServiceForm
 {
+    /** Prix maximal d'une prestation : 999 999 999 999 GNF HT. */
+    public const PRICE_MAX = 999_999_999_999;
+
     public static function configure(Schema $schema): Schema
     {
         return $schema
@@ -58,6 +61,9 @@ class ServiceForm
                             ->numeric()
                             ->integer()
                             ->minValue(0)
+                            // Borne haute : le total d'une estimation (prix × 99 × 50 lignes) doit tenir
+                            // dans la colonne `inquiries.total_ht` (entier 64 bits).
+                            ->maxValue(self::PRICE_MAX)
                             ->default(0)
                             ->required()
                             ->suffix('GNF HT')
@@ -74,6 +80,7 @@ class ServiceForm
                         Textarea::make('description')
                             ->label('Description')
                             ->rows(8)
+                            ->maxLength(5000)
                             ->helperText('Texte de la fiche détaillée (un paragraphe par ligne vide).'),
                     ]),
                 Section::make('Publication')

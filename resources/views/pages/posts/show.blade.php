@@ -30,8 +30,8 @@
                 <p class="label mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-emerald-700">
                     @if ($post->category)<span class="rounded-sm border border-emerald-700/30 px-1.5 py-0.5">{{ $post->category }}</span>@endif
                     <time datetime="{{ $published->toDateString() }}">{{ $published->locale('fr')->translatedFormat('j F Y') }}</time>
-                    <span aria-hidden="true">·</span>
-                    <span>{{ $post->readingTime() }} min de lecture</span>
+                    {{-- Le point suit la durée de lecture : au retour à la ligne (mobile), il ouvre la ligne au lieu de la clore. --}}
+                    <span class="flex items-center gap-3"><span aria-hidden="true">·</span><span>{{ $post->readingTime() }} min de lecture</span></span>
                 </p>
                 <h1 class="h-display mt-5 max-w-4xl text-3xl sm:text-4xl lg:text-5xl">{{ $post->title }}</h1>
                 @if ($post->excerpt)

@@ -58,6 +58,7 @@ class ReferenceForm
                         Textarea::make('description')
                             ->label('Description')
                             ->rows(5)
+                            ->maxLength(5000)
                             ->columnSpanFull(),
                         Repeater::make('services')
                             ->label('Prestations réalisées')

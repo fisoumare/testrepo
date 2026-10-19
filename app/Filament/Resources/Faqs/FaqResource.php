@@ -60,6 +60,7 @@ class FaqResource extends Resource
                             ->label('Réponse')
                             ->required()
                             ->rows(5)
+                            ->maxLength(3000)
                             ->columnSpanFull(),
                         TextInput::make('group')
                             ->label('Groupe')

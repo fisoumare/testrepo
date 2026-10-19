@@ -52,7 +52,7 @@ class ReferenceResource extends Resource
         return [
             'index' => ListReferences::route('/'),
             'create' => CreateReference::route('/create'),
-            'edit' => EditReference::route('/{record}/edit'),
+            'edit' => EditReference::route('/{record:id}/edit'),
         ];
     }
 }

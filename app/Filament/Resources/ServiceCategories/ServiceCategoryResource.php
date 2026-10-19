@@ -90,6 +90,7 @@ class ServiceCategoryResource extends Resource
                         Textarea::make('description')
                             ->label('Description')
                             ->rows(3)
+                            ->maxLength(1000)
                             ->columnSpanFull(),
                         TextInput::make('icon')
                             ->label('Icône')

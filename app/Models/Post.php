@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Post extends Model
 {
+    use HasSlug;
+
     protected $fillable = ['title', 'slug', 'category', 'excerpt', 'body', 'cover', 'author', 'published_at', 'is_published'];
 
     protected function casts(): array
@@ -21,7 +23,7 @@ class Post extends Model
     protected static function booted(): void
     {
         static::saving(function (self $post) {
-            $post->slug = $post->slug ?: Str::slug($post->title);
+            $post->slug = $post->slug ?: static::slugFrom($post->title);
             if ($post->is_published && ! $post->published_at) {
                 $post->published_at = now();
             }

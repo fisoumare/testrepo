@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 
 class Solution extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'name', 'slug', 'code', 'tagline', 'audience', 'summary', 'description', 'features', 'included',
         'website_url', 'accent', 'image', 'position', 'is_active',
@@ -25,7 +27,7 @@ class Solution extends Model
     protected static function booted(): void
     {
         static::saving(function (self $solution) {
-            $solution->slug = $solution->slug ?: Str::slug($solution->name);
+            $solution->slug = $solution->slug ?: static::slugFrom($solution->name);
         });
     }
 

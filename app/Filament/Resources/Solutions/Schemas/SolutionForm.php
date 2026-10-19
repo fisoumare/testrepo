@@ -61,6 +61,7 @@ class SolutionForm
                         Textarea::make('summary')
                             ->label('Résumé')
                             ->rows(3)
+                            ->maxLength(1000)
                             ->helperText('Affiché sur les cartes et en introduction de la fiche.'),
                         RichEditor::make('description')
                             ->label('Description')

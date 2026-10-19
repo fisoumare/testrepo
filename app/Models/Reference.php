@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Str;
 
 class Reference extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'name', 'slug', 'acronym', 'sector', 'location', 'website_url', 'headline', 'description',
         'services', 'year', 'logo', 'is_featured', 'is_published', 'position',
@@ -26,7 +28,7 @@ class Reference extends Model
     protected static function booted(): void
     {
         static::saving(function (self $reference) {
-            $reference->slug = $reference->slug ?: Str::slug($reference->acronym ?: $reference->name);
+            $reference->slug = $reference->slug ?: static::slugFrom($reference->acronym ?: $reference->name);
         });
     }
 

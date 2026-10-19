@@ -27,6 +27,12 @@ class PublicPagesTest extends TestCase
      *
      * @return array<string, array{string, list<string>}>
      */
+    /** Mêmes pages que publicPages(), sans les textes attendus. */
+    public static function publicUrls(): array
+    {
+        return array_map(fn (array $case): array => [$case[0]], self::publicPages());
+    }
+
     public static function publicPages(): array
     {
         return [
@@ -57,7 +63,7 @@ class PublicPagesTest extends TestCase
         }
     }
 
-    #[DataProvider('publicPages')]
+    #[DataProvider('publicUrls')]
     public function test_public_pages_have_exactly_one_h1(string $url): void
     {
         $html = $this->get($url)->assertOk()->getContent();
@@ -65,13 +71,13 @@ class PublicPagesTest extends TestCase
         $this->assertSame(1, preg_match_all('/<h1\b/i', $html), "La page {$url} doit contenir un seul <h1>.");
     }
 
-    #[DataProvider('publicPages')]
+    #[DataProvider('publicUrls')]
     public function test_public_pages_never_misspell_the_product_names(string $url): void
     {
         $this->get($url)->assertOk()->assertDontSee('EduGest');
     }
 
-    #[DataProvider('publicPages')]
+    #[DataProvider('publicUrls')]
     public function test_public_pages_embed_valid_json_ld_and_no_raw_php(string $url): void
     {
         $html = $this->get($url)->assertOk()->getContent();

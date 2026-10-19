@@ -4,8 +4,10 @@
         ['Maquette', 'Maquette de l\'accueil et d\'une page intérieure pour un site, des écrans principaux pour une application, avec 2 cycles de retours avant tout développement.'],
         ['Développement', 'Laravel et Filament pour les applications et les espaces d\'administration, October CMS ou Laravel pour les sites, Android et iOS pour le mobile.'],
         ['Validation', 'Vous vérifiez la livraison sur la base du périmètre écrit. Le solde est dû à la validation.'],
-        ['Mise en ligne', 'Mise en service sur nos serveurs ou sur le vôtre : nom de domaine, certificat SSL, envoi des e-mails, sauvegarde.'],
-        ['Prise en main', 'Prise en main de votre espace d\'administration comprise dans les créations ; formations dans vos locaux à Conakry ou à distance.'],
+        // Hébergement, nom de domaine, SSL et sauvegarde externalisée sont des prestations distinctes (famille U03, FAQ) :
+        // l'étape ne doit pas laisser croire qu'ils sont compris dans une création.
+        ['Mise en ligne', 'Mise en ligne sur l\'un de nos serveurs ou sur le vôtre. Hébergement, nom de domaine, certificat SSL et sauvegarde externalisée : prestations à part, au catalogue.'],
+        ['Prise en main', 'Prise en main de votre espace d\'administration comprise dans les forfaits de sites et d\'applications web ; formations dans vos locaux à Conakry ou à distance.'],
         ['Garantie 3 mois', setting('warranty')],
         ['Maintenance', 'À la fin de la garantie : contrats de maintenance annuels, interventions ponctuelles ou heures prépayées, selon votre besoin.'],
     ];
@@ -24,19 +26,20 @@
         </x-slot:aside>
     </x-ui.page-header>
 
-    {{-- ===== CE QUE NOUS FAISONS ===== --}}
-    <section class="wrap mt-24 grid gap-12 lg:grid-cols-12" aria-labelledby="ce-que-nous-faisons">
-        <div class="lg:col-span-5">
-            <x-ui.section-heading code="U01–U08" kicker="Ce que nous faisons" title="Un catalogue, quatre solutions." class="reveal" id="ce-que-nous-faisons">
-                {{ $servicesCount }} prestations à prix fixe, réparties en {{ $categoriesCount }} familles : de la conception d'un site ou d'une application à son hébergement, sa maintenance et la formation de vos équipes. Et quatre logiciels prêts à l'emploi.
-            </x-ui.section-heading>
-            <div class="mt-8 flex flex-wrap gap-3 reveal reveal-delay-1">
-                <a href="{{ route('services.index') }}" class="btn-navy">Voir les prestations</a>
-                <a href="{{ route('solutions.index') }}" class="btn-ghost">Voir les solutions</a>
+    {{-- ===== CE QUE NOUS FAISONS =====
+         Deux colonnes de hauteur voisine (titre + boutons / 8 familles), puis les 4 solutions sur toute la largeur. --}}
+    <section class="wrap mt-24" aria-labelledby="ce-que-nous-faisons">
+        <div class="grid gap-12 lg:grid-cols-12">
+            <div class="lg:col-span-5">
+                <x-ui.section-heading code="U01–U08" kicker="Ce que nous faisons" title="Un catalogue, quatre solutions." class="reveal" id="ce-que-nous-faisons">
+                    {{ $servicesCount }} prestations à prix fixe, réparties en {{ $categoriesCount }} familles : de la conception d'un site ou d'une application à son hébergement, sa maintenance et la formation de vos équipes. Et quatre logiciels prêts à l'emploi.
+                </x-ui.section-heading>
+                <div class="mt-8 flex flex-wrap gap-3 reveal reveal-delay-1">
+                    <a href="{{ route('services.index') }}" class="btn-navy">Voir les prestations</a>
+                    <a href="{{ route('solutions.index') }}" class="btn-ghost">Voir les solutions</a>
+                </div>
             </div>
-        </div>
-        <div class="grid gap-8 lg:col-span-7">
-            <ul class="divide-y divide-navy-900/10 border-y border-navy-900/10 reveal">
+            <ul class="divide-y divide-navy-900/10 border-y border-navy-900/10 lg:col-span-7 reveal" aria-label="Familles de prestations">
                 @foreach ($categories as $category)
                     <li>
                         <a href="{{ route('services.category', $category) }}" class="group flex items-center gap-4 py-3 transition hover:text-emerald-700">
@@ -48,21 +51,21 @@
                     </li>
                 @endforeach
             </ul>
-            <ul class="grid gap-3 sm:grid-cols-2">
-                @foreach ($solutions as $solution)
-                    <li>
-                        <a href="{{ route('solutions.show', $solution) }}" class="unit flex h-full items-center gap-3 rounded-lg border border-navy-900/10 bg-paper px-4 py-3 text-navy-900/30 no-underline transition hover:bg-navy-50 reveal reveal-delay-{{ $loop->index % 2 }}">
-                            <span class="label w-8 shrink-0 text-ardoise">{{ $solution->code }}</span>
-                            <x-ui.led :color="$solution->accent" />
-                            <span class="min-w-0">
-                                <span class="block font-semibold text-navy-900">{{ $solution->name }}</span>
-                                <span class="block text-xs text-ardoise">{{ $solution->tagline }}</span>
-                            </span>
-                        </a>
-                    </li>
-                @endforeach
-            </ul>
         </div>
+        <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label="Solutions">
+            @foreach ($solutions as $solution)
+                <li>
+                    <a href="{{ route('solutions.show', $solution) }}" class="unit flex h-full flex-col rounded-lg border border-navy-900/10 bg-paper p-5 text-navy-900/30 no-underline transition hover:bg-navy-50 reveal reveal-delay-{{ $loop->index % 4 }}">
+                        <span class="flex items-center justify-between">
+                            <span class="label text-ardoise">{{ $solution->code }}</span>
+                            <x-ui.led :color="$solution->accent" />
+                        </span>
+                        <span class="mt-4 font-semibold text-navy-900">{{ $solution->name }}</span>
+                        <span class="mt-1 text-sm text-ardoise">{{ $solution->tagline }}</span>
+                    </a>
+                </li>
+            @endforeach
+        </ul>
     </section>
 
     {{-- ===== COMMENT NOUS TRAVAILLONS ===== --}}
@@ -79,16 +82,17 @@
                             <span class="led {{ $loop->last ? 'led-on' : 'led-off' }} group-hover:led-on group-hover:bg-emerald-400 transition" aria-hidden="true"></span>
                         </span>
                         <span class="mt-5 text-lg font-semibold text-white">{{ $title }}</span>
-                        <span class="mt-2 text-sm leading-relaxed text-ardoise-light">{{ $detail }}</span>
+                        <span class="mt-2 text-sm leading-relaxed text-ardoise-light">{{ typo($detail) }}</span>
                     </li>
                 @endforeach
             </ol>
         </div>
     </section>
 
-    {{-- ===== TECHNOLOGIES + ENGAGEMENTS ===== --}}
+    {{-- ===== TECHNOLOGIES + ENGAGEMENTS =====
+         4/8 : le texte des engagements, plus long, prend la colonne large ; les deux colonnes finissent à la même hauteur. --}}
     <section class="wrap mt-24 grid gap-14 lg:grid-cols-12" aria-labelledby="technologies">
-        <div class="lg:col-span-5">
+        <div class="lg:col-span-4">
             <x-ui.section-heading code="TECH" kicker="Technologies" title="Des outils éprouvés, choisis avec vous." class="reveal" id="technologies">
                 Laravel et Filament pour les applications web et les espaces d'administration, October CMS ou Laravel pour les sites, Android et iOS pour les applications mobiles reliées à une API REST. Les sites livrés comprennent un espace d'administration pour modifier vous-même textes et images.
             </x-ui.section-heading>
@@ -98,20 +102,21 @@
                 @endforeach
             </ul>
         </div>
-        <div class="lg:col-span-7">
+        <div class="lg:col-span-8">
             <p class="label flex items-center gap-3 text-emerald-700"><span class="rounded-sm border border-emerald-700/30 px-1.5 py-0.5">SPEC</span> Nos engagements</p>
+            {{-- Assistance : canaux affichés tels que saisis (« WhatsApp » garde sa casse, jamais de mise en minuscules). --}}
             <dl class="mt-6 divide-y divide-navy-900/10 border-y border-navy-900/10 reveal">
                 @foreach ([
                     ['Prix', 'Fixes, affichés hors taxes en GNF, TVA 18 % en sus. Devis valable 30 jours. Seuls les projets hors catalogue font l\'objet d\'un devis spécifique.'],
                     ['Paiement', setting('payment_terms')],
                     ['Garantie', setting('warranty')],
-                    ['Assistance', setting('hours').', par '.mb_strtolower((string) setting('support_channels')).'. Première réponse au plus tard le jour ouvré suivant.'],
+                    ['Assistance', setting('hours').', par '.setting('support_channels').'. Première réponse au plus tard le jour ouvré suivant.'],
                     ['Hors Conakry', 'Ateliers, formations et diagnostics dans vos locaux à Conakry ou à distance ; hors Conakry, frais de déplacement et de séjour en sus.'],
                     ['Code source', 'Les droits cédés sont précisés dans chaque devis ou contrat signé. Avant paiement complet, aucun fichier final, code ou accès technique n\'est remis.'],
                 ] as [$term, $detail])
                     <div class="grid gap-1 py-4 sm:grid-cols-12 sm:gap-6">
                         <dt class="label pt-1 text-ardoise sm:col-span-3">{{ $term }}</dt>
-                        <dd class="text-[15px] leading-relaxed text-navy-900/85 sm:col-span-9">{{ $detail }}</dd>
+                        <dd class="text-[15px] leading-relaxed text-navy-900/85 sm:col-span-9">{{ typo($detail) }}</dd>
                     </div>
                 @endforeach
             </dl>

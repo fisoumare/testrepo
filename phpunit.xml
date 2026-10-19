@@ -23,6 +23,14 @@
         <env name="BCRYPT_ROUNDS" value="4"/>
         <env name="BROADCAST_CONNECTION" value="null"/>
         <env name="CACHE_STORE" value="array"/>
+        <!--
+            Par défaut, SQLite en mémoire : la base de développement MySQL « soumatic » n'est jamais touchée.
+            Ces valeurs ne remplacent pas une variable déjà définie (pas de force="true") : pour lancer la suite
+            sur MySQL, dans la base séparée soumatic_test, lancer `php artisan test` avec l'option env=testing et un
+            fichier .env.testing (copie de .env.testing.example) ou définir DB_CONNECTION=mysql et
+            DB_DATABASE=soumatic_test dans l'environnement (voir README, section « Tests »).
+            Jamais DB_DATABASE=soumatic : les tests vident et recréent toutes les tables.
+        -->
         <env name="DB_CONNECTION" value="sqlite"/>
         <env name="DB_DATABASE" value=":memory:"/>
         <env name="DB_URL" value=""/>

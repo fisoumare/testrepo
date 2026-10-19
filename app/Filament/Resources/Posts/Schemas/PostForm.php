@@ -67,6 +67,9 @@ class PostForm
                             ->native(false)
                             ->seconds(false)
                             ->displayFormat('d/m/Y H:i')
+                            // Colonne TIMESTAMP : MySQL n'accepte que les dates de 1970 à janvier 2038.
+                            ->minDate('1970-01-02')
+                            ->maxDate('2037-12-31 23:59')
                             ->helperText('Une date future programme la publication.'),
                     ]),
             ]);

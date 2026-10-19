@@ -4,9 +4,9 @@ Référence pour toute personne (ou agent) qui touche au site. Lire en entier av
 
 ## 1. Stack et commandes
 
-- Laravel 13 · Filament v5.10 (panel `/admin`) · Livewire 4 (Alpine.js inclus, chargé sur toutes les pages via `resources/js/app.js` + `@livewireScriptConfig`) · Tailwind CSS v4 (`@theme`, `@utility`) · Vite 8 · SQLite (`database/database.sqlite`).
+- Laravel 13 · Filament v5.10 (panel `/admin`) · Livewire 4 (Alpine.js inclus, chargé sur toutes les pages via `resources/js/app.js` + `@livewireScriptConfig`) · Tailwind CSS v4 (`@theme`, `@utility`) · Vite 8 · MySQL 8 (base `soumatic`, `utf8mb4_unicode_ci` ; Laragon en local, voir README). Les tests tournent sur SQLite en mémoire, et sur MySQL dans la base séparée `soumatic_test`.
 - Police : Inter Variable, auto-hébergée (`@fontsource-variable/inter`). Monospace : pile système (`font-mono`).
-- Commandes : `npm run build` (obligatoire après tout changement de Blade/CSS : Tailwind v4 scanne les vues) · `php artisan migrate --seed` · `php artisan test` · serveur de développement : `php artisan serve --port=8080`.
+- Commandes : `npm run build` (obligatoire après tout changement de Blade/CSS : Tailwind v4 scanne les vues) · `php artisan migrate --seed` · `php artisan test` (SQLite) et `php artisan test --env=testing` (MySQL) · serveur de développement : `php artisan serve --port=8080`.
 - Aucune ressource externe (CDN, Google Fonts, cartes embarquées) : le site doit fonctionner hors ligne.
 
 ## 2. Concept : « la salle des serveurs »
@@ -35,7 +35,7 @@ Rythme des pages : fond blanc → section sombre `bg-ink text-white rack-lines` 
 | Fond sombre | `ink`, `ink-soft`, `ink-line` | #0F172A, #16213A, #243049 |
 | Fond clair secondaire | `paper` | #F6F8FB |
 
-Contraste : jamais `emerald-500` pour du texte courant sur blanc (utiliser `emerald-700`). Sur `ink`, texte courant `ardoise-light`, titres blancs, accents `emerald-400`.
+Contraste : jamais `emerald-500` pour du texte courant sur blanc (utiliser `emerald-700`). Boutons principaux (`.btn-primary`) : fond `emerald-500`, texte `ink` (5,3:1) ; jamais de texte blanc sur `emerald-500` (3,4:1). Sur `ink`, texte courant `ardoise-light`, titres blancs, accents `emerald-400`.
 
 ## 4. Composants Blade disponibles
 
@@ -57,6 +57,8 @@ Helpers PHP : `setting('clé', défaut)`, `gnf(montant, avecDevise = true)`, `Ap
 ## 5. Données (modèles et seeders)
 
 `Setting` (clé/valeur, cache), `ServiceCategory` (8, codes U01–U08), `Service` (120 prestations issues du catalogue Compiniya : `number`, `name`, `unit`, `price` entier GNF HT, `summary`, `description`, `is_featured`, `solution_id`), `Solution` (EduGes, MediGes SST, MediGes, Compiniya : `code`, `tagline`, `audience`, `summary`, `description` HTML, `features[]`, `included[]`, `accent`, `website_url`), `Reference` (DGSST publiée ; autres non publiées « à compléter »), `Post` (actualités, `body` HTML), `Faq`, `Inquiry` (`type` contact|quote, `items[]`, `total_ht`, `status`, `reference` auto DEM-2026-0001 / MSG-2026-0001).
+
+Contraintes MySQL (mode strict, `utf8mb4_unicode_ci`) : une valeur trop longue pour sa colonne est une erreur SQL, pas une troncature. Chaînes en `VARCHAR(255)` sauf `code` (8), `number` et `acronym` (32), `unit` (32), `accent` (16), `inquiries.type`/`status` (16), `reference` (24), `ip` (45) ; textes longs en `TEXT` (64 Ko) ou `LONGTEXT` (`description` des solutions, `body` des actualités) ; `published_at` est un `TIMESTAMP` (1970 – janvier 2038). Tout nouveau champ de saisie reçoit une limite cohérente (`max:` en Livewire, `maxLength()` / `maxValue()` / `maxDate()` en Filament). La collation confond majuscules et minuscules, « é » et « e » : slugs en minuscules ASCII (`CommonFields::slug()`), générés et bornés à 255 caractères par `App\Models\Concerns\HasSlug`.
 
 Routes nommées : `home`, `solutions.index`, `solutions.show`, `services.index`, `services.category`, `services.show`, `references.index`, `posts.index`, `posts.show`, `about`, `contact`, `quote`, `legal`, `sitemap`.
 

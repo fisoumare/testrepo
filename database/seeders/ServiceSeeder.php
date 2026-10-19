@@ -54,7 +54,7 @@ class ServiceSeeder extends Seeder
                     'slug' => self::uniqueSlug($article['nom'], (int) $article['id']),
                     'unit' => $article['unite'],
                     'price' => (int) $article['prix_unitaire_ht'],
-                    'summary' => Typo::fr(self::summary($article['description'])),
+                    'summary' => self::summary(Typo::fr($article['description'])),
                     'description' => Typo::fr($article['description']),
                     'is_featured' => in_array($article['id'], self::FEATURED, true),
                     'is_active' => true,
@@ -82,6 +82,7 @@ class ServiceSeeder extends Seeder
     {
         $firstSentence = preg_split('/(?<=[.!?])\s+(?=[A-ZÀ-Ý«])/u', trim($description), 2)[0] ?? $description;
 
-        return Str::limit(trim($firstSentence), 170, '…');
+        // 169 + « … » = 170 caractères, la limite du champ Résumé du back-office.
+        return Str::limit(trim($firstSentence), 169, '…');
     }
 }

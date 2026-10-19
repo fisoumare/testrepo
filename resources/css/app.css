@@ -156,7 +156,7 @@
     }
 
     /* Boutons */
-    .btn-primary { @apply btn bg-emerald-500 text-white hover:bg-emerald-600 active:translate-y-px; }
+    .btn-primary { @apply btn bg-emerald-500 text-ink hover:bg-emerald-400 active:translate-y-px; } /* texte ink : 5,3:1 (blanc sur emerald-500 = 3,4:1, insuffisant) */
     .btn-navy { @apply btn bg-navy-900 text-white hover:bg-navy-800 active:translate-y-px; }
     .btn-ghost { @apply btn border border-navy-900/15 bg-white text-navy-900 hover:border-navy-900/40 hover:bg-navy-50; }
     .btn-ghost-dark { @apply btn border border-white/20 text-white hover:border-emerald-400 hover:text-emerald-400; }

@@ -52,7 +52,7 @@ class SolutionResource extends Resource
         return [
             'index' => ListSolutions::route('/'),
             'create' => CreateSolution::route('/create'),
-            'edit' => EditSolution::route('/{record}/edit'),
+            'edit' => EditSolution::route('/{record:id}/edit'),
         ];
     }
 }

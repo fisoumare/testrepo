@@ -50,6 +50,7 @@ class ViewInquiry extends ViewRecord
                     Textarea::make('internal_notes')
                         ->label('Notes internes')
                         ->rows(5)
+                        ->maxLength(5000)
                         ->helperText('Visibles uniquement dans le back-office.'),
                 ])
                 ->action(function (array $data, Inquiry $record): void {

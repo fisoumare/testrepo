@@ -8,13 +8,15 @@
         <section class="wrap mt-16 sm:mt-20" aria-labelledby="ref-{{ $featured->slug }}">
             <x-ui.unit padding="p-0" class="overflow-hidden text-navy-900/30 reveal">
                 <div class="grid lg:grid-cols-12">
-                    <div class="bg-ink p-7 text-white sm:p-9 lg:col-span-4 lg:p-10 rack-lines">
+                    {{-- Colonne sombre : identité en haut, fiche technique calée en bas (alignée sur le bouton de droite),
+                         pour qu'elle ne finisse pas sur un grand vide quand le texte de droite est plus long. --}}
+                    <div class="flex flex-col bg-ink p-7 text-white sm:p-9 lg:col-span-4 lg:p-10 rack-lines">
                         <p class="label flex items-center gap-2 text-emerald-400"><span class="led led-on" aria-hidden="true"></span> Référence</p>
                         <p class="mt-8 font-mono text-5xl font-semibold tracking-tight text-white sm:text-6xl">{{ $featured->acronym ?? $featured->name }}</p>
                         @if ($featured->acronym)
                             <p class="mt-3 text-[15px] leading-snug text-ardoise-light">{{ $featured->name }}</p>
                         @endif
-                        <dl class="spec spec-dark mt-8">
+                        <dl class="spec spec-dark mt-8 lg:mt-auto lg:pt-8">
                             @if ($featured->sector)<dt>Secteur</dt><dd>{{ $featured->sector }}</dd>@endif
                             @if ($featured->location)<dt>Lieu</dt><dd>{{ $featured->location }}</dd>@endif
                             @if ($featured->year)<dt>Année</dt><dd class="font-mono text-[13px]">{{ $featured->year }}</dd>@endif
@@ -92,15 +94,15 @@
                     ['Prix fixes', 'Affichés hors taxes en GNF, TVA 18 % en sus. Chaque prestation a un périmètre écrit : ce qui n\'est pas compris est dit. Devis valable 30 jours.'],
                     ['50 % à la commande', setting('payment_terms')],
                     ['Garantie 3 mois', setting('warranty')],
-                    ['Assistance', setting('hours').'. '.setting('support_channels').'. Première réponse au plus tard le jour ouvré suivant.'],
+                    ['Assistance', setting('hours').', par '.setting('support_channels').'. Première réponse au plus tard le jour ouvré suivant.'],
                 ] as [$term, $detail])
                     <li class="unit flex flex-col rounded-lg border border-navy-900/10 bg-white p-5 text-navy-900/30 shadow-unit reveal reveal-delay-{{ $loop->index % 4 }}">
                         <span class="flex items-center justify-between">
                             <span class="label text-ardoise">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
                             <span class="led led-on" aria-hidden="true"></span>
                         </span>
-                        <span class="mt-5 text-lg font-semibold text-navy-900">{{ $term }}</span>
-                        <span class="mt-2 text-sm leading-relaxed text-ardoise">{{ $detail }}</span>
+                        <span class="mt-5 text-lg font-semibold text-navy-900">{{ typo($term) }}</span>
+                        <span class="mt-2 text-sm leading-relaxed text-ardoise">{{ typo($detail) }}</span>
                     </li>
                 @endforeach
             </ol>

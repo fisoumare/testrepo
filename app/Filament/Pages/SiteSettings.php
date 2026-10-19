@@ -42,6 +42,12 @@ class SiteSettings extends Page
 
     protected static ?string $slug = 'parametres';
 
+    /**
+     * Longueur maximale des zones de texte. Les valeurs sont stockées dans `settings.value` (TEXT,
+     * 65 535 octets sous MySQL) ; les champs d'une ligne sont limités à 255 caractères.
+     */
+    public const TEXTAREA_MAX = 1000;
+
     /** @var array<string, mixed>|null */
     public ?array $data = [];
 
@@ -63,7 +69,7 @@ class SiteSettings extends Page
                             ->schema([
                                 TextInput::make('company_name')->label('Nom de l\'entreprise')->required()->maxLength(255),
                                 TextInput::make('tagline')->label('Signature')->maxLength(255)->helperText('Exemple : « Numérique de confiance ».'),
-                                Textarea::make('baseline')->label('Phrase d\'accroche')->rows(2)->columnSpanFull(),
+                                Textarea::make('baseline')->label('Phrase d\'accroche')->rows(2)->maxLength(self::TEXTAREA_MAX)->columnSpanFull(),
                                 TextInput::make('manager_name')->label('Nom du gérant')->maxLength(255),
                                 TextInput::make('manager_title')->label('Fonction du gérant')->maxLength(255),
                             ]),
@@ -89,7 +95,7 @@ class SiteSettings extends Page
                             ->schema([
                                 TextInput::make('rccm')->label('RCCM')->maxLength(64),
                                 TextInput::make('nif')->label('NIF')->maxLength(64),
-                                Textarea::make('legal_hosting')->label('Hébergeur du site')->rows(3)->columnSpanFull()->helperText('Mention affichée sur la page des mentions légales ; « à compléter » si vide.'),
+                                Textarea::make('legal_hosting')->label('Hébergeur du site')->rows(3)->maxLength(self::TEXTAREA_MAX)->columnSpanFull()->helperText('Mention affichée sur la page des mentions légales ; « à compléter » si vide.'),
                             ]),
                         Tab::make('Accueil & SEO')
                             ->icon(Heroicon::OutlinedHome)
@@ -97,9 +103,9 @@ class SiteSettings extends Page
                             ->schema([
                                 TextInput::make('hero_kicker')->label('Sur-titre de l\'accueil')->maxLength(255)->columnSpanFull(),
                                 TextInput::make('hero_title')->label('Titre de l\'accueil')->maxLength(255)->columnSpanFull(),
-                                Textarea::make('hero_subtitle')->label('Sous-titre de l\'accueil')->rows(3)->columnSpanFull(),
+                                Textarea::make('hero_subtitle')->label('Sous-titre de l\'accueil')->rows(3)->maxLength(self::TEXTAREA_MAX)->columnSpanFull(),
                                 Textarea::make('meta_description')->label('Description SEO par défaut')->rows(3)->maxLength(320)->columnSpanFull(),
-                                Textarea::make('footer_note')->label('Note du pied de page')->rows(2)->columnSpanFull(),
+                                Textarea::make('footer_note')->label('Note du pied de page')->rows(2)->maxLength(self::TEXTAREA_MAX)->columnSpanFull(),
                                 TextInput::make('compiniya_url')->label('Lien Compiniya')->url()->maxLength(255),
                             ]),
                         Tab::make('Réseaux')
@@ -115,9 +121,9 @@ class SiteSettings extends Page
                             ->columns(2)
                             ->schema([
                                 TextInput::make('vat_rate')->label('Taux de TVA')->numeric()->minValue(0)->maxValue(100)->suffix('%'),
-                                TextInput::make('quote_validity_days')->label('Validité des devis')->integer()->minValue(1)->suffix('jours'),
-                                Textarea::make('payment_terms')->label('Conditions de paiement')->rows(3)->columnSpanFull(),
-                                Textarea::make('warranty')->label('Garantie')->rows(3)->columnSpanFull(),
+                                TextInput::make('quote_validity_days')->label('Validité des devis')->integer()->minValue(1)->maxValue(365)->suffix('jours'),
+                                Textarea::make('payment_terms')->label('Conditions de paiement')->rows(3)->maxLength(self::TEXTAREA_MAX)->columnSpanFull(),
+                                Textarea::make('warranty')->label('Garantie')->rows(3)->maxLength(self::TEXTAREA_MAX)->columnSpanFull(),
                             ]),
                     ])
                     ->columnSpanFull(),

@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\HasSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Support\Str;
 
 class ServiceCategory extends Model
 {
+    use HasSlug;
+
     protected $fillable = ['name', 'slug', 'code', 'description', 'icon', 'position', 'is_active'];
 
     protected function casts(): array
@@ -18,7 +20,7 @@ class ServiceCategory extends Model
     protected static function booted(): void
     {
         static::saving(function (self $category) {
-            $category->slug = $category->slug ?: Str::slug($category->name);
+            $category->slug = $category->slug ?: static::slugFrom($category->name);
         });
     }
 
