@@ -64,13 +64,14 @@ class ReferencesTable
                 TernaryFilter::make('is_featured')->label('Mise en avant'),
             ])
             ->defaultSort('position')
+            ->emptyStateHeading('Aucune référence')
             ->recordActions([
                 EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     ...CommonActions::toggleBulkActions('is_published', 'Publier', 'Dépublier'),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->modalHeading('Supprimer les références sélectionnées'),
                 ]),
             ]);
     }

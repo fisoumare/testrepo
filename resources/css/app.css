@@ -68,9 +68,18 @@
 @utility label {
     @apply font-mono text-[11px] font-medium uppercase tracking-[0.16em];
 }
-@utility led {
-    @apply inline-block size-2 shrink-0 rounded-full bg-emerald-400;
-    box-shadow: var(--shadow-led);
+/* LED d'état : la base vit dans la couche components, ses états (led-on, led-off, led-amber) sont des
+   utilitaires, donc toujours prioritaires sur la base et déclinables en variantes (group-hover:led-on). */
+@utility led-on {
+    animation: var(--animate-led);
+}
+@utility led-off {
+    background-color: var(--color-ardoise-light);
+    box-shadow: none;
+}
+@utility led-amber {
+    background-color: var(--color-amber-400);
+    box-shadow: 0 0 0 3px rgb(251 191 36 / 0.18), 0 0 12px rgb(251 191 36 / 0.6);
 }
 @utility btn {
     @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold whitespace-nowrap transition duration-200 ease-out select-none;
@@ -91,35 +100,42 @@
     .wrap { @apply mx-auto w-full max-w-7xl px-5 sm:px-8; }
 
 
-    /* Unité « rack » : carte à coins marqués */
+    /* Unité « rack » : carte à coins marqués. La couleur des crochets vient de --unit-color
+       (classes unit-light / unit-dark du composant x-ui.unit) ; à défaut, de la couleur du texte. */
     .unit {
         position: relative;
         --unit-corner: 12px;
         --unit-line: 1.5px;
+        --unit-color: currentColor;
     }
+    .unit-light { --unit-color: color-mix(in srgb, var(--color-navy-900) 40%, transparent); }
+    .unit-dark { --unit-color: color-mix(in srgb, var(--color-emerald-400) 70%, transparent); }
     .unit::before {
         content: '';
         position: absolute;
         inset: 0;
         pointer-events: none;
         background:
-            linear-gradient(currentColor, currentColor) top left / var(--unit-corner) var(--unit-line) no-repeat,
-            linear-gradient(currentColor, currentColor) top left / var(--unit-line) var(--unit-corner) no-repeat,
-            linear-gradient(currentColor, currentColor) top right / var(--unit-corner) var(--unit-line) no-repeat,
-            linear-gradient(currentColor, currentColor) top right / var(--unit-line) var(--unit-corner) no-repeat,
-            linear-gradient(currentColor, currentColor) bottom left / var(--unit-corner) var(--unit-line) no-repeat,
-            linear-gradient(currentColor, currentColor) bottom left / var(--unit-line) var(--unit-corner) no-repeat,
-            linear-gradient(currentColor, currentColor) bottom right / var(--unit-corner) var(--unit-line) no-repeat,
-            linear-gradient(currentColor, currentColor) bottom right / var(--unit-line) var(--unit-corner) no-repeat;
+            linear-gradient(var(--unit-color), var(--unit-color)) top left / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) top left / var(--unit-line) var(--unit-corner) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) top right / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) top right / var(--unit-line) var(--unit-corner) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) bottom left / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) bottom left / var(--unit-line) var(--unit-corner) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) bottom right / var(--unit-corner) var(--unit-line) no-repeat,
+            linear-gradient(var(--unit-color), var(--unit-color)) bottom right / var(--unit-line) var(--unit-corner) no-repeat;
         opacity: 0.5;
         transition: opacity 0.3s ease;
     }
     .unit:hover::before, .unit:focus-within::before { opacity: 1; }
+    /* Les titres d'une unité ne doivent pas hériter de la couleur translucide portée pour les crochets
+       (text-navy-900/30…). Les unités sombres (unit-dark, ou fond ink / navy avec text-white) gardent le blanc ;
+       les fiches .spec gardent leurs propres couleurs. */
+    .unit:not(.unit-dark, .text-white, [class*='bg-ink'], .bg-navy-900) :is(h2, h3, h4, dt):not(.spec *) { color: var(--color-navy-900); }
+    .unit-dark :is(h2, h3, h4, dt):not(.spec *) { color: #fff; }
 
-    /* LED d'état */
-    .led-on { animation: var(--animate-led); }
-    .led-off { @apply bg-ardoise-light; box-shadow: none; }
-    .led-amber { @apply bg-amber-400; box-shadow: 0 0 0 3px rgb(251 191 36 / 0.18), 0 0 12px rgb(251 191 36 / 0.6); }
+    /* LED d'état : base (les états sont des @utility, voir plus haut) */
+    .led { @apply inline-block size-2 shrink-0 rounded-full bg-emerald-400; box-shadow: var(--shadow-led); }
 
     /* Fonds techniques */
     .rack-lines {

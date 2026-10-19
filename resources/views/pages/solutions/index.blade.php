@@ -1,4 +1,4 @@
-<x-layouts.app title="Solutions clés en main" description="EduGes, MediGes SST, MediGes et Compiniya : quatre logiciels de SOUMATIC prêts à l'emploi, en abonnement mensuel hébergé ou en licence installée sur votre serveur. Formules et tarifs en GNF.">
+<x-layouts.app title="Solutions clés en main" description="EduGes, MediGes SST, MediGes et Compiniya : quatre logiciels prêts à l'emploi, en abonnement mensuel hébergé par SOUMATIC ou en licence installée. Prix en GNF.">
     <x-ui.page-header code="S01–S04" kicker="Solutions clés en main" title="Quatre logiciels prêts à l'emploi, en abonnement ou en licence." dark>
         Gestion scolaire, santé au travail, gestion hospitalière et gestion commerciale. Hébergés par SOUMATIC en abonnement mensuel, ou installés sur votre serveur en licence. Mise en service, formation et reprise des données au catalogue.
         <x-slot:aside>
@@ -25,8 +25,8 @@
         <section id="{{ $solution->slug }}" class="wrap scroll-mt-32 {{ $loop->first ? 'mt-16 sm:mt-20' : 'mt-10' }}" aria-labelledby="{{ $solution->slug }}-titre">
             <x-ui.unit padding="p-0" class="overflow-hidden text-navy-900/30 reveal">
                 <div class="grid lg:grid-cols-12">
-                    {{-- Présentation --}}
-                    <div class="border-b border-navy-900/10 p-6 sm:p-8 lg:col-span-5 lg:border-b-0 lg:border-r lg:p-10" style="box-shadow: inset 4px 0 0 {{ $solution->accent }}">
+                    {{-- Présentation : colonne en flex-col, le bloc « Compris » et les boutons calés en bas, à hauteur du tableau --}}
+                    <div class="flex flex-col border-b border-navy-900/10 p-6 sm:p-8 lg:col-span-5 lg:border-b-0 lg:border-r lg:p-10" style="box-shadow: inset 4px 0 0 {{ $solution->accent }}">
                         <p class="label flex items-center gap-3 text-ardoise">
                             <span class="rounded-sm border border-navy-900/15 px-1.5 py-0.5">{{ $solution->code }}</span>
                             <x-ui.led :color="$solution->accent" />
@@ -45,18 +45,20 @@
                             </ul>
                         @endif
 
-                        @if ($solution->included)
-                            <p class="label mt-8 text-emerald-700">Compris dans l'abonnement</p>
-                            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-navy-900/80">
-                                @foreach ($solution->included as $item)
-                                    <li class="flex gap-3"><span class="led led-on mt-[7px]" aria-hidden="true"></span><span class="min-w-0">{{ $item }}</span></li>
-                                @endforeach
-                            </ul>
-                        @endif
+                        <div class="mt-auto pt-8">
+                            @if ($solution->included)
+                                <p class="label text-emerald-700">Compris dans l'abonnement</p>
+                                <ul class="mt-3 space-y-2 text-sm leading-relaxed text-navy-900/80">
+                                    @foreach ($solution->included as $item)
+                                        <li class="flex gap-3"><span class="led led-on mt-[7px]" aria-hidden="true"></span><span class="min-w-0">{{ $item }}</span></li>
+                                    @endforeach
+                                </ul>
+                            @endif
 
-                        <div class="mt-8 flex flex-wrap gap-3">
-                            <a href="{{ route('solutions.show', $solution) }}" class="btn-navy">Découvrir {{ $solution->name }}</a>
-                            <a href="{{ route('contact', ['sujet' => 'demo', 'solution' => $solution->slug]) }}" class="btn-ghost">Demander une démonstration</a>
+                            <div class="mt-8 flex flex-wrap gap-3">
+                                <a href="{{ route('solutions.show', $solution) }}" class="btn-navy">Découvrir {{ $solution->name }}</a>
+                                <a href="{{ route('contact', ['sujet' => 'demo', 'solution' => $solution->slug]) }}" class="btn-ghost">Demander une démonstration</a>
+                            </div>
                         </div>
                     </div>
 
@@ -64,7 +66,7 @@
                     <div class="bg-paper/70 p-6 sm:p-8 lg:col-span-7 lg:p-10">
                         <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
                             <h3 class="text-lg font-semibold text-navy-900">Formules et tarifs</h3>
-                            <span class="label text-ardoise">Hors taxes · TVA 18 % en sus</span>
+                            <span class="label text-ardoise">Hors taxes · TVA 18&nbsp;% en sus</span>
                         </div>
                         <x-ui.offer-table :offers="$offers[$solution->id]" :solution="$solution" class="mt-4" />
                         <p class="mt-4 text-xs leading-relaxed text-ardoise">
@@ -79,7 +81,7 @@
         </section>
     @endforeach
 
-    {{-- ===== ABONNEMENT OU LICENCE ? ===== --}}
+    {{-- ===== ABONNEMENT OU LICENCE ? (deux formules valides : un code chacune, pas de LED d'état) ===== --}}
     <section class="mt-24 border-y border-navy-900/8 bg-paper">
         <div class="wrap grid gap-12 py-16 sm:py-20 lg:grid-cols-12">
             <div class="lg:col-span-5">
@@ -87,8 +89,8 @@
                     Les deux formules donnent accès au même logiciel. Elles diffèrent par l'hébergement, le mode de paiement et la maintenance.
                 </x-ui.section-heading>
                 <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                    <div class="unit rounded-lg border border-navy-900/10 bg-white p-5 text-emerald-700/40 reveal">
-                        <p class="label flex items-center gap-2 text-emerald-700"><span class="led led-on" aria-hidden="true"></span> Abonnement</p>
+                    <div class="unit rounded-lg border border-navy-900/10 bg-white p-5 text-navy-900/30 reveal">
+                        <p class="label flex items-center gap-3 text-navy-900"><span class="rounded-sm border border-navy-900/15 px-1.5 py-0.5 text-emerald-700">F01</span> Abonnement</p>
                         <ul class="mt-4 space-y-2 text-sm leading-relaxed text-navy-900/80">
                             <li>Mensuel, hébergé sur nos serveurs</li>
                             <li>Sauvegardes, mises à jour et assistance compris</li>
@@ -97,11 +99,11 @@
                         </ul>
                     </div>
                     <div class="unit rounded-lg border border-navy-900/10 bg-white p-5 text-navy-900/30 reveal reveal-delay-1">
-                        <p class="label flex items-center gap-2 text-navy-900"><span class="led led-off" aria-hidden="true"></span> Licence installée</p>
+                        <p class="label flex items-center gap-3 text-navy-900"><span class="rounded-sm border border-navy-900/15 px-1.5 py-0.5 text-emerald-700">F02</span> Licence installée</p>
                         <ul class="mt-4 space-y-2 text-sm leading-relaxed text-navy-900/80">
                             <li>Achetée une seule fois</li>
                             <li>Installée sur votre serveur</li>
-                            <li>Maintenance annuelle : 16 % du prix de la licence (mises à jour et assistance)</li>
+                            <li>Maintenance annuelle&nbsp;: 16&nbsp;% du prix de la licence (mises à jour et assistance)</li>
                             <li>Mise en service facturée une fois</li>
                         </ul>
                     </div>

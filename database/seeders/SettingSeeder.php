@@ -3,14 +3,36 @@
 namespace Database\Seeders;
 
 use App\Models\Setting;
+use App\Support\Typo;
 use Illuminate\Database\Seeder;
 
 class SettingSeeder extends Seeder
 {
     /**
+     * Clés dont la valeur n'est pas du texte courant (numéros, identifiants, adresses, liens, nombres) :
+     * la typographie française ne s'y applique pas (la règle des milliers couperait un numéro de téléphone).
+     *
+     * @var list<string>
+     */
+    public const RAW_KEYS = ['phone', 'whatsapp', 'email', 'notification_email', 'rccm', 'nif', 'vat_rate', 'quote_validity_days'];
+
+    /**
      * Paramètres du site. Les valeurs vides sont « à compléter » depuis le back-office.
+     * Un paramètre déjà enregistré n'est jamais écrasé : les modifications faites dans /admin sont conservées.
      */
     public function run(): void
+    {
+        foreach (self::defaults() as $key => $value) {
+            Setting::query()->firstOrCreate(['key' => $key], ['value' => $value]);
+        }
+    }
+
+    /**
+     * Valeurs par défaut, typographie française appliquée.
+     *
+     * @return array<string, string>
+     */
+    public static function defaults(): array
     {
         $defaults = [
             'company_name' => 'SOUMATIC',
@@ -37,7 +59,8 @@ class SettingSeeder extends Seeder
             'hero_kicker' => 'Conakry · Laravel · Filament · October CMS',
             'hero_title' => 'Des logiciels qui tiennent la charge.',
             'hero_subtitle' => 'SOUMATIC conçoit, héberge et maintient des sites, des applications web et mobiles et des logiciels de gestion pour les écoles, les structures de santé, les administrations et les entreprises de Guinée. Prix fixes, affichés en GNF.',
-            'meta_description' => 'SOUMATIC, à Conakry : conception de sites et d\'applications web et mobiles (Laravel, Filament, October CMS), logiciels de gestion EduGes, MediGes SST, MediGes et Compiniya, hébergement, maintenance, conseil et formation. Prix fixes affichés en GNF.',
+            // Description SEO par défaut : entre 120 et 160 caractères.
+            'meta_description' => 'SOUMATIC, à Conakry : sites et applications web et mobiles, logiciels de gestion EduGes, MediGes SST, MediGes et Compiniya, hébergement et maintenance.',
             'compiniya_url' => 'https://compiniya.com',
             'facebook_url' => '',
             'linkedin_url' => '',
@@ -48,7 +71,19 @@ class SettingSeeder extends Seeder
         ];
 
         foreach ($defaults as $key => $value) {
-            Setting::query()->firstOrCreate(['key' => $key], ['value' => $value]);
+            $defaults[$key] = self::typo($key, $value);
         }
+
+        return $defaults;
+    }
+
+    /** Typographie française d'une valeur de paramètre, sauf pour les clés brutes et les liens. */
+    public static function typo(string $key, ?string $value): string
+    {
+        if ($value === null || $value === '' || in_array($key, self::RAW_KEYS, true) || str_ends_with($key, '_url')) {
+            return (string) $value;
+        }
+
+        return Typo::fr($value);
     }
 }

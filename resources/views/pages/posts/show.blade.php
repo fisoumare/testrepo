@@ -2,7 +2,7 @@
     $cover = $post->cover ? \Illuminate\Support\Facades\Storage::disk('public')->url($post->cover) : null;
     $published = $post->published_at;
 @endphp
-<x-layouts.app :title="$post->title" :description="$post->excerpt" :og-image="$cover">
+<x-layouts.app :title="$post->title" :description="$post->excerpt" og-type="article" :og-image="$cover">
     <x-slot:head>
         <meta property="article:published_time" content="{{ $published->toIso8601String() }}">
         @if ($post->updated_at)<meta property="article:modified_time" content="{{ $post->updated_at->toIso8601String() }}">@endif
@@ -15,18 +15,18 @@
             'description' => $post->excerpt,
             'datePublished' => $published->toIso8601String(),
             'dateModified' => $post->updated_at?->toIso8601String(),
-            'image' => $cover,
+            'image' => $cover ?? asset('brand/og.png'),
             'mainEntityOfPage' => route('posts.show', $post),
             'author' => ['@type' => $post->author && $post->author !== setting('company_name') ? 'Person' : 'Organization', 'name' => $post->author ?: setting('company_name')],
             'publisher' => ['@type' => 'Organization', 'name' => setting('company_name'), 'logo' => ['@type' => 'ImageObject', 'url' => asset('brand/logo.png')]],
-        ]), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}</script>
+        ]), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     </x-slot:head>
 
     <article>
         {{-- ===== EN-TÊTE ===== --}}
         <header class="border-b border-navy-900/8 bg-paper">
             <div class="wrap py-12 sm:py-16">
-                <x-ui.breadcrumb :items="[['Actualités', route('posts.index')], [\Illuminate\Support\Str::limit($post->title, 70), null]]" />
+                <x-ui.breadcrumb :items="[['Actualités', route('posts.index')], [$post->title, null]]" />
                 <p class="label mt-8 flex flex-wrap items-center gap-x-3 gap-y-1 text-emerald-700">
                     @if ($post->category)<span class="rounded-sm border border-emerald-700/30 px-1.5 py-0.5">{{ $post->category }}</span>@endif
                     <time datetime="{{ $published->toDateString() }}">{{ $published->locale('fr')->translatedFormat('j F Y') }}</time>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Faq;
 use App\Models\Service;
 use App\Models\Solution;
+use App\Support\Seo;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -49,12 +50,24 @@ class SolutionController extends Controller
 
         $offers = self::groupOffers($solution->services);
 
+        // Une solution peut n'avoir aucune formule d'une famille (abonnements désactivés, solution créée sans
+        // prestation) : chaque famille est lue avec une collection vide par défaut, jamais par un offset sur null.
+        $subscriptions = $offers->get('subscription')['services'] ?? collect();
+
         return view('pages.solutions.show', [
             'solution' => $solution,
             'offers' => $offers,
             'setupServices' => $offers->get('setup')['services'] ?? collect(),
-            'fromMonthly' => $offers->get('subscription')['services']?->where('unit', 'Mois')->where('price', '>', 0)->min('price'),
+            'fromMonthly' => $subscriptions->where('unit', 'Mois')->where('price', '>', 0)->min('price'),
             'others' => Solution::query()->where('is_active', true)->whereKeyNot($solution->id)->orderBy('position')->get(),
+            // « EduGes · Gestion scolaire en ligne » ; si l'accroche ne tient pas en 60 caractères, le public visé
+            // (« MediGes SST · Services de santé au travail »), puis le nom seul.
+            'title' => Seo::title(
+                $solution->name.' · '.$solution->tagline,
+                $solution->audience ? $solution->name.' · '.Str::before($solution->audience, ',') : null,
+                $solution->name,
+            ),
+            'description' => Seo::description($solution->summary),
         ]);
     }
 

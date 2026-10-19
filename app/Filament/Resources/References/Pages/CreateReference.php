@@ -8,4 +8,6 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateReference extends CreateRecord
 {
     protected static string $resource = ReferenceResource::class;
+
+    protected static ?string $title = 'Nouvelle référence';
 }

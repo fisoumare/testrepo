@@ -11,10 +11,23 @@ use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
 class ViewInquiry extends ViewRecord
 {
     protected static string $resource = InquiryResource::class;
+
+    public function getTitle(): string|Htmlable
+    {
+        return 'Demande '.$this->getRecord()->reference;
+    }
+
+    public function getSubheading(): string|Htmlable|null
+    {
+        $record = $this->getRecord();
+
+        return trim($record->name.($record->organization ? ' — '.$record->organization : ''));
+    }
 
     protected function getHeaderActions(): array
     {

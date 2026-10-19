@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Service;
 use App\Models\ServiceCategory;
 use App\Models\Solution;
+use App\Support\Typo;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
@@ -49,12 +50,12 @@ class ServiceSeeder extends Seeder
                     'service_category_id' => $categoryId,
                     'solution_id' => $solutionId,
                     'number' => $article['numero'],
-                    'name' => $article['nom'],
+                    'name' => Typo::fr($article['nom']),
                     'slug' => self::uniqueSlug($article['nom'], (int) $article['id']),
                     'unit' => $article['unite'],
                     'price' => (int) $article['prix_unitaire_ht'],
-                    'summary' => self::summary($article['description']),
-                    'description' => $article['description'],
+                    'summary' => Typo::fr(self::summary($article['description'])),
+                    'description' => Typo::fr($article['description']),
                     'is_featured' => in_array($article['id'], self::FEATURED, true),
                     'is_active' => true,
                     'position' => $positions[$categoryId],

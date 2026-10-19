@@ -7,6 +7,6 @@
         <span class="{{ $sizes[$size] }} font-semibold {{ $dark ? 'text-white' : 'text-navy-900' }}">Sur devis</span>
     @else
         <span class="{{ $sizes[$size] }} font-semibold {{ $dark ? 'text-white' : 'text-navy-900' }}">{{ gnf($service->price, false) }}</span>
-        <span class="label {{ $dark ? 'text-ardoise-light' : 'text-ardoise' }}">GNF HT{{ in_array($service->unit, ['Mois', 'An', 'Jour', 'Heure']) ? ' / '.mb_strtolower($service->unit) : '' }}</span>
+        <span class="label whitespace-nowrap {{ $dark ? 'text-ardoise-light' : 'text-ardoise' }}">GNF HT{{ $service->hasTimeUnit() ? ' / '.mb_strtolower($service->unit) : '' }}</span>
     @endif
 </span>

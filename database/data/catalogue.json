@@ -6,7 +6,7 @@
   "categorie": "Hébergement & Noms de domaine",
   "unite": "An",
   "prix_unitaire_ht": 1500000,
-  "description": "Hébergement de votre site ou de votre application sur un serveur professionnel pendant 12 mois. Formule d'entrée de gamme, adaptée à un site vitrine ou à une petite application à faible trafic. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+  "description": "Hébergement de votre site ou de votre application sur un serveur professionnel pendant 12 mois. Formule d'entrée de gamme, adaptée à un site vitrine ou à une petite application à faible trafic. Non inclus : nom de domaine, adresses e-mail professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
  },
  {
   "id": 11,
@@ -15,7 +15,7 @@
   "categorie": "Hébergement & Noms de domaine",
   "unite": "An",
   "prix_unitaire_ht": 6000000,
-  "description": "Hébergement de votre application sur un serveur professionnel pendant 12 mois. Formule standard, adaptée à une application de gestion utilisée au quotidien par une PME ou un établissement de taille moyenne. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+  "description": "Hébergement de votre application sur un serveur professionnel pendant 12 mois. Formule standard, adaptée à une application de gestion utilisée au quotidien par une PME ou un établissement de taille moyenne. Non inclus : nom de domaine, adresses e-mail professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
  },
  {
   "id": 12,
@@ -24,7 +24,7 @@
   "categorie": "Hébergement & Noms de domaine",
   "unite": "An",
   "prix_unitaire_ht": 18000000,
-  "description": "Hébergement sur un serveur haute performance pendant 12 mois. Adapté aux applications qui gèrent un fort volume de données ou de nombreux utilisateurs en même temps. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+  "description": "Hébergement sur un serveur haute performance pendant 12 mois. Adapté aux applications qui gèrent un fort volume de données ou de nombreux utilisateurs en même temps. Non inclus : nom de domaine, adresses e-mail professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
  },
  {
   "id": 13,
@@ -33,7 +33,7 @@
   "categorie": "Hébergement & Noms de domaine",
   "unite": "An",
   "prix_unitaire_ht": 27900000,
-  "description": "Hébergement sur un serveur haute performance renforcé pendant 12 mois. Capacité jusqu'à 2 millions d'entrées en base de données. Recommandé pour les systèmes de gestion à grande échelle : hôpitaux, santé au travail, administrations. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+  "description": "Hébergement sur un serveur haute performance renforcé pendant 12 mois. Capacité jusqu'à 2 millions d'entrées en base de données. Recommandé pour les systèmes de gestion à grande échelle : hôpitaux, santé au travail, administrations. Non inclus : nom de domaine, adresses e-mail professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
  },
  {
   "id": 14,
@@ -42,7 +42,7 @@
   "categorie": "Hébergement & Noms de domaine",
   "unite": "An",
   "prix_unitaire_ht": 0,
-  "description": "Infrastructure dédiée, au-delà de la formule Haute performance +, dimensionnée selon vos besoins : volume de données, nombre d'utilisateurs, haute disponibilité. Tarif établi sur devis selon la configuration. Non inclus : nom de domaine, adresses email professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
+  "description": "Infrastructure dédiée, au-delà de la formule Haute performance +, dimensionnée selon vos besoins : volume de données, nombre d'utilisateurs, haute disponibilité. Tarif établi sur devis selon la configuration. Non inclus : nom de domaine, adresses e-mail professionnelles et certificat SSL (prestations séparées). Renouvellement annuel."
  },
  {
   "id": 15,
@@ -83,20 +83,20 @@
  {
   "id": 19,
   "numero": "PREST-2026-0010",
-  "nom": "Création d'une adresse email professionnelle",
+  "nom": "Création d'une adresse e-mail professionnelle",
   "categorie": "Hébergement & Noms de domaine",
   "unite": "Unité",
   "prix_unitaire_ht": 100000,
-  "description": "Création d'une adresse email sur le domaine du client (ex. prenom@entreprise.com), configuration sur un ordinateur et un téléphone, et mise en place de la signature email. Hébergement de la boîte non inclus."
+  "description": "Création d'une adresse e-mail sur le domaine du client (ex. prenom@entreprise.com), configuration sur un ordinateur et un téléphone, et mise en place de la signature e-mail. Hébergement de la boîte non inclus."
  },
  {
   "id": 20,
   "numero": "PREST-2026-0011",
-  "nom": "Boîte email professionnelle – 1 an",
+  "nom": "Boîte e-mail professionnelle – 1 an",
   "categorie": "Hébergement & Noms de domaine",
   "unite": "Utilisateur",
   "prix_unitaire_ht": 250000,
-  "description": "Hébergement d'une boîte email professionnelle pendant 12 mois, accessible sur ordinateur, téléphone et webmail. Prix par boîte. Renouvellement annuel."
+  "description": "Hébergement d'une boîte e-mail professionnelle pendant 12 mois, accessible sur ordinateur, téléphone et webmail. Prix par boîte. Renouvellement annuel."
  },
  {
   "id": 21,
@@ -168,7 +168,7 @@
   "categorie": "Conception",
   "unite": "Forfait",
   "prix_unitaire_ht": 13500000,
-  "description": "Application de gestion Laravel / Filament avec 1 module métier (par exemple la gestion du stock, du courrier ou des adhérents) comprenant jusqu'à 5 types de fiches liées (pour un stock : articles, fournisseurs, entrées, sorties, inventaires) : connexion sécurisée, utilisateurs et 2 rôles, tableau de bord, formulaires, listes filtrables, exports Excel et PDF, notifications par email. Maquette des écrans principaux (2 cycles de retours), mise en service, prise en main de 2 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 5 semaines, hors temps de validation de la maquette par le client."
+  "description": "Application de gestion Laravel / Filament avec 1 module métier (par exemple la gestion du stock, du courrier ou des adhérents) comprenant jusqu'à 5 types de fiches liées (pour un stock : articles, fournisseurs, entrées, sorties, inventaires) : connexion sécurisée, utilisateurs et 2 rôles, tableau de bord, formulaires, listes filtrables, exports Excel et PDF, notifications par e-mail. Maquette des écrans principaux (2 cycles de retours), mise en service, prise en main de 2 heures et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 5 semaines, hors temps de validation de la maquette par le client."
  },
  {
   "id": 29,
@@ -186,7 +186,7 @@
   "categorie": "Conception",
   "unite": "Forfait",
   "prix_unitaire_ht": 45000000,
-  "description": "Application de gestion Laravel / Filament avec jusqu'à 6 modules métier (30 types de fiches liées au total) : tout le niveau 2, plus gestion de plusieurs sites ou structures (chacun ne voit que ses données), jusqu'à 8 rôles avec droits réglables par module et par action, double authentification par email ou par application d'authentification (par SMS : voir Passerelle SMS), tableau de bord de suivi de 10 indicateurs, historique complet des modifications (qui, quoi, quand). Maquette (2 cycles de retours), mise en service, formation d'une journée et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 15 semaines, hors temps de validation de la maquette par le client."
+  "description": "Application de gestion Laravel / Filament avec jusqu'à 6 modules métier (30 types de fiches liées au total) : tout le niveau 2, plus gestion de plusieurs sites ou structures (chacun ne voit que ses données), jusqu'à 8 rôles avec droits réglables par module et par action, double authentification par e-mail ou par application d'authentification (par SMS : voir Passerelle SMS), tableau de bord de suivi de 10 indicateurs, historique complet des modifications (qui, quoi, quand). Maquette (2 cycles de retours), mise en service, formation d'une journée et garantie de 3 mois (correction gratuite de ce qui ne fonctionne pas comme prévu, hors évolutions, contenus et hébergement). API pour applications mobiles ou partenaires non comprise (voir API & Intégrations). Hébergement et nom de domaine non compris. Délai indicatif : 15 semaines, hors temps de validation de la maquette par le client."
  },
  {
   "id": 32,
@@ -366,7 +366,7 @@
   "categorie": "Conception",
   "unite": "Unité",
   "prix_unitaire_ht": 600000,
-  "description": "Accompagnement de votre organisation pour ouvrir à son nom son compte développeur Google Play ou Apple : demande du numéro D-U-N-S si nécessaire, inscription et suivi des vérifications ; pour Apple, demande d'exonération de l'abonnement si vous êtes une ONG officiellement reconnue ou une administration et que l'application est gratuite (accord non garanti). Apple exige aussi un site web public et une adresse email au nom de domaine de l'organisation (voir Hébergement & Noms de domaine). Frais des stores à votre charge. Délai : fixé par Google, Apple et Dun & Bradstreet, souvent plusieurs semaines ; à lancer dès la commande."
+  "description": "Accompagnement de votre organisation pour ouvrir à son nom son compte développeur Google Play ou Apple : demande du numéro D-U-N-S si nécessaire, inscription et suivi des vérifications ; pour Apple, demande d'exonération de l'abonnement si vous êtes une ONG officiellement reconnue ou une administration et que l'application est gratuite (accord non garanti). Apple exige aussi un site web public et une adresse e-mail au nom de domaine de l'organisation (voir Hébergement & Noms de domaine). Frais des stores à votre charge. Délai : fixé par Google, Apple et Dun & Bradstreet, souvent plusieurs semaines ; à lancer dès la commande."
  },
  {
   "id": 52,

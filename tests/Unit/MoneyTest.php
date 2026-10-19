@@ -38,7 +38,7 @@ class MoneyTest extends TestCase
     }
 
     #[DataProvider('shortAmounts')]
-    public function test_short_abbreviates_large_amounts(int|float|null $amount, string $expected): void
+    public function test_short_abbreviates_round_amounts_without_rounding(int|float|null $amount, string $expected): void
     {
         $this->assertSame($expected, Money::short($amount));
     }
@@ -50,8 +50,10 @@ class MoneyTest extends TestCase
             'millions ronds' => [5_000_000, '5'.self::NBSP.'M'.self::NBSP.'GNF'],
             'millions avec décimale' => [13_500_000, '13,5'.self::NBSP.'M'.self::NBSP.'GNF'],
             'milliards' => [1_500_000_000, '1'.self::NNBSP.'500'.self::NBSP.'M'.self::NBSP.'GNF'],
+            'millions avec deux décimales : montant complet' => [3_750_000, '3'.self::NNBSP.'750'.self::NNBSP.'000'.self::NBSP.'GNF'],
+            'millions non ronds : montant complet' => [1_250_500, '1'.self::NNBSP.'250'.self::NNBSP.'500'.self::NBSP.'GNF'],
             'milliers' => [600_000, '600'.self::NBSP.'k'.self::NBSP.'GNF'],
-            'milliers arrondis' => [1_500, '2'.self::NBSP.'k'.self::NBSP.'GNF'],
+            'milliers non ronds : montant complet' => [1_500, '1'.self::NNBSP.'500'.self::NBSP.'GNF'],
             'centaines' => [950, '950'.self::NBSP.'GNF'],
             'zéro' => [0, '0'.self::NBSP.'GNF'],
             'null' => [null, '0'.self::NBSP.'GNF'],

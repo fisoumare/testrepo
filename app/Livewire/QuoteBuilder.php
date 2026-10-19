@@ -10,6 +10,7 @@ use App\Support\Money;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Locked;
 use Livewire\Attributes\Session;
@@ -30,6 +31,9 @@ class QuoteBuilder extends Component
     public const STEP_SENT = 3;
 
     public const MAX_QUANTITY = 99;
+
+    /** Nombre maximal de lignes (prestations différentes) dans une sélection. */
+    public const MAX_LINES = 50;
 
     /** Nombre de prestations affichées par « page » du catalogue (bouton « Afficher plus »). */
     public const PER_PAGE = 30;
@@ -105,7 +109,7 @@ class QuoteBuilder extends Component
         ];
     }
 
-    /** Validation champ par champ dès la perte de focus (wire:model.blur). */
+    /** Validation champ par champ dès la perte de focus (wire:model.live.blur envoie la requête). */
     public function updated(string $property): void
     {
         if (array_key_exists($property, $this->rules())) {
@@ -113,14 +117,15 @@ class QuoteBuilder extends Component
         }
     }
 
-    /** Quantité saisie dans le panier : on borne entre 1 et MAX_QUANTITY, entiers seulement. */
-    public function updatedItems(mixed $value, string $key): void
+    /**
+     * Quantité saisie dans le panier (clé = identifiant de prestation, « items.12 ») ou tableau
+     * entier reçu d'une requête forgée (clé nulle, « items ») : dans les deux cas la sélection
+     * repasse par sanitizeItems() — identifiants de prestations actives, quantités bornées,
+     * nombre de lignes limité.
+     */
+    public function updatedItems(mixed $value, ?string $key = null): void
     {
-        $id = (int) $key;
-
-        if (isset($this->items[$id])) {
-            $this->items[$id] = $this->clampQuantity($value);
-        }
+        $this->items = $this->sanitizeItems($this->items);
 
         unset($this->cart);
     }
@@ -154,6 +159,12 @@ class QuoteBuilder extends Component
     public function add(int $serviceId): void
     {
         if (! Service::query()->active()->whereKey($serviceId)->exists()) {
+            return;
+        }
+
+        if (! isset($this->items[$serviceId]) && count($this->items) >= self::MAX_LINES) {
+            $this->addError('items', sprintf('Une sélection est limitée à %d prestations différentes.', self::MAX_LINES));
+
             return;
         }
 
@@ -207,6 +218,7 @@ class QuoteBuilder extends Component
 
         $this->resetErrorBag();
         $this->step = self::STEP_DETAILS;
+        $this->dispatch('scroll-to', id: 'coordonnees-titre');
     }
 
     // ----------------------------------------------------------------- Étape 2
@@ -215,6 +227,7 @@ class QuoteBuilder extends Component
     {
         $this->resetErrorBag();
         $this->step = self::STEP_COMPOSE;
+        $this->dispatch('scroll-to', id: 'etapes');
     }
 
     public function submit(): void
@@ -222,16 +235,25 @@ class QuoteBuilder extends Component
         $cart = $this->cart;
 
         if ($cart['count'] === 0) {
-            $this->addError('items', 'Votre sélection est vide : ajoutez au moins une prestation.');
+            $this->addError('items', "Votre sélection est vide\u{00A0}: ajoutez au moins une prestation.");
             $this->step = self::STEP_COMPOSE;
+            $this->dispatch('scroll-to', id: 'etapes');
 
             return;
         }
 
-        $this->validate();
+        try {
+            $this->validate();
+        } catch (ValidationException $e) {
+            // Le bouton est en bas du formulaire : on ramène le visiteur sur la première erreur.
+            $this->dispatch('scroll-to', id: 'devis-formulaire', invalid: true);
+
+            throw $e;
+        }
 
         if ($throttled = $this->throttleMessage()) {
             $this->addError('form', $throttled);
+            $this->dispatch('scroll-to', id: 'devis-formulaire', invalid: true);
 
             return;
         }
@@ -247,7 +269,7 @@ class QuoteBuilder extends Component
             return;
         }
 
-        $inquiry = Inquiry::query()->create([
+        $inquiry = Inquiry::createWithReference([
             'type' => Inquiry::TYPE_QUOTE,
             'name' => trim($this->name),
             'organization' => trim($this->organization) ?: null,
@@ -275,6 +297,7 @@ class QuoteBuilder extends Component
         $this->resetErrorBag();
         unset($this->cart);
         $this->step = self::STEP_COMPOSE;
+        $this->dispatch('scroll-to', id: 'etapes');
     }
 
     public function whatsappUrl(): string
@@ -419,10 +442,12 @@ class QuoteBuilder extends Component
         $this->items = [];
         unset($this->cart);
         $this->step = self::STEP_SENT;
+        $this->dispatch('scroll-to', id: 'envoye-titre');
     }
 
     /**
-     * Ne garde que des identifiants de prestations actives avec une quantité valide.
+     * Ne garde que des identifiants de prestations actives avec une quantité valide,
+     * et au plus MAX_LINES lignes (borne aussi le whereIn et ce qui part en session).
      *
      * @param  array<int|string, mixed>  $items
      * @return array<int, int>
@@ -436,6 +461,8 @@ class QuoteBuilder extends Component
                 $clean[(int) $id] = $this->clampQuantity($quantity);
             }
         }
+
+        $clean = array_slice($clean, 0, self::MAX_LINES, true);
 
         if ($clean === []) {
             return [];

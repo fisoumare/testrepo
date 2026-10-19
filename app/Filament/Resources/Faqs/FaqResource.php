@@ -107,14 +107,15 @@ class FaqResource extends Resource
                 TernaryFilter::make('is_active')->label('Active'),
             ])
             ->defaultSort('position')
+            ->emptyStateHeading('Aucune question')
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()->modalHeading('Modifier la question'),
+                DeleteAction::make()->modalHeading('Supprimer la question'),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     ...CommonActions::toggleBulkActions(),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->modalHeading('Supprimer les questions sélectionnées'),
                 ]),
             ]);
     }

@@ -146,6 +146,43 @@ class QuoteBuilderTest extends TestCase
             ->call('add', $inactive->id)->assertSet('items', []);
     }
 
+    /** « items » est public : une requête forgée peut le remplacer en entier (updatedItems reçoit alors une clé nulle). */
+    public function test_a_forged_items_payload_is_sanitized_instead_of_crashing(): void
+    {
+        $service = $this->service();
+        $inactive = $this->service('eduges-mise-en-service');
+        $inactive->update(['is_active' => false]);
+
+        Livewire::test(QuoteBuilder::class)
+            ->set('items', [$service->id => 250, $inactive->id => 1, 999_999 => 1, 'abc' => 1, -4 => 1, 0 => 3])
+            ->assertSet('items', [$service->id => QuoteBuilder::MAX_QUANTITY])
+            ->set('items', [])
+            ->assertSet('items', []);
+    }
+
+    public function test_a_selection_cannot_exceed_max_lines(): void
+    {
+        $ids = Service::query()->active()->orderBy('id')->limit(QuoteBuilder::MAX_LINES + 5)->pluck('id');
+        $this->assertCount(QuoteBuilder::MAX_LINES + 5, $ids);
+
+        $component = Livewire::test(QuoteBuilder::class)
+            ->set('items', $ids->mapWithKeys(fn (int $id) => [$id => 1])->all());
+
+        $this->assertCount(QuoteBuilder::MAX_LINES, $component->get('items'));
+        $this->assertSame($ids->take(QuoteBuilder::MAX_LINES)->all(), array_keys($component->get('items')));
+
+        $component
+            ->call('add', $ids->last())
+            ->assertHasErrors('items')
+            ->assertSee('limitée à '.QuoteBuilder::MAX_LINES.' prestations')
+            // Une prestation déjà présente peut toujours être incrémentée.
+            ->call('add', $ids->first())
+            ->assertHasNoErrors('items')
+            ->assertSet('items.'.$ids->first(), 2);
+
+        $this->assertCount(QuoteBuilder::MAX_LINES, $component->get('items'));
+    }
+
     public function test_on_quote_services_are_counted_but_not_totalled(): void
     {
         $onQuote = Service::query()->active()->where('price', 0)->firstOrFail();
@@ -197,6 +234,7 @@ class QuoteBuilderTest extends TestCase
         Livewire::test(QuoteBuilder::class)
             ->call('add', $service->id)
             ->call('goToDetails')
+            ->assertDispatched('scroll-to', id: 'coordonnees-titre')
             ->set('email', 'pas-une-adresse')
             ->call('submit')
             ->assertHasErrors(['name' => 'required', 'email' => 'email', 'phone' => 'required'])
@@ -204,9 +242,24 @@ class QuoteBuilderTest extends TestCase
             ->assertSee('Le champ nom est obligatoire.')
             ->assertSee('Le champ téléphone est obligatoire.')
             ->assertSee('Indiquez une adresse e-mail valide')
-            ->assertSee('aria-invalid="true"', false);
+            ->assertSee('aria-invalid="true"', false)
+            ->assertDispatched('scroll-to', id: 'devis-formulaire', invalid: true);
 
         $this->assertDatabaseCount('inquiries', 0);
+    }
+
+    /** Les champs sont en wire:model.live.blur : chaque mise à jour valide le champ seul et efface son erreur une fois corrigé. */
+    public function test_each_contact_field_is_validated_as_soon_as_it_is_updated(): void
+    {
+        Livewire::test(QuoteBuilder::class)
+            ->call('add', $this->service()->id)
+            ->call('goToDetails')
+            ->set('email', 'pas-une-adresse')
+            ->assertHasErrors(['email' => 'email'])
+            ->assertHasNoErrors(['name', 'phone'])
+            ->set('email', 'client@example.com')
+            ->assertHasNoErrors()
+            ->assertSet('step', QuoteBuilder::STEP_DETAILS);
     }
 
     public function test_submission_creates_a_quote_inquiry_and_sends_both_emails(): void
@@ -253,7 +306,8 @@ class QuoteBuilderTest extends TestCase
             ->assertSet('sent.total_ttc', Money::ttc($expectedTotal))
             ->assertSee($expectedReference)
             ->assertSee(gnf($expectedTotal))
-            ->assertSee('Nouvelle estimation');
+            ->assertSee('Nouvelle estimation')
+            ->assertDispatched('scroll-to', id: 'envoye-titre');
 
         $this->assertStringContainsString($expectedReference, $component->instance()->whatsappUrl());
 

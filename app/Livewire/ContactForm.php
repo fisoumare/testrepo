@@ -5,8 +5,10 @@ namespace App\Livewire;
 use App\Livewire\Concerns\SubmitsInquiries;
 use App\Models\Inquiry;
 use App\Models\Solution;
+use App\Support\Elision;
 use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
 
@@ -57,7 +59,7 @@ class ContactForm extends Component
 
             if ($solution) {
                 $this->subject = self::SUBJECTS['demo'];
-                $this->message = 'Je souhaite une démonstration de '.$solution->name.'.';
+                $this->message = 'Je souhaite une démonstration '.Elision::de($solution->name).'.';
             }
         }
     }
@@ -75,7 +77,7 @@ class ContactForm extends Component
         ];
     }
 
-    /** Validation champ par champ dès la perte de focus (wire:model.blur). */
+    /** Validation champ par champ dès la perte de focus (wire:model.live.blur envoie la requête). */
     public function updated(string $property): void
     {
         if (array_key_exists($property, $this->rules())) {
@@ -85,10 +87,18 @@ class ContactForm extends Component
 
     public function submit(): void
     {
-        $this->validate();
+        try {
+            $this->validate();
+        } catch (ValidationException $e) {
+            // Le bouton est en bas du formulaire : on ramène le visiteur sur la première erreur.
+            $this->dispatch('scroll-to', id: 'contact-formulaire', invalid: true);
+
+            throw $e;
+        }
 
         if ($throttled = $this->throttleMessage()) {
             $this->addError('form', $throttled);
+            $this->dispatch('scroll-to', id: 'contact-formulaire', invalid: true);
 
             return;
         }
@@ -98,12 +108,12 @@ class ContactForm extends Component
         // Pot-de-miel rempli : on affiche la confirmation sans rien enregistrer ni envoyer.
         if ($this->isTrapped()) {
             $this->reference = Inquiry::nextReference(Inquiry::TYPE_CONTACT);
-            $this->sent = true;
+            $this->finish();
 
             return;
         }
 
-        $inquiry = Inquiry::query()->create([
+        $inquiry = Inquiry::createWithReference([
             'type' => Inquiry::TYPE_CONTACT,
             'name' => trim($this->name),
             'organization' => trim($this->organization) ?: null,
@@ -117,7 +127,13 @@ class ContactForm extends Component
         $this->notify($inquiry);
 
         $this->reference = $inquiry->reference;
+        $this->finish();
+    }
+
+    protected function finish(): void
+    {
         $this->sent = true;
+        $this->dispatch('scroll-to', id: 'contact-confirmation');
     }
 
     public function restart(): void

@@ -59,7 +59,11 @@ class ContactFormTest extends TestCase
         Livewire::withQueryParams(['sujet' => 'demo', 'solution' => 'eduges'])
             ->test(ContactForm::class)
             ->assertSet('subject', ContactForm::SUBJECTS['demo'])
-            ->assertSet('message', 'Je souhaite une démonstration de EduGes.');
+            ->assertSet('message', "Je souhaite une démonstration d'EduGes.");
+
+        Livewire::withQueryParams(['sujet' => 'demo', 'solution' => 'mediges-sst'])
+            ->test(ContactForm::class)
+            ->assertSet('message', 'Je souhaite une démonstration de MediGes SST.');
 
         Livewire::withQueryParams(['sujet' => 'inconnu', 'solution' => 'inconnue'])
             ->test(ContactForm::class)
@@ -77,9 +81,29 @@ class ContactFormTest extends TestCase
             ->assertSee('Le champ nom est obligatoire.')
             ->assertSee('Le champ adresse e-mail est obligatoire.')
             ->assertSee('Choisissez l\'objet de votre message.')
-            ->assertSee('Le champ message est obligatoire.');
+            ->assertSee('Le champ message est obligatoire.')
+            // Le navigateur ramène le visiteur sur la première erreur (bouton en bas du formulaire).
+            ->assertDispatched('scroll-to', id: 'contact-formulaire', invalid: true);
 
         $this->assertDatabaseCount('inquiries', 0);
+    }
+
+    /** Les champs sont en wire:model.live.blur : chaque mise à jour valide le champ seul et efface son erreur une fois corrigé. */
+    public function test_each_field_is_validated_as_soon_as_it_is_updated(): void
+    {
+        Livewire::test(ContactForm::class)
+            ->set('email', 'pas-une-adresse')
+            ->assertHasErrors(['email' => 'email'])
+            ->assertHasNoErrors(['name', 'message'])
+            ->assertSee('Indiquez une adresse e-mail valide')
+            ->set('email', 'client@example.com')
+            ->assertHasNoErrors('email')
+            ->assertDontSee('Indiquez une adresse e-mail valide')
+            ->set('message', 'Trop court.')
+            ->assertHasErrors(['message' => 'min'])
+            ->set('message', self::MESSAGE)
+            ->assertHasNoErrors()
+            ->assertNotDispatched('scroll-to');
     }
 
     public function test_email_subject_and_message_length_are_checked(): void
@@ -126,7 +150,8 @@ class ContactFormTest extends TestCase
             ->assertSet('reference', $expectedReference)
             ->assertSee($expectedReference)
             ->assertSee('Merci Prénom Nom')
-            ->assertSee('Envoyer un autre message');
+            ->assertSee('Envoyer un autre message')
+            ->assertDispatched('scroll-to', id: 'contact-confirmation');
 
         $this->assertStringContainsString($expectedReference, $component->instance()->whatsappUrl());
 

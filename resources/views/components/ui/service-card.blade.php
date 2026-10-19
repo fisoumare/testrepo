@@ -8,6 +8,9 @@
     <p class="text-sm leading-relaxed text-ardoise line-clamp-3">{{ $service->summary }}</p>
     <div class="mt-auto flex items-end justify-between gap-3 pt-2 border-t border-navy-900/8">
         <x-ui.price :service="$service" size="sm" />
-        <span class="label text-ardoise">{{ $service->unit }}</span>
+        {{-- Pour une unité de temps, x-ui.price affiche déjà « / mois », « / jour »… --}}
+        @unless ($service->hasTimeUnit())
+            <span class="label text-ardoise">{{ $service->unit }}</span>
+        @endunless
     </div>
 </x-ui.unit>

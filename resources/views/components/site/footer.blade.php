@@ -9,7 +9,7 @@
                     <dt>RCCM</dt><dd class="font-mono text-[13px]">{{ setting('rccm') }}</dd>
                     <dt>NIF</dt><dd class="font-mono text-[13px]">{{ setting('nif') }}</dd>
                     <dt>Siège</dt><dd>{{ setting('address') }}, {{ setting('city') }}, {{ setting('country') }}</dd>
-                    <dt>Horaires</dt><dd>{{ setting('hours') }}</dd>
+                    <dt>Horaires</dt><dd>{{ typo(setting('hours')) }}</dd>
                 </dl>
             </div>
             <div class="lg:col-span-7 grid gap-10 sm:grid-cols-3">
@@ -17,7 +17,7 @@
                     <p class="label text-emerald-400 mb-4">Solutions</p>
                     <ul class="space-y-2.5 text-[15px]">
                         @foreach ($navSolutions as $solution)
-                            <li><a href="{{ route('solutions.show', $solution) }}" class="hover:text-white transition">{{ $solution->name }} <span class="text-ardoise">· {{ $solution->tagline }}</span></a></li>
+                            <li><a href="{{ route('solutions.show', $solution) }}" class="hover:text-white transition">{{ $solution->name }} <span class="text-ardoise-light/80">· {{ $solution->tagline }}</span></a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -27,7 +27,7 @@
                         @foreach ($navCategories as $category)
                             <li><a href="{{ route('services.category', $category) }}" class="hover:text-white transition">{{ $category->name }}</a></li>
                         @endforeach
-                        <li><a href="{{ route('quote') }}" class="text-white hover:text-emerald-400 transition font-medium">Estimation en ligne →</a></li>
+                        <li><a href="{{ route('quote') }}" class="text-white hover:text-emerald-400 transition font-medium">Demander un devis →</a></li>
                     </ul>
                 </div>
                 <div>
@@ -51,11 +51,8 @@
 
         <div class="mt-6 flex flex-col gap-3 text-[12px] font-mono tracking-wide sm:flex-row sm:items-center sm:justify-between">
             <p>© {{ now()->year }} {{ setting('company_name') }} · {{ setting('city') }}, {{ setting('country') }}</p>
-            <p class="text-ardoise">{{ setting('footer_note') }}</p>
-            <div class="flex gap-5">
-                <a href="{{ route('legal') }}" class="hover:text-white transition">Mentions légales</a>
-                <a href="{{ route('sitemap') }}" class="hover:text-white transition">Plan du site</a>
-            </div>
+            <p class="text-ardoise-light/80">{{ typo(setting('footer_note')) }}</p>
+            <p><a href="{{ route('legal') }}" class="hover:text-white transition">Mentions légales</a></p>
         </div>
     </div>
 </footer>

@@ -13,7 +13,9 @@ class ManageServiceCategories extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            CreateAction::make(),
+            CreateAction::make()
+                ->label('Nouvelle catégorie')
+                ->modalHeading('Nouvelle catégorie'),
         ];
     }
 }

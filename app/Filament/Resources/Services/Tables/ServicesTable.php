@@ -97,13 +97,15 @@ class ServicesTable
                 ->orderBy(ServiceCategory::query()->select('position')->whereColumn('service_categories.id', 'services.service_category_id'))
                 ->orderBy('position')
                 ->orderBy('name'))
+            ->emptyStateHeading('Aucune prestation')
+            ->emptyStateDescription('Créez une prestation pour alimenter le catalogue.')
             ->recordActions([
                 EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     ...CommonActions::toggleBulkActions(),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->modalHeading('Supprimer les prestations sélectionnées'),
                 ]),
             ]);
     }

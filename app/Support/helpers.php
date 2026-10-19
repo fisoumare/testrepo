@@ -2,6 +2,7 @@
 
 use App\Models\Setting;
 use App\Support\Money;
+use App\Support\Typo;
 
 if (! function_exists('setting')) {
     function setting(string $key, mixed $default = null): mixed
@@ -24,5 +25,13 @@ if (! function_exists('whatsapp_url')) {
         $url = 'https://wa.me/'.$number;
 
         return $text ? $url.'?text='.rawurlencode($text) : $url;
+    }
+}
+
+if (! function_exists('typo')) {
+    /** Typographie française (insécables avant : ; ! ?, guillemets, nombre + unité) : voir App\Support\Typo. */
+    function typo(?string $text): string
+    {
+        return Typo::fr($text);
     }
 }

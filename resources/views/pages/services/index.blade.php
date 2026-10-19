@@ -1,15 +1,13 @@
-@php
-    $total = $categories->sum(fn ($category) => $category->services->count());
-@endphp
-<x-layouts.app title="Prestations" :description="'Les '.$total.' prestations de SOUMATIC à prix fixe, en 8 familles : conception, solutions clés en main, hébergement, API, maintenance, analyse, conseil et formation. Prix hors taxes en GNF, TVA 18 %.'">
-    <x-ui.page-header code="U01–U08" kicker="Prestations" title="Un catalogue à prix fixes, unité par unité.">
+{{-- $categories, $total, $onQuote (prestations sur devis), $preview (cartes affichées d'emblée par famille), $description : ServiceController::index(). --}}
+<x-layouts.app title="Prestations" :description="$description">
+    <x-ui.page-header code="U01–U08" kicker="Prestations" :title="$onQuote ? 'Un catalogue à prix affichés, unité par unité.' : 'Un catalogue à prix fixes, unité par unité.'">
         Chaque prestation a un périmètre écrit, un prix hors taxes en GNF et un délai. Ce qui n'est pas compris est dit. Vous composez votre projet comme un rack.
         <x-slot:aside>
             <dl class="spec unit rounded-lg border border-navy-900/10 bg-white p-5 text-navy-900/30 shadow-unit">
                 <dt>Catalogue</dt><dd class="tabular">{{ $total }} prestations · {{ $categories->count() }} familles</dd>
-                <dt>Prix</dt><dd>Fixes, hors taxes, en GNF</dd>
-                <dt>TVA</dt><dd>18 % en sus</dd>
-                <dt>Paiement</dt><dd>50 % à la commande, solde à la validation</dd>
+                <dt>Prix</dt><dd>{{ $onQuote ? 'Affichés hors taxes, en GNF ('.$onQuote.' sur devis)' : 'Fixes, hors taxes, en GNF' }}</dd>
+                <dt>TVA</dt><dd>18&nbsp;% en sus</dd>
+                <dt>Paiement</dt><dd>{{ setting('payment_terms') }}</dd>
                 <dt>Devis</dt><dd>Valable 30 jours</dd>
             </dl>
         </x-slot:aside>
@@ -18,22 +16,28 @@
     <div
         x-data="{
             q: '',
-            total: {{ $total }},
+            preview: {{ $preview }},
+            expanded: {},
             shown: {{ $total }},
             norm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); },
+            expand(slug) { this.expanded[slug] = true; this.filter(); },
+            // Toutes les cartes restent dans la page : une recherche montre toutes les correspondances,
+            // sans recherche chaque famille n'en montre que `preview` tant qu'elle n'est pas dépliée.
             filter() {
                 const needle = this.norm(this.q.trim());
+                const searching = needle !== '';
                 let shown = 0;
                 this.$root.querySelectorAll('[data-section]').forEach((section) => {
-                    let visible = 0;
+                    const all = searching || this.expanded[section.dataset.section] === true;
+                    let matches = 0;
                     section.querySelectorAll('[data-search]').forEach((card) => {
-                        const ok = needle === '' || this.norm(card.dataset.search).includes(needle);
-                        card.hidden = ! ok;
-                        if (ok) visible++;
+                        const ok = ! searching || this.norm(card.dataset.search).includes(needle);
+                        if (ok) matches++;
+                        card.hidden = ! ok || (! all && matches > this.preview);
                     });
-                    section.hidden = visible === 0;
-                    section.querySelectorAll('[data-count]').forEach((el) => { el.textContent = visible; });
-                    shown += visible;
+                    section.hidden = matches === 0;
+                    section.querySelectorAll('[data-count]').forEach((el) => { el.textContent = matches; });
+                    shown += matches;
                 });
                 this.shown = shown;
             },
@@ -68,14 +72,15 @@
                 </div>
             </div>
             <p class="wrap label flex items-center gap-3 pb-3 text-ardoise" x-show="q.trim() !== ''" x-cloak aria-live="polite">
-                <span class="tabular"><span x-text="shown"></span> <span x-text="shown > 1 ? 'résultats' : 'résultat'"></span> pour « <span class="text-navy-900" x-text="q.trim()"></span> »</span>
+                <span class="tabular"><span x-text="shown"></span> <span x-text="shown > 1 ? 'résultats' : 'résultat'"></span> pour «&nbsp;<span class="text-navy-900" x-text="q.trim()"></span>&nbsp;»</span>
                 <button type="button" class="btn-link text-xs" @click="q = ''">Effacer</button>
             </p>
         </div>
 
         {{-- ===== UNE SECTION PAR FAMILLE ===== --}}
         @foreach ($categories as $category)
-            <section id="{{ $category->slug }}" data-section class="wrap mt-20 scroll-mt-44" aria-labelledby="{{ $category->slug }}-titre">
+            @php $rest = $category->services->count() - $preview; @endphp
+            <section id="{{ $category->slug }}" data-section="{{ $category->slug }}" class="wrap mt-20 scroll-mt-44" aria-labelledby="{{ $category->slug }}-titre">
                 <div class="grid gap-6 border-t border-navy-900/10 pt-8 lg:grid-cols-12 lg:items-end">
                     <div class="lg:col-span-8">
                         <p class="label flex items-center gap-3 text-emerald-700">
@@ -90,28 +95,40 @@
                         <a href="{{ route('services.category', $category) }}" class="btn-link">Voir la famille →</a>
                     </div>
                 </div>
-                <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     @foreach ($category->services as $service)
-                        <div data-search="{{ mb_strtolower($service->number.' '.$service->name.' '.$service->summary) }}">
+                        <div data-search="{{ mb_strtolower($service->number.' '.$service->name.' '.$service->summary) }}" @if ($loop->index >= $preview) hidden @endif>
                             <x-ui.service-card :service="$service" />
                         </div>
                     @endforeach
                 </div>
+                @if ($rest > 0)
+                    {{-- Sans JavaScript, le lien mène à la page de la famille, qui liste tout --}}
+                    <p class="mt-6" x-show="q.trim() === '' && expanded['{{ $category->slug }}'] !== true">
+                        <a href="{{ route('services.category', $category) }}" class="btn-ghost" @click.prevent="expand('{{ $category->slug }}')">
+                            {{ $rest === 1 ? 'Afficher la dernière prestation' : 'Afficher les '.$rest.' autres prestations' }}
+                        </a>
+                    </p>
+                @endif
             </section>
         @endforeach
 
-        {{-- ===== AUCUN RÉSULTAT ===== --}}
-        <section class="wrap mt-20" x-show="shown === 0" x-cloak aria-live="polite">
-            <div class="unit rounded-xl border border-navy-900/10 bg-paper p-8 text-navy-900/30 sm:p-12">
-                <p class="label flex items-center gap-2 text-ardoise"><span class="led led-amber" aria-hidden="true"></span> Aucun résultat</p>
-                <h2 class="mt-4 text-2xl font-semibold tracking-tight text-navy-900">Aucune prestation ne correspond à « <span x-text="q.trim()"></span> ».</h2>
-                <p class="mt-3 max-w-xl text-ardoise">Essayez un autre mot, ou décrivez-nous votre besoin : les projets hors catalogue font l'objet d'un devis spécifique.</p>
-                <div class="mt-6 flex flex-wrap gap-3">
-                    <button type="button" class="btn-ghost" @click="q = ''">Afficher tout le catalogue</button>
-                    <a href="{{ route('contact') }}" class="btn-navy">Décrire mon besoin</a>
-                </div>
-            </div>
-        </section>
+        {{-- ===== AUCUN RÉSULTAT : rendu seulement à la demande, dans une zone vivante présente dès le départ ===== --}}
+        <div aria-live="polite">
+            <template x-if="shown === 0">
+                <section class="wrap mt-20">
+                    <div class="unit rounded-xl border border-navy-900/10 bg-paper p-8 text-navy-900/30 sm:p-12">
+                        <p class="label flex items-center gap-2 text-ardoise"><span class="led led-amber" aria-hidden="true"></span> Aucun résultat</p>
+                        <h2 class="mt-4 text-2xl font-semibold tracking-tight text-navy-900">Aucune prestation ne correspond à «&nbsp;<span x-text="q.trim()"></span>&nbsp;».</h2>
+                        <p class="mt-3 max-w-xl text-ardoise">Essayez un autre mot, ou décrivez-nous votre besoin&nbsp;: les projets hors catalogue font l'objet d'un devis spécifique.</p>
+                        <div class="mt-6 flex flex-wrap gap-3">
+                            <button type="button" class="btn-ghost" @click="q = ''">Afficher tout le catalogue</button>
+                            <a href="{{ route('contact') }}" class="btn-navy">Décrire mon besoin</a>
+                        </div>
+                    </div>
+                </section>
+            </template>
+        </div>
     </div>
 
     <x-ui.cta-band title="Un besoin hors catalogue ?" text="Serveur sur mesure, application au-delà du niveau 3, logiciel sans documentation technique : décrivez votre projet, nous vous répondons avec un devis spécifique. {{ setting('hours') }}" />

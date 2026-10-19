@@ -60,6 +60,7 @@ class PostsTable
                     ->options(fn (): array => Post::query()->whereNotNull('category')->distinct()->orderBy('category')->pluck('category', 'category')->all()),
             ])
             ->defaultSort('published_at', 'desc')
+            ->emptyStateHeading('Aucune actualité')
             ->recordActions([
                 Action::make('view_site')
                     ->label('Voir sur le site')
@@ -72,7 +73,7 @@ class PostsTable
             ->toolbarActions([
                 BulkActionGroup::make([
                     ...CommonActions::toggleBulkActions('is_published', 'Publier', 'Dépublier'),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->modalHeading('Supprimer les actualités sélectionnées'),
                 ]),
             ]);
     }

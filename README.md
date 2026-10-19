@@ -64,10 +64,10 @@ Le seeder `AdminUserSeeder` crée le premier compte à partir du fichier `.env` 
 ```dotenv
 ADMIN_NAME="Fodé Idrissa SOUMARÉ"
 ADMIN_EMAIL=fisoumare@soumatic.com
-ADMIN_PASSWORD=password
+ADMIN_PASSWORD=
 ```
 
-**Changez `ADMIN_PASSWORD` avant de lancer `php artisan migrate --seed`**, ou changez le mot de passe ensuite depuis `/admin/users`. Le seeder ne modifie jamais un compte existant. Connexion : `/admin/login`.
+`ADMIN_PASSWORD` vide : le seeder génère un mot de passe aléatoire et l'affiche **une seule fois** dans la sortie de `php artisan migrate --seed` (ou `db:seed`). Notez-le, puis changez-le depuis `/admin/users`. Un `ADMIN_PASSWORD` renseigné est utilisé tel quel, sauf la valeur « password » en production, refusée (un mot de passe aléatoire est alors généré). Aucun compte n'est jamais créé avec un mot de passe par défaut connu, et le seeder ne modifie jamais un compte existant. Connexion : `/admin/login`.
 
 Tout compte présent dans la table `users` a accès au back-office ; les comptes se créent uniquement depuis le panel.
 
@@ -83,7 +83,8 @@ app/
   Models/               Setting, ServiceCategory, Service, Solution, Reference, Post, Faq, Inquiry, User
   Filament/             Resources (prestations, catégories, solutions, références, actualités, FAQ,
                         demandes en lecture seule, utilisateurs), Pages/SiteSettings, Widgets, Support
-  Support/              Money (gnf, short, vat, ttc) et helpers.php (setting(), gnf(), whatsapp_url())
+  Support/              Money (gnf, short, vat, ttc), Typo (typographie française), Elision (« d'EduGes »)
+                        et helpers.php (setting(), gnf(), whatsapp_url(), typo())
 database/
   migrations/           schéma complet dans 2026_10_17_000001_create_site_tables.php
   seeders/              contenu réel : SettingSeeder, ServiceCategorySeeder, SolutionSeeder,
@@ -96,9 +97,11 @@ resources/
   views/pages/          home, solutions/, services/, references, posts/, about, contact, quote, legal
   views/livewire/       quote-builder, contact-form et partiels
   views/mail/           gabarits Markdown des deux e-mails
+  views/errors/         404, 403 et 419 sur le layout du site ; 500 et 503 autonomes (sans base de données)
 lang/fr/                messages de validation et de pagination en français
 routes/web.php          routes publiques, sitemap.xml, robots.txt
-tests/                  Feature (pages publiques, estimation, contact, back-office) et Unit (Money)
+tests/                  Feature (pages publiques, pages d'erreur, estimation, contact, e-mails, lecture et
+                        écritures du back-office) et Unit (Money, Typo, Elision)
 docs/DESIGN.md          dossier de conception : concept « salle des serveurs », tokens, composants,
                         règles de contenu — à lire avant toute modification
 ```
@@ -110,6 +113,7 @@ Routes nommées : `home`, `solutions.index`, `solutions.show`, `services.index`,
 - Les prestations proviennent du catalogue Compiniya (`database/data/catalogue.json`) : numéro `PREST-2026-00xx`, nom, unité, prix entier en GNF HT. Un prix à 0 signifie « sur devis ».
 - Les paramètres du site (coordonnées, RCCM, NIF, textes d'accueil, réseaux, facturation) sont des paires clé/valeur de la table `settings`, lues partout via `setting('clé')` et modifiables dans `/admin/parametres`.
 - Les demandes reçues (`Inquiry`) portent une référence automatique `DEM-AAAA-0001` (devis) ou `MSG-AAAA-0001` (contact).
+- Typographie française : les seeders passent leurs textes par `App\Support\Typo::fr()` (espace insécable avant « : », dans les guillemets « » et entre un nombre et son unité ; espace fine insécable avant « ; ? ! » et entre les groupes de milliers). Dans les vues, `typo($texte)` fait de même pour un texte qui ne vient pas des seeders.
 
 ## Contenu à compléter après l'installation
 
@@ -117,7 +121,7 @@ Le site ne contient que des informations vérifiées ; ce qui manque est laissé
 
 - **Paramètres du site** (`/admin/parametres`) : vérifier l'adresse, le téléphone, le RCCM et le NIF déjà renseignés ; saisir les liens Facebook, LinkedIn, YouTube et le lien de carte (vides par défaut) ; renseigner l'**hébergeur** (`legal_hosting`) affiché dans les mentions légales ; vérifier l'e-mail de notification qui reçoit les demandes.
 - **Références** (`/admin/references`) : seule la DGSST est publiée. Les autres clients sont créés non publiés avec la mention « À compléter » : rédiger leur description, ajouter un logo, puis publier.
-- **Actualités** (`/admin/posts`) : ajouter des images de couverture ; les deux articles seedés n'en ont pas.
+- **Actualités** (`/admin/posts`) : ajouter des images de couverture ; les deux articles seedés n'en ont pas. Leur date de publication est celle de la mise en ligne du site (17 octobre 2026) ; elle se modifie dans le back-office.
 - **Logo définitif** : remplacer `public/brand/logo.svg`, `logo-blanc.svg`, `icone.svg`, `favicon.svg` et l'image de partage `public/brand/og.png` (1200 × 630) si l'identité visuelle évolue.
 - **Prestations** : les prix peuvent être ajustés depuis `/admin/services` ; une prestation désactivée disparaît du site, du configurateur et du plan du site.
 
@@ -142,7 +146,9 @@ Les e-mails sont envoyés de façon synchrone ; une panne du courrier est journa
 
 ## Mise en production
 
-1. `.env` : `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://soumatic.com` (utilisé par le plan du site, `robots.txt`, les e-mails et les balises canoniques), `LOG_LEVEL=warning`, un `ADMIN_PASSWORD` fort, les réglages `MAIL_*`.
+1. `.env` : `APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://soumatic.com` (utilisé par le plan du site, `robots.txt`, les e-mails et les balises canoniques ; avec `https://`, toutes les URL générées sont forcées en https), `LOG_LEVEL=warning`, un `ADMIN_PASSWORD` fort (ou vide : généré et affiché par le seeder, voir « Compte administrateur »), les réglages `MAIL_*` et `TRUSTED_PROXIES`.
+   - `TRUSTED_PROXIES` : derrière un reverse proxy ou un CDN (Nginx frontal, Plesk, Cloudflare), l'application lit les en-têtes `X-Forwarded-*` pour connaître l'adresse IP réelle du visiteur (limitation des envois de formulaires à 5 par 10 minutes, champ `ip` des demandes) et le schéma `https`. `*` (valeur par défaut) accepte tous les proxys ; indiquez l'adresse IP du proxy, ou plusieurs séparées par des virgules, pour n'accepter qu'elles ; laissez la variable vide si le serveur PHP est exposé directement, sans proxy.
+   - Lancez `php artisan migrate --seed --force` **avant** `php artisan optimize` : le seeder du compte administrateur lit `ADMIN_*` dans `.env`, qui n'est plus chargé une fois la configuration mise en cache.
 2. Installer sans dépendances de développement et compiler les ressources :
    ```bash
    composer install --no-dev --optimize-autoloader
@@ -167,7 +173,7 @@ Les e-mails sont envoyés de façon synchrone ; une panne du courrier est journa
 | `npm run build` | Compilation Tailwind / Vite (obligatoire après tout changement de vue ou de CSS) |
 | `npm run dev` | Vite en mode développement (rechargement à chaud) |
 | `php artisan migrate` | Applique les nouvelles migrations (ne jamais `migrate:fresh` sur une base contenant du contenu) |
-| `php artisan db:seed` | Rejoue les seeders (idempotents : ils ne dupliquent rien et n'écrasent pas les comptes) |
+| `php artisan db:seed` | Rejoue les seeders sans rien dupliquer. Les textes du catalogue (prestations, familles), des solutions, de la FAQ, des références et des actualités sont **réinitialisés** à leur version du dépôt : les modifications faites dans `/admin` sur ces contenus sont perdues. Les comptes et les paramètres du site existants sont préservés. Un seul seeder : `php artisan db:seed --class=ServiceSeeder` |
 | `php artisan serve --port=8080` | Serveur de développement |
 | `php artisan optimize` / `optimize:clear` | Mise en cache / purge de la configuration, des routes et des vues |
 
@@ -177,6 +183,7 @@ Les e-mails sont envoyés de façon synchrone ; une panne du courrier est journa
 - `/robots.txt` est une route (dans `routes/web.php`) : il autorise tout sauf `/admin` et `/livewire` et pointe vers le plan du site avec l'URL de `APP_URL`. Ne créez pas de fichier `public/robots.txt`, il serait servi à la place de la route.
 - `public/brand/og.png` (1200 × 630) est l'image de partage déclarée dans le layout (`og:image`). Elle a été rendue depuis une page HTML aux couleurs du site ; régénérez-la si le logo change.
 - Chaque page déclare un `title`, une `description`, une URL canonique, les balises Open Graph et un bloc JSON-LD (`Organization`, `BreadcrumbList`, `NewsArticle`).
+- Les pages d'erreur (`resources/views/errors/`) reprennent le concept du site : une « unité » hors service, repérée par son code (`ERR-404`) et une LED ambre. Les pages 404, 403 et 419 utilisent le layout complet ; les pages 500 et 503 (maintenance, `php artisan down`) sont autonomes et ne lisent ni la base de données ni les paramètres.
 
 ## Conventions
 

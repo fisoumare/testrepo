@@ -1,8 +1,16 @@
+{{-- $service, $related, $title, $description : ServiceController::show(). --}}
 @php
     $onQuote = $service->isOnQuote();
     $whatsapp = whatsapp_url('Bonjour SOUMATIC, je souhaite un devis pour : '.$service->name);
+    // Conditions selon le cas : sur devis ; abonnement, hébergement ou maintenance (au mois ou à l'an) payés d'avance ;
+    // sinon prix fixe, 50 % à la commande (setting payment_terms, première phrase).
+    $terms = match (true) {
+        $onQuote => 'Sur devis : prix et conditions fixés sur devis après cadrage.',
+        in_array($service->unit, ['Mois', 'An'], true) => 'Prix fixe, payable d\'avance. Devis valable '.setting('quote_validity_days', '30').' jours.',
+        default => 'Prix fixe. '.rtrim(\Illuminate\Support\Str::before(setting('payment_terms', '50 % à la commande, solde à la validation.'), '. '), '.').'. Devis valable '.setting('quote_validity_days', '30').' jours.',
+    };
 @endphp
-<x-layouts.app :title="$service->name" :description="$service->summary">
+<x-layouts.app :title="$title" :description="$description">
     <div class="wrap pt-8">
         <x-ui.breadcrumb :items="[['Prestations', route('services.index')], [$service->category->name, route('services.category', $service->category)], [$service->name, null]]" />
     </div>
@@ -20,7 +28,7 @@
         </header>
 
         <div class="mt-10 grid gap-10 lg:grid-cols-12 lg:gap-14">
-            {{-- ===== FICHE TECHNIQUE ===== --}}
+            {{-- ===== FICHE TECHNIQUE : le seul jeu d'actions de la page ===== --}}
             <aside class="lg:col-span-4 lg:order-last">
                 <div class="unit rounded-xl border border-navy-900/10 bg-paper p-6 text-navy-900/30 lg:sticky lg:top-32">
                     <p class="label flex items-center justify-between text-ardoise">
@@ -41,7 +49,7 @@
                             <dt>Prix</dt><dd>Sur devis, selon le périmètre</dd>
                         @else
                             <dt>Prix HT</dt><dd class="tabular">{{ gnf($service->price) }}</dd>
-                            <dt>TVA 18 %</dt><dd class="tabular">{{ gnf(\App\Support\Money::vat($service->price)) }}</dd>
+                            <dt>TVA 18&nbsp;%</dt><dd class="tabular">{{ gnf(\App\Support\Money::vat($service->price)) }}</dd>
                             <dt>Prix TTC</dt><dd class="tabular font-semibold">{{ gnf(\App\Support\Money::ttc($service->price)) }}</dd>
                         @endif
                         @if ($service->solution)
@@ -55,7 +63,7 @@
                             Demander par WhatsApp
                         </a>
                     </div>
-                    <p class="mt-4 text-xs leading-relaxed text-ardoise">Prix fixe. 50 % à la commande, solde à la validation. Devis valable 30 jours.</p>
+                    <p class="mt-4 text-xs leading-relaxed text-ardoise">{{ typo($terms) }}</p>
                 </div>
             </aside>
 
@@ -63,11 +71,6 @@
             <div class="min-w-0 lg:col-span-8">
                 <h2 class="label text-ardoise">Description complète</h2>
                 <x-ui.text-blocks :text="$service->description" class="mt-4 text-[16px] sm:text-[17px]" />
-
-                <div class="mt-10 flex flex-wrap gap-3 border-t border-navy-900/10 pt-8">
-                    <a href="{{ route('quote', ['service' => $service->slug]) }}" class="btn-primary">{{ $onQuote ? 'Demander cette prestation' : 'Ajouter à mon estimation' }}</a>
-                    <a href="{{ $whatsapp }}" target="_blank" rel="noopener" class="btn-ghost">WhatsApp · {{ setting('phone') }}</a>
-                </div>
 
                 @if ($service->solution)
                     <a href="{{ route('solutions.show', $service->solution) }}" class="unit group mt-10 flex items-center gap-4 rounded-lg border border-white/10 bg-ink p-5 text-emerald-400/60 no-underline transition hover:bg-ink-soft rack-lines">

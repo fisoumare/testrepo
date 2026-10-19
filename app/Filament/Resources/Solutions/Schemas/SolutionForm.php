@@ -28,7 +28,10 @@ class SolutionForm
                         ColorPicker::make('accent')
                             ->label('Couleur d\'accent')
                             ->hex()
-                            ->helperText('Couleur de la LED et des accents sur le site (#0E9F6E par défaut).'),
+                            // La valeur est injectée dans des attributs style du site : seul #RRGGBB est accepté.
+                            ->regex('/^#[0-9A-Fa-f]{6}$/')
+                            ->validationMessages(['regex' => 'Indiquez une couleur au format #RRGGBB, par exemple #0E9F6E.'])
+                            ->helperText('Couleur de la LED et des accents sur le site, au format #RRGGBB (#0E9F6E par défaut).'),
                         CommonFields::slugSource('name', 'Nom'),
                         CommonFields::slug(),
                         TextInput::make('tagline')

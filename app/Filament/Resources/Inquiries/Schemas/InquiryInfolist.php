@@ -14,6 +14,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Enums\Alignment;
 use Filament\Support\Enums\FontFamily;
 use Filament\Support\Enums\FontWeight;
+use Illuminate\Support\HtmlString;
 
 class InquiryInfolist
 {
@@ -71,10 +72,11 @@ class InquiryInfolist
                             ->hiddenLabel()
                             ->placeholder('Aucun message.')
                             ->prose()
+                            ->formatStateUsing(fn (?string $state): HtmlString => self::multiline($state))
                             ->columnSpanFull(),
                     ]),
                 Section::make('Estimation')
-                    ->description('Lignes sélectionnées sur le site. Montants hors taxes en GNF ; TVA 18 %.')
+                    ->description(typo('Lignes sélectionnées sur le site. Montants hors taxes en GNF ; TVA 18 %.'))
                     ->visible(fn (Inquiry $record): bool => $record->isQuote())
                     ->columnSpanFull()
                     ->components([
@@ -88,15 +90,27 @@ class InquiryInfolist
                                 TableColumn::make('Prix unitaire HT')->alignment(Alignment::End),
                                 TableColumn::make('Total HT')->alignment(Alignment::End),
                             ])
+                            // Les libellés servent en affichage empilé (mobile), où les en-têtes du tableau disparaissent.
                             ->schema([
-                                TextEntry::make('number')->fontFamily(FontFamily::Mono)->placeholder('—'),
-                                TextEntry::make('name')->weight(FontWeight::Medium),
-                                TextEntry::make('unit')->placeholder('—'),
-                                TextEntry::make('quantity')->alignment(Alignment::End),
+                                TextEntry::make('number')
+                                    ->label('Numéro')
+                                    ->fontFamily(FontFamily::Mono)
+                                    ->placeholder('—'),
+                                TextEntry::make('name')
+                                    ->label('Prestation')
+                                    ->weight(FontWeight::Medium),
+                                TextEntry::make('unit')
+                                    ->label('Unité')
+                                    ->placeholder('—'),
+                                TextEntry::make('quantity')
+                                    ->label('Qté')
+                                    ->alignment(Alignment::End),
                                 TextEntry::make('unit_price')
+                                    ->label('Prix unitaire HT')
                                     ->alignment(Alignment::End)
                                     ->formatStateUsing(fn (int|string|null $state): string => (int) $state > 0 ? gnf((int) $state) : 'Sur devis'),
                                 TextEntry::make('total')
+                                    ->label('Total HT')
                                     ->alignment(Alignment::End)
                                     ->formatStateUsing(fn (int|string|null $state): string => (int) $state > 0 ? gnf((int) $state) : 'Sur devis'),
                             ])
@@ -107,7 +121,7 @@ class InquiryInfolist
                                     ->label('Total HT')
                                     ->formatStateUsing(fn (?int $state): string => gnf((int) $state)),
                                 TextEntry::make('vat')
-                                    ->label('TVA (18 %)')
+                                    ->label(typo('TVA (18 %)'))
                                     ->state(fn (Inquiry $record): string => gnf(Money::vat((int) $record->total_ht))),
                                 TextEntry::make('total_ttc')
                                     ->label('Total TTC')
@@ -123,6 +137,7 @@ class InquiryInfolist
                             ->label('Notes internes')
                             ->placeholder('Aucune note.')
                             ->prose()
+                            ->formatStateUsing(fn (?string $state): HtmlString => self::multiline($state))
                             ->columnSpanFull(),
                         TextEntry::make('ip')
                             ->label('Adresse IP')
@@ -134,5 +149,14 @@ class InquiryInfolist
                     ])
                     ->collapsible(),
             ]);
+    }
+
+    /**
+     * Texte brut (saisi par le visiteur ou en interne) : échappé, puis sauts de ligne rendus par <br>.
+     * HtmlString évite le passage par l'assainisseur HTML, inutile puisque tout est déjà échappé par e().
+     */
+    private static function multiline(?string $text): HtmlString
+    {
+        return new HtmlString(nl2br(e((string) $text)));
     }
 }

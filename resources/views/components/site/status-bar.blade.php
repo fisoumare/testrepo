@@ -7,7 +7,7 @@
             <span class="hidden sm:inline uppercase" x-data="clock" x-text="'Conakry ' + time + ' GMT'">Conakry · GMT</span>
         </div>
         <div class="flex items-center gap-4 min-w-0">
-            <span class="hidden md:inline uppercase truncate">Support {{ setting('hours_short', 'Lun–ven · 8 h 30 – 17 h 30') }}</span>
+            <span class="hidden md:inline uppercase truncate">Support {{ typo(setting('hours_short', 'Lun–ven · 8 h 30 – 17 h 30')) }}</span>
             <a href="tel:{{ preg_replace('/\s+/', '', setting('phone', '')) }}" class="uppercase text-white hover:text-emerald-400 transition whitespace-nowrap">{{ setting('phone') }}</a>
         </div>
     </div>

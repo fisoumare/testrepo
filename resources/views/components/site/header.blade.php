@@ -1,3 +1,9 @@
+@php
+    // Sur la page de demande de devis, l'appel principal renvoie vers le contact plutôt que vers la page courante.
+    $cta = request()->routeIs('quote')
+        ? ['href' => route('contact'), 'label' => 'Nous contacter']
+        : ['href' => route('quote'), 'label' => 'Demander un devis'];
+@endphp
 <header class="sticky top-0 z-50" x-data="{ open: false, menu: null }" @keydown.escape.window="open = false; menu = null">
     <x-site.status-bar />
     <div class="border-b border-navy-900/10 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75">
@@ -41,7 +47,7 @@
                                 </a>
                             @endforeach
                             <a href="{{ route('quote') }}" class="col-span-2 mt-1 flex items-center justify-between rounded-md bg-navy-900 px-4 py-3 text-white hover:bg-navy-800">
-                                <span class="font-semibold">Composer une estimation en ligne</span>
+                                <span class="font-semibold">Demander un devis en ligne</span>
                                 <span class="label text-emerald-400">Prix fixes</span>
                             </a>
                         </div>
@@ -55,7 +61,7 @@
             </nav>
 
             <div class="flex items-center gap-3">
-                <a href="{{ route('quote') }}" class="btn-primary hidden sm:inline-flex">Demander un devis</a>
+                <a href="{{ $cta['href'] }}" class="btn-primary hidden sm:inline-flex">{{ $cta['label'] }}</a>
                 <button type="button" class="lg:hidden inline-flex size-11 items-center justify-center rounded-md border border-navy-900/15" @click="open = !open" :aria-expanded="open" aria-controls="menu-mobile" aria-label="Ouvrir le menu">
                     <svg x-show="!open" class="size-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                     <svg x-show="open" x-cloak class="size-5" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
@@ -69,10 +75,12 @@
                     <p class="label text-ardoise mb-2">Solutions</p>
                     <div class="grid gap-1">
                         @foreach ($navSolutions as $solution)
-                            <a href="{{ route('solutions.show', $solution) }}" class="flex items-center gap-3 rounded-md px-2 py-2.5 hover:bg-navy-50">
-                                <span class="led" style="background: {{ $solution->accent }}; box-shadow: none" aria-hidden="true"></span>
-                                <span class="font-semibold">{{ $solution->name }}</span>
-                                <span class="text-sm text-ardoise">{{ $solution->tagline }}</span>
+                            <a href="{{ route('solutions.show', $solution) }}" class="flex items-start gap-3 rounded-md px-2 py-2.5 hover:bg-navy-50">
+                                <span class="led mt-2" style="background: {{ $solution->accent }}; box-shadow: none" aria-hidden="true"></span>
+                                <span class="min-w-0">
+                                    <span class="block font-semibold whitespace-nowrap">{{ $solution->name }}</span>
+                                    <span class="block text-sm text-ardoise">{{ $solution->tagline }}</span>
+                                </span>
                             </a>
                         @endforeach
                     </div>
@@ -95,15 +103,10 @@
                     <a href="{{ route('contact') }}" class="rounded-md px-2 py-2.5 hover:bg-navy-50">Contact</a>
                 </div>
                 <div class="flex flex-wrap gap-3">
-                    <a href="{{ route('quote') }}" class="btn-primary flex-1">Demander un devis</a>
+                    <a href="{{ $cta['href'] }}" class="btn-primary flex-1">{{ $cta['label'] }}</a>
                     <a href="{{ whatsapp_url('Bonjour SOUMATIC,') }}" class="btn-ghost flex-1" rel="noopener" target="_blank">WhatsApp</a>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-@once
-    @push('styles')
-    @endpush
-@endonce

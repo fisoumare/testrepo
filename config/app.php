@@ -123,4 +123,19 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Trusted Proxies
+    |--------------------------------------------------------------------------
+    |
+    | Derrière un reverse proxy ou un CDN (Nginx frontal, Plesk, Cloudflare), l'application lit les en-têtes
+    | X-Forwarded-* envoyés par les proxys listés ici : adresse IP réelle du visiteur (limitation des envois
+    | de formulaires, champ « ip » des demandes) et schéma https (URL canoniques, plan du site, ressources).
+    | « * » accepte tous les proxys ; une liste d'adresses séparées par des virgules n'accepte qu'elles ;
+    | vide : aucun proxy n'est pris en compte. Appliqué au démarrage dans bootstrap/app.php.
+    |
+    */
+
+    'trusted_proxies' => env('TRUSTED_PROXIES', '*'),
+
 ];

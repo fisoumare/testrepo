@@ -1,4 +1,4 @@
-<x-layouts.app :title="$solution->name.' · '.$solution->tagline" :description="$solution->summary">
+<x-layouts.app :title="$title" :description="$description">
     {{-- ===== HÉRO ===== --}}
     <section class="relative overflow-hidden bg-ink text-white rack-lines">
         <div class="absolute inset-y-0 right-0 w-1/2 grid-dots-dark opacity-50 [mask-image:linear-gradient(90deg,transparent,#000)]" aria-hidden="true"></div>
@@ -27,21 +27,21 @@
                 </div>
             </div>
 
-            {{-- Fiche technique --}}
+            {{-- Fiche technique : une seule LED, de la couleur de la solution (comme le code S0x et la liste des fonctions) --}}
             <div class="lg:col-span-4">
                 <div class="unit rounded-xl border border-white/10 bg-ink-soft/80 p-6 text-emerald-400/70">
                     <p class="label flex items-center justify-between text-ardoise-light">
                         <span>Fiche technique</span>
-                        <span class="flex items-center gap-1.5" aria-hidden="true"><span class="led led-on"></span><span class="led led-on [animation-delay:0.6s]"></span></span>
+                        <x-ui.led :color="$solution->accent" />
                     </p>
                     <dl class="spec spec-dark mt-5">
                         <dt>Code</dt><dd class="font-mono text-[13px]">{{ $solution->code }}</dd>
-                        <dt>Formules</dt><dd>{{ $offers->pluck('label')->filter(fn ($label) => in_array($label, ['Abonnement', 'Licence installée'], true))->implode(' ou ') ?: 'Sur devis' }}</dd>
+                        <dt>Formules</dt><dd>{{ \Illuminate\Support\Str::ucfirst(mb_strtolower($offers->pluck('label')->filter(fn ($label) => in_array($label, ['Abonnement', 'Licence installée'], true))->implode(' ou '))) ?: 'Sur devis' }}</dd>
                         @if ($fromMonthly)
                             <dt>À partir de</dt><dd class="tabular"><span class="font-semibold">{{ gnf($fromMonthly, false) }}</span> <span class="label text-ardoise-light">GNF HT / mois</span></dd>
                         @endif
                         <dt>Prestations</dt><dd>{{ $solution->services->count() }} au catalogue</dd>
-                        <dt>Assistance</dt><dd>{{ setting('hours_short') }}</dd>
+                        <dt>Assistance</dt><dd>{{ typo(setting('hours_short')) }}</dd>
                         @if ($solution->website_url)
                             <dt>Site</dt><dd><a href="{{ $solution->website_url }}" target="_blank" rel="noopener" class="font-mono text-[13px] text-emerald-400 hover:text-emerald-300">{{ preg_replace('#^https?://#', '', $solution->website_url) }} ↗</a></dd>
                         @endif
@@ -51,18 +51,21 @@
         </div>
     </section>
 
-    {{-- ===== FONCTIONS ===== --}}
+    {{-- ===== FONCTIONS : liste numérotée compacte sur deux colonnes, sans carte vide ===== --}}
     @if ($solution->features)
-        <section class="wrap mt-24" aria-labelledby="fonctions">
-            <x-ui.section-heading code="{{ $solution->code }}" kicker="Fonctions" title="Ce que couvre {{ $solution->name }}." class="reveal" id="fonctions" />
-            <ol class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section class="wrap mt-24 grid gap-10 lg:grid-cols-12" aria-labelledby="fonctions">
+            <div class="lg:col-span-4">
+                <x-ui.section-heading code="{{ $solution->code }}" kicker="Fonctions" title="Ce que couvre {{ $solution->name }}." class="reveal" id="fonctions" />
+                <p class="label mt-6 flex items-center gap-2 text-ardoise reveal">
+                    <x-ui.led :color="$solution->accent" />
+                    <span class="tabular">{{ count($solution->features) }} {{ count($solution->features) > 1 ? 'fonctions' : 'fonction' }} au catalogue</span>
+                </p>
+            </div>
+            <ol class="grid border-t border-navy-900/10 sm:grid-cols-2 sm:gap-x-10 lg:col-span-8 reveal reveal-delay-1">
                 @foreach ($solution->features as $feature)
-                    <li class="unit flex min-h-32 flex-col rounded-lg border border-navy-900/10 bg-white p-5 text-navy-900/40 shadow-unit reveal reveal-delay-{{ $loop->index % 4 }}">
-                        <span class="flex items-center justify-between">
-                            <span class="label text-ardoise">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
-                            <x-ui.led :color="$solution->accent" />
-                        </span>
-                        <span class="mt-auto pt-6 text-[17px] font-semibold leading-snug text-navy-900 text-balance">{{ $feature }}</span>
+                    <li class="flex items-baseline gap-4 border-b border-navy-900/10 py-4">
+                        <span class="label w-6 shrink-0 text-ardoise">{{ str_pad((string) $loop->iteration, 2, '0', STR_PAD_LEFT) }}</span>
+                        <span class="min-w-0 text-[17px] font-semibold leading-snug text-navy-900">{{ $feature }}</span>
                     </li>
                 @endforeach
             </ol>
@@ -75,7 +78,7 @@
             <div class="wrap grid gap-10 py-16 sm:py-20 lg:grid-cols-12">
                 <div class="lg:col-span-5">
                     <x-ui.section-heading code="INCL" kicker="Abonnement" title="Compris dans l'abonnement." class="reveal" id="compris">
-                        Hébergement, sauvegardes, mises à jour et assistance : l'abonnement est payable au mois ou à l'année. Ce qui n'est pas compris est précisé sur chaque fiche.
+                        Hébergement, sauvegardes, mises à jour et assistance&nbsp;: l'abonnement est payable au mois ou à l'année. Ce qui n'est pas compris est précisé sur chaque fiche.
                     </x-ui.section-heading>
                 </div>
                 <ul class="grid gap-3 lg:col-span-7">
@@ -90,11 +93,24 @@
         </section>
     @endif
 
+    {{-- ===== EN DÉTAIL : avant les formules et la mise en service, dont la fiche détaille ensuite le périmètre ===== --}}
+    @if ($solution->description)
+        <section class="wrap mt-24 grid gap-10 lg:grid-cols-12" aria-labelledby="en-detail">
+            <div class="lg:col-span-4">
+                <div class="lg:sticky lg:top-32">
+                    <x-ui.section-heading code="{{ $solution->code }}" kicker="En détail" title="{{ $solution->name }}, en pratique." class="reveal" id="en-detail" />
+                    <a href="{{ route('contact', ['sujet' => 'demo', 'solution' => $solution->slug]) }}" class="btn-primary mt-8">Demander une démonstration</a>
+                </div>
+            </div>
+            <div class="prose-site min-w-0 text-[17px] lg:col-span-8 reveal">{!! $solution->description !!}</div>
+        </section>
+    @endif
+
     {{-- ===== FORMULES ET TARIFS ===== --}}
     <section id="formules" class="wrap mt-24 scroll-mt-28" aria-labelledby="formules-titre">
         <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
             <x-ui.section-heading code="GNF" kicker="Formules et tarifs" title="Des prix fixes, affichés hors taxes." class="lg:col-span-8 reveal" id="formules-titre">
-                TVA 18 % en sus. Abonnements, hébergement et maintenance payés d'avance ; licence et mise en service : 50 % à la commande, solde à la validation.
+                TVA 18&nbsp;% en sus. Abonnements, hébergement et maintenance payés d'avance&#8239;; licence et mise en service&nbsp;: 50&nbsp;% à la commande, solde à la validation.
             </x-ui.section-heading>
             <div class="lg:col-span-4 lg:text-right reveal reveal-delay-1">
                 <a href="{{ route('quote') }}" class="btn-navy">Composer une estimation</a>
@@ -103,7 +119,7 @@
         <x-ui.offer-table :offers="$offers" :solution="$solution" class="mt-10 reveal" />
     </section>
 
-    {{-- ===== MISE EN SERVICE ===== --}}
+    {{-- ===== MISE EN SERVICE (une seule fois : la fiche de la prestation, qui fait foi) ===== --}}
     @if ($setupServices->isNotEmpty())
         <section class="wrap mt-16" aria-labelledby="mise-en-service">
             <div class="grid gap-6 {{ $setupServices->count() > 1 ? 'lg:grid-cols-2' : '' }}">
@@ -126,19 +142,6 @@
                     </article>
                 @endforeach
             </div>
-        </section>
-    @endif
-
-    {{-- ===== EN DÉTAIL ===== --}}
-    @if ($solution->description)
-        <section class="wrap mt-24 grid gap-10 lg:grid-cols-12" aria-labelledby="en-detail">
-            <div class="lg:col-span-4">
-                <div class="lg:sticky lg:top-32">
-                    <x-ui.section-heading code="{{ $solution->code }}" kicker="En détail" title="{{ $solution->name }}, en pratique." class="reveal" id="en-detail" />
-                    <a href="{{ route('contact', ['sujet' => 'demo', 'solution' => $solution->slug]) }}" class="btn-primary mt-8">Demander une démonstration</a>
-                </div>
-            </div>
-            <div class="prose-site min-w-0 text-[17px] lg:col-span-8 reveal">{!! $solution->description !!}</div>
         </section>
     @endif
 

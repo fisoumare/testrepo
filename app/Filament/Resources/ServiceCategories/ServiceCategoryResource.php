@@ -14,6 +14,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
@@ -23,6 +24,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
 use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Collection;
 use UnitEnum;
 
 class ServiceCategoryResource extends Resource
@@ -42,6 +44,33 @@ class ServiceCategoryResource extends Resource
     protected static ?string $navigationLabel = 'Catégories';
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    /** Nombre de prestations rattachées (compteur déjà chargé par la table quand il existe). */
+    public static function servicesCount(ServiceCategory $category): int
+    {
+        return (int) ($category->services_count ?? $category->services()->count());
+    }
+
+    /**
+     * La contrainte `service_category_id … cascadeOnDelete()` effacerait les prestations avec leur
+     * catégorie (fiches publiques, plan du site, estimations) : la suppression est refusée tant
+     * qu'il en reste. Retourne le message d'explication, ou null si la suppression est possible.
+     */
+    public static function deletionBlockedMessage(ServiceCategory $category): ?string
+    {
+        $count = self::servicesCount($category);
+
+        if ($count === 0) {
+            return null;
+        }
+
+        return typo(sprintf(
+            'La catégorie « %s » contient %d %s : réaffectez-les ou supprimez-les avant de la supprimer.',
+            $category->name,
+            $count,
+            $count > 1 ? 'prestations' : 'prestation',
+        ));
+    }
 
     public static function form(Schema $schema): Schema
     {
@@ -101,14 +130,48 @@ class ServiceCategoryResource extends Resource
                 TernaryFilter::make('is_active')->label('Active'),
             ])
             ->defaultSort('position')
+            ->emptyStateHeading('Aucune catégorie')
+            ->emptyStateDescription('Créez une catégorie pour organiser le catalogue des prestations.')
             ->recordActions([
-                EditAction::make(),
-                DeleteAction::make(),
+                EditAction::make()
+                    ->modalHeading(fn (ServiceCategory $record): string => typo('Modifier la catégorie « '.$record->name.' »')),
+                DeleteAction::make()
+                    ->modalHeading(fn (ServiceCategory $record): string => typo('Supprimer la catégorie « '.$record->name.' »'))
+                    // Bouton grisé avec explication tant que la catégorie contient des prestations…
+                    ->disabled(fn (ServiceCategory $record): bool => self::servicesCount($record) > 0)
+                    ->tooltip(fn (ServiceCategory $record): ?string => self::deletionBlockedMessage($record))
+                    // … et refus explicite si l'action est tout de même déclenchée.
+                    ->before(function (DeleteAction $action, ServiceCategory $record): void {
+                        if ($message = self::deletionBlockedMessage($record)) {
+                            Notification::make()->danger()->title('Suppression impossible')->body($message)->send();
+
+                            $action->cancel();
+                        }
+                    }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     ...CommonActions::toggleBulkActions(),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()
+                        ->modalHeading('Supprimer les catégories sélectionnées')
+                        ->before(function (DeleteBulkAction $action, Collection $records): void {
+                            $blocked = $records->filter(fn (ServiceCategory $category): bool => self::servicesCount($category) > 0);
+
+                            if ($blocked->isEmpty()) {
+                                return;
+                            }
+
+                            Notification::make()
+                                ->danger()
+                                ->title('Suppression impossible')
+                                ->body(typo(sprintf(
+                                    'Ces catégories contiennent encore des prestations : %s. Réaffectez-les ou supprimez-les avant de supprimer les catégories.',
+                                    $blocked->map(fn (ServiceCategory $category): string => sprintf('« %s » (%d)', $category->name, self::servicesCount($category)))->implode(', '),
+                                )))
+                                ->send();
+
+                            $action->cancel();
+                        }),
                 ]),
             ]);
     }

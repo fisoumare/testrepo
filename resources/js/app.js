@@ -35,4 +35,21 @@ const observeReveals = () => {
 document.addEventListener('DOMContentLoaded', observeReveals);
 document.addEventListener('livewire:navigated', observeReveals);
 
+// Après une réponse Livewire (changement d'étape, envoi refusé), défile jusqu'à un élément en
+// tenant compte du header collant, puis lui donne le focus (clavier, lecteurs d'écran).
+// Payload : { id, invalid } — avec « invalid », on vise le premier champ en erreur à l'intérieur de #id.
+const stickyOffset = () => (document.querySelector('body > header')?.offsetHeight ?? 104) + 16;
+
+Livewire.on('scroll-to', ({ id, invalid = false }) => {
+    requestAnimationFrame(() => {
+        const root = document.getElementById(id);
+        if (!root) return;
+        const target = (invalid && root.querySelector('[aria-invalid="true"], [role="alert"]')) || root;
+        const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - stickyOffset());
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        target.focus({ preventScroll: true });
+    });
+});
+
 Livewire.start();

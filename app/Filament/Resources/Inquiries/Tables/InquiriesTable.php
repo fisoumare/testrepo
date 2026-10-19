@@ -9,6 +9,7 @@ use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\ViewAction;
 use Filament\Support\Enums\FontFamily;
 use Filament\Support\Enums\FontWeight;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -73,12 +74,15 @@ class InquiriesTable
                     ->multiple(),
             ])
             ->defaultSort('created_at', 'desc')
+            ->emptyStateHeading('Aucune demande')
+            ->emptyStateDescription('Les formulaires de contact et d\'estimation du site alimentent cette liste.')
+            ->emptyStateIcon(Heroicon::OutlinedInboxArrowDown)
             ->recordActions([
                 ViewAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->modalHeading('Supprimer les demandes sélectionnées'),
                 ]),
             ]);
     }

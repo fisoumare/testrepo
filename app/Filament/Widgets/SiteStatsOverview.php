@@ -28,6 +28,8 @@ class SiteStatsOverview extends StatsOverviewWidget
                 ->description('À traiter')
                 ->descriptionIcon(Heroicon::OutlinedInboxArrowDown)
                 ->color($newInquiries > 0 ? 'warning' : 'gray')
+                // Sur une page de liste, la propriété `tableFilters` est exposée dans l'URL sous le nom `filters`
+                // (#[Url(as: 'filters')] dans Filament\Resources\Pages\ListRecords) : la tuile ouvre la liste filtrée.
                 ->url(InquiryResource::getUrl('index', ['filters' => ['status' => ['values' => [Inquiry::STATUS_NEW]]]])),
             Stat::make('Demandes du mois', $monthInquiries)
                 ->description('Depuis le 1er '.now()->translatedFormat('F'))

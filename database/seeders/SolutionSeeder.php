@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Solution;
+use App\Support\Typo;
 use Illuminate\Database\Seeder;
 
 class SolutionSeeder extends Seeder
@@ -90,6 +91,14 @@ class SolutionSeeder extends Seeder
         ];
 
         foreach ($solutions as $position => $solution) {
+            foreach (['tagline', 'audience', 'summary', 'description'] as $field) {
+                $solution[$field] = Typo::fr($solution[$field]);
+            }
+
+            foreach (['features', 'included'] as $field) {
+                $solution[$field] = array_map(Typo::fr(...), $solution[$field]);
+            }
+
             Solution::query()->updateOrCreate(
                 ['name' => $solution['name']],
                 $solution + ['position' => $position + 1, 'is_active' => true],

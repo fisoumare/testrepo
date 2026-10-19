@@ -53,13 +53,14 @@ class SolutionsTable
                 TernaryFilter::make('is_active')->label('Active'),
             ])
             ->defaultSort('position')
+            ->emptyStateHeading('Aucune solution')
             ->recordActions([
                 EditAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     ...CommonActions::toggleBulkActions(),
-                    DeleteBulkAction::make(),
+                    DeleteBulkAction::make()->modalHeading('Supprimer les solutions sélectionnées'),
                 ]),
             ]);
     }

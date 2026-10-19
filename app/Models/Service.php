@@ -55,6 +55,14 @@ class Service extends Model
         return $this->price <= 0;
     }
 
+    /** Unités de temps : le prix s'écrit « 600 000 GNF HT / jour » et l'unité n'est pas répétée à côté. */
+    public const TIME_UNITS = ['Mois', 'An', 'Jour', 'Heure'];
+
+    public function hasTimeUnit(): bool
+    {
+        return in_array($this->unit, self::TIME_UNITS, true);
+    }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

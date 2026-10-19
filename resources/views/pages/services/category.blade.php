@@ -1,22 +1,35 @@
-<x-layouts.app :title="$category->name.' · Prestations'" :description="$category->description">
-    <x-ui.page-header :code="$category->code" kicker="Prestations" :title="$category->name">
-        {{ $category->description }}
-        <x-slot:aside>
-            <div class="flex flex-wrap items-center gap-x-8 gap-y-4 lg:flex-col lg:items-end lg:text-right">
-                <p class="tabular">
-                    <span class="block text-4xl font-semibold tracking-tight text-navy-900">{{ $category->services->count() }}</span>
-                    <span class="label text-ardoise">prestations à prix fixe</span>
-                </p>
-                <a href="{{ route('quote') }}" class="btn-navy">Composer une estimation</a>
+{{-- $category, $categories (avec services_count), $onQuote (prestations sur devis de la famille), $title, $description : ServiceController::category(). --}}
+@php
+    $count = $category->services->count();
+@endphp
+<x-layouts.app :title="$title" :description="$description">
+    {{-- ===== HÉRO : même composition que x-ui.page-header, avec le fil d'Ariane au-dessus du titre (comme sur les fiches) ===== --}}
+    <section class="border-b border-navy-900/8 bg-paper">
+        <div class="wrap py-14 sm:py-20">
+            <x-ui.breadcrumb :items="[['Prestations', route('services.index')], [$category->name, null]]" />
+            <div class="mt-10 grid gap-8 lg:grid-cols-12 lg:items-end">
+                <div class="lg:col-span-8">
+                    <p class="label mb-4 flex items-center gap-3 text-emerald-700">
+                        <span class="rounded-sm border border-emerald-700/30 px-1.5 py-0.5">{{ $category->code }}</span>
+                        <span>Prestations</span>
+                    </p>
+                    <h1 class="h-display text-4xl text-navy-900 sm:text-5xl lg:text-6xl">{{ $category->name }}</h1>
+                    <p class="lead mt-6 max-w-2xl">{{ $category->description }}</p>
+                </div>
+                <div class="lg:col-span-4">
+                    <div class="flex flex-wrap items-center gap-x-8 gap-y-4 lg:flex-col lg:items-end lg:text-right">
+                        <p class="tabular">
+                            <span class="block text-4xl font-semibold tracking-tight text-navy-900">{{ $count }}</span>
+                            <span class="label text-ardoise">{{ $onQuote ? ($count > 1 ? 'prestations' : 'prestation').', dont '.$onQuote.' sur devis' : ($count > 1 ? 'prestations à prix fixe' : 'prestation à prix fixe') }}</span>
+                        </p>
+                        <a href="{{ route('quote') }}" class="btn-navy">Composer une estimation</a>
+                    </div>
+                </div>
             </div>
-        </x-slot:aside>
-    </x-ui.page-header>
+        </div>
+    </section>
 
-    <div class="wrap mt-10 pt-2 sm:mt-14">
-        <x-ui.breadcrumb :items="[['Prestations', route('services.index')], [$category->name, null]]" />
-    </div>
-
-    <div class="wrap mt-8 grid gap-10 lg:grid-cols-12">
+    <div class="wrap mt-10 grid gap-10 sm:mt-14 lg:grid-cols-12">
         {{-- ===== COLONNE LATÉRALE ===== --}}
         <aside class="lg:col-span-3">
             <label class="block lg:hidden" x-data>
@@ -47,7 +60,7 @@
 
                 <div class="unit mt-8 rounded-lg bg-ink p-5 text-emerald-400/60 rack-lines">
                     <p class="label flex items-center gap-2 text-emerald-400"><span class="led led-on" aria-hidden="true"></span> Estimation en ligne</p>
-                    <p class="mt-3 text-sm leading-relaxed text-ardoise-light">Sélectionnez des prestations du catalogue : prix fixes, hors taxes, devis valable 30 jours.</p>
+                    <p class="mt-3 text-sm leading-relaxed text-ardoise-light">Sélectionnez des prestations du catalogue&nbsp;: total hors taxes immédiat, devis valable 30 jours.</p>
                     <a href="{{ route('quote') }}" class="btn-primary mt-4 w-full">Composer une estimation</a>
                 </div>
             </div>
@@ -55,24 +68,18 @@
 
         {{-- ===== GRILLE ===== --}}
         <div class="min-w-0 lg:col-span-9">
-            <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+            <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+                <h2 class="text-xl font-semibold tracking-tight text-navy-900">{{ $count > 1 ? 'Les '.$count.' prestations' : 'La prestation' }} {{ $category->code }}</h2>
+                <span class="label text-ardoise">Prix hors taxes en GNF · TVA 18&nbsp;% en sus</span>
+            </div>
+            <div class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 @foreach ($category->services as $service)
                     <x-ui.service-card :service="$service" class="reveal reveal-delay-{{ $loop->index % 3 }}" />
                 @endforeach
             </div>
-
-            <div class="unit mt-10 grid gap-6 rounded-xl border border-navy-900/10 bg-paper p-6 text-navy-900/30 sm:p-8 md:grid-cols-12 md:items-center">
-                <div class="md:col-span-8">
-                    <p class="label flex items-center gap-2 text-emerald-700"><span class="led led-on" aria-hidden="true"></span> Composer une estimation</p>
-                    <h2 class="mt-3 text-2xl font-semibold tracking-tight text-navy-900">Ajoutez des prestations, obtenez un total hors taxes.</h2>
-                    <p class="mt-2 text-[15px] leading-relaxed text-ardoise">Prix fixes, TVA 18 % en sus, 50 % à la commande et solde à la validation. Devis valable 30 jours.</p>
-                </div>
-                <div class="flex flex-wrap gap-3 md:col-span-4 md:justify-end">
-                    <a href="{{ route('quote') }}" class="btn-navy">Composer une estimation</a>
-                </div>
-            </div>
         </div>
     </div>
 
+    {{-- Un seul appel à l'estimation en bas de page : la bande d'appel --}}
     <x-ui.cta-band />
 </x-layouts.app>

@@ -4,17 +4,19 @@
 @endphp
 <div class="wrap" x-data="{ cartOpen: false }" @keydown.escape.window="cartOpen = false">
 
-    {{-- Fil des étapes --}}
-    <ol class="mt-10 grid grid-cols-3 gap-2 sm:gap-3" aria-label="Étapes de l'estimation">
+    {{-- Fil des étapes : sur mobile, LED + numéro au-dessus d'un libellé complet qui peut passer à la ligne. --}}
+    <ol id="etapes" class="mt-10 grid grid-cols-3 gap-2 focus:outline-none sm:gap-3" aria-label="Étapes de l'estimation" tabindex="-1">
         @foreach ($steps as $number => $label)
             <li @class([
-                'flex min-w-0 items-center gap-2 rounded-md border px-2.5 py-2.5 sm:gap-3 sm:px-4',
+                'flex min-w-0 flex-col gap-1.5 rounded-md border px-2.5 py-2.5 sm:flex-row sm:items-center sm:gap-3 sm:px-4',
                 'border-navy-900 bg-navy-900 text-white' => $step === $number,
                 'border-navy-900/10 bg-paper text-navy-900' => $step !== $number,
             ]) @if ($step === $number) aria-current="step" @endif>
-                <span class="led {{ $step >= $number ? 'led-on' : 'led-off' }}" aria-hidden="true"></span>
-                <span class="label {{ $step === $number ? 'text-emerald-400' : 'text-ardoise' }}">0{{ $number }}</span>
-                <span class="truncate text-sm font-semibold">{{ $label }}</span>
+                <span class="flex items-center gap-2">
+                    <span class="led {{ $step >= $number ? 'led-on' : 'led-off' }}" aria-hidden="true"></span>
+                    <span class="label {{ $step === $number ? 'text-emerald-400' : 'text-ardoise' }}">0{{ $number }}</span>
+                </span>
+                <span class="text-xs font-semibold leading-snug hyphens-auto sm:text-sm">{{ $label }}</span>
             </li>
         @endforeach
     </ol>
@@ -99,7 +101,7 @@
                                 @if (isset($items[$service->id]))
                                     <button type="button" wire:click="add({{ $service->id }})" class="btn-navy w-full sm:w-auto" aria-label="Ajouter une unité supplémentaire : {{ $service->name }}">
                                         <svg class="size-4" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m3.5 8.5 3 3 6-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        Ajouté <span class="label text-emerald-400">× {{ $items[$service->id] }}</span>
+                                        Ajouté <span class="label text-emerald-400">×&nbsp;{{ $items[$service->id] }}</span>
                                     </button>
                                 @else
                                     <button type="button" wire:click="add({{ $service->id }})" class="btn-ghost w-full sm:w-auto" aria-label="Ajouter : {{ $service->name }}">
@@ -192,15 +194,15 @@
         {{-- ===== ÉTAPE 2 : COORDONNÉES ===== --}}
         <div class="mt-10 grid gap-10 lg:grid-cols-12">
             <section class="min-w-0 lg:col-span-7" aria-labelledby="coordonnees-titre">
-                <h2 id="coordonnees-titre" class="text-2xl font-semibold tracking-tight text-navy-900 sm:text-3xl">Vos coordonnées</h2>
-                <p class="mt-3 text-ardoise text-pretty">Nous vous répondons au plus tard le jour ouvré suivant, avec un devis en bonne et due forme. {{ setting('hours') }}.</p>
+                <h2 id="coordonnees-titre" class="text-2xl font-semibold tracking-tight text-navy-900 focus:outline-none sm:text-3xl" tabindex="-1">Vos coordonnées</h2>
+                <p class="mt-3 text-ardoise text-pretty">Première réponse au plus tard le jour ouvré suivant&#8239;; nous confirmons ensuite votre demande par un devis. {{ setting('hours') }}.</p>
 
-                <form wire:submit="submit" novalidate class="relative mt-8 grid gap-5 sm:grid-cols-2">
-                    <x-ui.form-field name="name" label="Nom et prénom" required wire:model.blur="name" autocomplete="name" maxlength="120" />
-                    <x-ui.form-field name="organization" label="Organisation" wire:model.blur="organization" autocomplete="organization" maxlength="120" placeholder="Établissement, entreprise, administration…" />
-                    <x-ui.form-field name="email" type="email" label="Adresse e-mail" required wire:model.blur="email" autocomplete="email" inputmode="email" maxlength="190" />
-                    <x-ui.form-field name="phone" type="tel" label="Téléphone" required wire:model.blur="phone" autocomplete="tel" inputmode="tel" maxlength="30" hint="De préférence un numéro joignable sur WhatsApp." />
-                    <x-ui.form-field name="message" type="textarea" label="Précisions sur votre projet" wire:model.blur="message" class="sm:col-span-2" rows="5" maxlength="2000" hint="Contexte, délais souhaités, contraintes particulières. 2 000 caractères au plus." />
+                <form id="devis-formulaire" wire:submit="submit" novalidate class="relative mt-8 grid gap-5 sm:grid-cols-2">
+                    <x-ui.form-field name="name" label="Nom et prénom" required wire:model.live.blur="name" autocomplete="name" maxlength="120" />
+                    <x-ui.form-field name="organization" label="Organisation" wire:model.live.blur="organization" autocomplete="organization" maxlength="120" placeholder="Établissement, entreprise, administration…" />
+                    <x-ui.form-field name="email" type="email" label="Adresse e-mail" required wire:model.live.blur="email" autocomplete="email" inputmode="email" maxlength="190" />
+                    <x-ui.form-field name="phone" type="tel" label="Téléphone" required wire:model.live.blur="phone" autocomplete="tel" inputmode="tel" maxlength="30" hint="De préférence un numéro joignable sur WhatsApp." />
+                    <x-ui.form-field name="message" type="textarea" label="Précisions sur votre projet" wire:model.live.blur="message" class="sm:col-span-2" rows="5" maxlength="2000" hint="Contexte, délais souhaités, contraintes particulières. 2 000 caractères au plus." />
 
                     {{-- Pot-de-miel : invisible pour les humains, doit rester vide. --}}
                     <div class="absolute -left-[9999px] top-0 h-px w-px overflow-hidden" aria-hidden="true">
@@ -238,7 +240,7 @@
                     <ul class="mt-4 divide-y divide-navy-900/8 text-sm">
                         @foreach ($cart['lines'] as $line)
                             <li wire:key="recap-{{ $line['service']->id }}" class="flex items-start justify-between gap-4 py-2.5">
-                                <span class="min-w-0"><span class="label text-ardoise">{{ $line['service']->number }}</span><br>{{ $line['service']->name }} <span class="text-ardoise">× {{ $line['quantity'] }}</span></span>
+                                <span class="min-w-0"><span class="label text-ardoise">{{ $line['service']->number }}</span><br>{{ $line['service']->name }} <span class="text-ardoise">×&nbsp;{{ $line['quantity'] }}</span></span>
                                 <span class="shrink-0 font-semibold tabular text-navy-900">{{ $line['service']->isOnQuote() ? 'Sur devis' : gnf($line['total']) }}</span>
                             </li>
                         @endforeach
@@ -264,8 +266,8 @@
         <div class="mt-10 grid gap-10 lg:grid-cols-12">
             <section class="min-w-0 lg:col-span-7" aria-labelledby="envoye-titre">
                 <p class="label flex items-center gap-2 text-emerald-700"><span class="led led-on"></span> Demande enregistrée</p>
-                <h2 id="envoye-titre" class="h-section mt-4 text-navy-900">Merci, votre demande <span class="font-mono text-emerald-700">{{ $reference }}</span> est bien reçue.</h2>
-                <p class="lead mt-5">Nous revenons vers vous au plus tard le jour ouvré suivant avec un devis en bonne et due forme. Un accusé de réception vient d'être envoyé à <span class="font-medium text-navy-900">{{ $email }}</span>.</p>
+                <h2 id="envoye-titre" class="h-section mt-4 text-navy-900 focus:outline-none" tabindex="-1">Merci, votre demande <span class="font-mono text-emerald-700">{{ $reference }}</span> est bien reçue.</h2>
+                <p class="lead mt-5">Première réponse au plus tard le jour ouvré suivant&#8239;; nous confirmons ensuite votre demande par un devis. Un accusé de réception vient d'être envoyé à <span class="font-medium text-navy-900">{{ $email }}</span>.</p>
 
                 <div class="mt-8 flex flex-wrap gap-3">
                     <a href="{{ $this->whatsappUrl() }}" target="_blank" rel="noopener" class="btn-primary">
@@ -279,7 +281,7 @@
                 <dl class="spec mt-10">
                     <dt>Référence</dt><dd class="font-mono text-[13px]">{{ $reference }}</dd>
                     <dt>Contact</dt><dd>{{ $name }}@if ($organization) — {{ $organization }}@endif<br>{{ $email }} · {{ $phone }}</dd>
-                    <dt>Réponse</dt><dd>Au plus tard le jour ouvré suivant, {{ setting('hours') }}</dd>
+                    <dt>Réponse</dt><dd>Première réponse au plus tard le jour ouvré suivant, {{ setting('hours') }}</dd>
                     <dt>Validité</dt><dd>Devis valable {{ setting('quote_validity_days', '30') }} jours</dd>
                     <dt>Paiement</dt><dd>{{ setting('payment_terms') }}</dd>
                 </dl>
@@ -291,7 +293,7 @@
                     <ul class="mt-4 divide-y divide-white/10 text-sm">
                         @foreach ($sent['items'] ?? [] as $item)
                             <li wire:key="sent-{{ $item['service_id'] }}" class="flex items-start justify-between gap-4 py-2.5">
-                                <span class="min-w-0"><span class="label text-ardoise-light">{{ $item['number'] }}</span><br>{{ $item['name'] }} <span class="text-ardoise-light">× {{ $item['quantity'] }}</span></span>
+                                <span class="min-w-0"><span class="label text-ardoise-light">{{ $item['number'] }}</span><br>{{ $item['name'] }} <span class="text-ardoise-light">×&nbsp;{{ $item['quantity'] }}</span></span>
                                 <span class="shrink-0 font-semibold tabular">{{ (int) $item['unit_price'] > 0 ? gnf($item['total']) : 'Sur devis' }}</span>
                             </li>
                         @endforeach

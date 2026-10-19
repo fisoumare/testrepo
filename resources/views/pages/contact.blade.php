@@ -27,10 +27,10 @@
                     <dt>Adresse</dt><dd>{{ setting('address') }}<br>{{ setting('city') }}, {{ setting('country') }}</dd>
                     <dt>Horaires</dt><dd>{{ setting('hours') }}</dd>
                     <dt>Assistance</dt><dd>{{ setting('support_channels') }}</dd>
-                    <dt>Réponse</dt><dd>Au plus tard le jour ouvré suivant</dd>
+                    <dt>Réponse</dt><dd>Première réponse au plus tard le jour ouvré suivant</dd>
                 </dl>
                 <div class="vent mt-6 text-navy-900" aria-hidden="true"></div>
-                <p class="mt-4 text-xs leading-relaxed text-ardoise">Vous préférez chiffrer vous-même&nbsp;? <a href="{{ route('quote') }}" class="btn-link text-xs">Composer une estimation en ligne →</a></p>
+                <p class="mt-4 text-xs leading-relaxed text-ardoise">Vous préférez chiffrer vous-même&#8239;? <a href="{{ route('quote') }}" class="btn-link text-xs">Composer une estimation en ligne →</a></p>
             </div>
         </aside>
     </section>
@@ -70,5 +70,6 @@
         </section>
     @endif
 
-    <x-ui.cta-band title="Vous préférez chiffrer vous-même ?" text="Composez votre projet à partir des {{ $servicesCount }} prestations à prix fixe du catalogue : total HT, TVA et TTC calculés en direct, devis confirmé au plus tard le jour ouvré suivant." />
+    {{-- Attributs rendus par {{ }} : espaces insécables en clair (U+202F avant « ? », U+00A0 avant « : »), une entité serait affichée telle quelle. --}}
+    <x-ui.cta-band title="Vous préférez chiffrer vous-même ?" text="Composez votre projet à partir des {{ $servicesCount }} prestations à prix fixe du catalogue : total HT, TVA et TTC calculés en direct, première réponse au plus tard le jour ouvré suivant." />
 </x-layouts.app>

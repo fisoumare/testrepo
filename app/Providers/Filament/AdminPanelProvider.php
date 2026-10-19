@@ -39,6 +39,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            // Mot de passe oublié (lien sur la page de connexion, e-mail de réinitialisation)
+            // et page « Profil » du menu utilisateur (nom, e-mail, mot de passe).
+            ->passwordReset()
+            ->profile(isSimple: false)
             ->brandName('SOUMATIC')
             ->brandLogo(fn (): string => asset('brand/logo.svg'))
             ->darkModeBrandLogo(fn (): string => asset('brand/logo-blanc.svg'))

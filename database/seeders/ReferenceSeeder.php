@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Reference;
+use App\Support\Typo;
 use Illuminate\Database\Seeder;
 
 class ReferenceSeeder extends Seeder
@@ -34,6 +35,16 @@ class ReferenceSeeder extends Seeder
         ];
 
         foreach ($references as $position => $reference) {
+            foreach (['sector', 'headline', 'description'] as $field) {
+                if (isset($reference[$field])) {
+                    $reference[$field] = Typo::fr($reference[$field]);
+                }
+            }
+
+            if (isset($reference['services'])) {
+                $reference['services'] = array_map(Typo::fr(...), $reference['services']);
+            }
+
             Reference::query()->updateOrCreate(
                 ['acronym' => $reference['acronym']],
                 $reference + ['position' => $position + 1],
